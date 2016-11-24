@@ -22,6 +22,8 @@
 
 module VideoController(
 input [3:0] player_color,
+input [3:0] wall_color,
+
     input clk,
     input rst,
     input [2:0] In, //REMOVE LATER
@@ -168,7 +170,8 @@ output reg [2:0] Sel
     player_objHeight  ,   
     player_vOffset ,      
     player_hOffset, 
-        player_color,   
+        player_color,
+        wall_color,   
     Sel_w);
     
 //    module Mux(
