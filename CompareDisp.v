@@ -50,6 +50,7 @@ input  [31:0] player_hOffset ,
 
 
 input [3:0] player_color,
+input [3:0] wall_color,
 
 output reg [2:0] Sel
 );
