@@ -73,7 +73,9 @@ output reg [3:0] buttons_out
                        nextState <= waitState;
                    end
                    else nextState<=buttonHold;
-                                                 
+                   end
+               default: begin   
+               buttons_out <= 4'd0;                                 
                end            
            endcase
        end

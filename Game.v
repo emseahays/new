@@ -80,28 +80,35 @@ wire  [3:0] player_color_w;
 wire  [3:0] wall_color_w;
 
 
-VideoController V1( player_color_w, wall_color_w, clk, rst, In,
+VideoController V1( 
+    player_color_w, 
+    wall_color_w, 
+    clk, 
+    rst, 
+    In,
     btnDim,
     uBtns_w,
-    vStartPos_w,
-    hStartPos_w,
-    objWidth_w,
-    objHeight_w,
-    vOffset_w,
-    hOffset_w,
     wall_vStartPos_w , 
     wall_hStartPos_w  ,
     wall_objWidth_w   ,
     wall_objHeight_w  ,
     wall_vOffset_w ,   
     wall_hOffset_w ,
+    vStartPos_w,
+    hStartPos_w,
+    objWidth_w,
+    objHeight_w,
+    vOffset_w,
+    hOffset_w,
     player_vStartPos_w , 
     player_hStartPos_w  ,
     player_objWidth_w   ,
     player_objHeight_w  ,
     player_vOffset_w ,   
     player_hOffset_w ,   
-    HS,VS,vgaRed,vgaGreen,vgaBlue
+    HS,VS,vgaRed,
+    vgaGreen,
+    vgaBlue
     );
 
 wire [2:0] sel;
@@ -122,9 +129,9 @@ ps2interface G5(clk,PS2_CLK,PS2_DATA,rst,uBtns_w);
 wire btnClk_w;
 
 wire enableUp_w     [3:0][5:0];
-wire enableDown_w  [3:0][5:0];
-wire enableLeft_w [3:0][5:0];
-wire enableRight_w [3:0][5:0];   
+wire enableDown_w   [3:0][5:0];
+wire enableLeft_w   [3:0][5:0];
+wire enableRight_w  [3:0][5:0];   
 
 wire wall_enableUp_w     [3:0][5:0];
 wire wall_enableDown_w   [3:0][5:0];
@@ -137,6 +144,7 @@ enableCompare G10 (
     enableDown_w,
     enableLeft_w,
     enableRight_w,
+    
     up_Enable_w,
     down_Enable_w,
     left_Enable_w,
@@ -180,7 +188,46 @@ wire [3:0] wall_color_o_w [3:0][5:0];
 Scrolls G9(player_hPos_w, player_vPos_w, player_color_w, rst, btnClk_w, uBtns_w, vStartPos_w, hStartPos_w, 
 objWidth_w, objHeight_w, vOffset_w, hOffset_w, color_o_w, enableUp_w, enableDown_w, enableLeft_w, enableRight_w); 
 
-Obstacles G12(player_hPos_w, player_vPos_w, player_color_w, rst, btnClk_w, uBtns_w, wall_vStartPos_w,  wall_hStartPos_w, 
- wall_objWidth_w,  wall_objHeight_w,  wall_vOffset_w,  wall_hOffset_w, wall_color_o_w, wall_enableUp_w, wall_enableDown_w, wall_enableLeft_w, wall_enableRight_w); 
+
+/*module Obstacles(           
+                            
+input [31:0] player_hPos,   
+input [31:0] player_vPos,   
+input [3:0] player_color,   
+input rst,                  
+input btnClk,               
+input [3:0] btns,           
+output   [31:0] vStartPos[3:
+output  [31:0] hStartPos[3:0
+output  [31:0] objWidth [3:0
+output  [31:0] objHeight[3:0
+output  [31:0] vOffset[3:0][
+output  [31:0] hOffset[3:0][
+output [3:0] color_o[3:0][5:
+output upEnable[3:0][5:0],  
+output downEnable[3:0][5:0],
+output leftEnable[3:0][5:0],
+output rightEnable[3:0][5:0]);*/
+Obstacles G12(
+player_hPos_w, 
+player_vPos_w, 
+player_color_w, 
+rst, 
+btnClk_w,
+uBtns_w,
+
+wall_vStartPos_w, 
+wall_hStartPos_w, 
+wall_objWidth_w, 
+wall_objHeight_w, 
+wall_vOffset_w,  
+wall_hOffset_w, 
+
+wall_color_o_w, 
+
+wall_enableUp_w, 
+wall_enableDown_w, 
+wall_enableLeft_w, 
+wall_enableRight_w); 
 
 endmodule

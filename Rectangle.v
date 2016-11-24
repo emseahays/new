@@ -42,8 +42,8 @@ module Rectangle(
     output [3:0] rect_color_o,
     output reg upEnable,
     output reg downEnable,
-    output  reg leftEnable,
-    output  reg rightEnable
+    output   leftEnable,
+    output   rightEnable
 );
 
 
