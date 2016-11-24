@@ -132,7 +132,15 @@ wire wall_enableLeft_w   [3:0][5:0];
 wire wall_enableRight_w  [3:0][5:0];              
            
        
-enableCompare G10 (enableUp_w,enableDown_w,enableLeft_w,enableRight_w,up_Enable_w,down_Enable_w,left_Enable_w,right_Enable_w);
+enableCompare G10 (
+    enableUp_w,
+    enableDown_w,
+    enableLeft_w,
+    enableRight_w,
+    up_Enable_w,
+    down_Enable_w,
+    left_Enable_w,
+    right_Enable_w);
    
    
 wire btnClk2_w;

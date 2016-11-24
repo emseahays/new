@@ -229,11 +229,11 @@ output rightEnable[3:0][5:0]
         //SCROLL 5   
         //=======================================================================================
               parameter row_num5=34;
-              parameter col_num5=1;
+              parameter col_num5=12;
            
               parameter scroll_vOffset5=12*row_num5; 
-              parameter scroll_hOffset5=128*col_num5;
-              
+              //parameter scroll_hOffset5=128*col_num5;
+              parameter scroll_hOffset5=12*col_num5;
               //rect 1 
               parameter rect1_vStartPos5 =scroll_vOffset5;
               parameter rect1_hStartPos5=scroll_hOffset5;

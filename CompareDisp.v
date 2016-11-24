@@ -220,28 +220,28 @@ begin
                                 Sel<=6; //white
                     end 
 //======================================================================================                    
-//WALLS
+//SROLLS
 //=======================================================================================                    
 //Scroll 0
                                 //object 1 
                         else if(hCount<=hStartPos[0][0]+h+hOffset[0][0]+objWidth[0][0]&&hCount>=hStartPos[0][0]+h+hOffset[0][0]&&vCount<=vStartPos[0][0]+v+vOffset[0][0]+objHeight[0][0]&&vCount>=vStartPos[0][0]+v+vOffset[0][0])
                          begin
-                                Sel<=6; //white
+                                Sel<=2; //white
                         end 
                         //object 2
                         else if(hCount<=hStartPos[1][0]+h+hOffset[1][0]+objWidth[1][0]&&hCount>=hStartPos[1][0]+h+hOffset[1][0]&&vCount<=vStartPos[1][0]+v+vOffset[1][0]+objHeight[1][0]&&vCount>=vStartPos[1][0]+v+vOffset[1][0])
                             begin
-                                Sel<=6; //white
+                                Sel<=3; //white
                             end 
                     //        //object 3
                         else if(hCount<=hStartPos[2][0]+h+hOffset[2][0]+objWidth[2][0]&&hCount>=hStartPos[2][0]+h+hOffset[2][0]&&vCount<=vStartPos[2][0]+v+vOffset[2][0]+objHeight[2][0]&&vCount>=vStartPos[2][0]+v+vOffset[2][0])
                             begin
-                                Sel<=6; //white
+                                Sel<=4; //white
                             end 
                     //        //object 4
                         else if(hCount<=hStartPos[3][0]+h+hOffset[3][0]+objWidth[3][0]&&hCount>=hStartPos[3][0]+h+hOffset[3][0]&&vCount<=vStartPos[3][0]+v+vOffset[3][0]+objHeight[3][0]&&vCount>=vStartPos[3][0]+v+vOffset[3][0])
                             begin
-                                Sel<=6; //white
+                                Sel<=5; //white
                             end 
                     
                     

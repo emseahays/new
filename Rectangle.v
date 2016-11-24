@@ -129,18 +129,18 @@ always@(posedge btnClk, posedge rst) begin
     begin 
         upEnable <= 1'b1;  //enable upButton      
     end
-     // LEFT/RIGHT ENBLE/DISABLE
-   if((player_vPos == vStartPos + vOffset) // inside rectangle
-   && (((player_hPos < hStartPos + hOffset) && ( player_hPos + 12 > hStartPos + hOffset)) // left side of block is inside player
-   || ((player_hPos < hStartPos + hOffset + 128) && ( player_hPos + 12 > hStartPos + hOffset + 128))) // right side of block
-   && ((rect_color != player_color)))
-   begin
-       // Disable Controls
-       downEnable <= 1'b0;
-       upEnable <= 1'b0;
-       leftEnable <= 1'b0;
-       rightEnable <= 1'b0; 
-   end
+//     // LEFT/RIGHT ENBLE/DISABLE
+//   if((player_vPos == vStartPos + vOffset) // inside rectangle
+//   && (((player_hPos < hStartPos + hOffset) && ( player_hPos + 12 > hStartPos + hOffset)) // left side of block is inside player
+//   || ((player_hPos < hStartPos + hOffset + 128) && ( player_hPos + 12 > hStartPos + hOffset + 128))) // right side of block
+//   && ((rect_color != player_color)))
+//   begin
+//       // Disable Controls
+//       downEnable <= 1'b0;
+//       upEnable <= 1'b0;
+//       leftEnable <= 1'b0;
+//       rightEnable <= 1'b0; 
+//   end
 end
 end
 
