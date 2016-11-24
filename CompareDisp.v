@@ -88,22 +88,22 @@ begin
             //object 1 
     else if(hCount<=wall_hStartPos[0][0]+h+wall_hOffset[0][0]+wall_objWidth[0][0]&&hCount>=wall_hStartPos[0][0]+h+wall_hOffset[0][0]&&vCount<=wall_vStartPos[0][0]+v+wall_vOffset[0][0]+wall_objHeight[0][0]&&vCount>=wall_vStartPos[0][0]+v+wall_vOffset[0][0])
      begin
-        Sel<=2; //red
+            Sel<=6; //white
     end 
     //object 2
     else if(hCount<=wall_hStartPos[1][0]+h+wall_hOffset[1][0]+wall_objWidth[1][0]&&hCount>=wall_hStartPos[1][0]+h+wall_hOffset[1][0]&&vCount<=wall_vStartPos[1][0]+v+wall_vOffset[1][0]+wall_objHeight[1][0]&&vCount>=wall_vStartPos[1][0]+v+wall_vOffset[1][0])
         begin
-            Sel<=3; //cyan
+            Sel<=6; //white
         end 
 //        //object 3
     else if(hCount<=wall_hStartPos[2][0]+h+wall_hOffset[2][0]+wall_objWidth[2][0]&&hCount>=wall_hStartPos[2][0]+h+wall_hOffset[2][0]&&vCount<=wall_vStartPos[2][0]+v+wall_vOffset[2][0]+wall_objHeight[2][0]&&vCount>=wall_vStartPos[2][0]+v+wall_vOffset[2][0])
         begin
-            Sel<=4; //yellow
+            Sel<=6; //white
         end 
 //        //object 4
     else if(hCount<=wall_hStartPos[3][0]+h+wall_hOffset[3][0]+wall_objWidth[3][0]&&hCount>=wall_hStartPos[3][0]+h+wall_hOffset[3][0]&&vCount<=wall_vStartPos[3][0]+v+wall_vOffset[3][0]+wall_objHeight[3][0]&&vCount>=wall_vStartPos[3][0]+v+wall_vOffset[3][0])
         begin
-            Sel<=5; //magenta
+            Sel<=6; //white
         end 
 
 
@@ -114,22 +114,22 @@ begin
 //WALL1
     else if(hCount<=wall_hStartPos[0][1]+h+wall_hOffset[0][1]+wall_objWidth[0][1]&&hCount>=wall_hStartPos[0][1]+h+wall_hOffset[0][1]&&vCount<=wall_vStartPos[0][1]+v+wall_vOffset[0][1]+wall_objHeight[0][1]&&vCount>=wall_vStartPos[0][1]+v+wall_vOffset[0][1])
      begin
-        Sel<=2; //red
+            Sel<=6; //white
     end 
     //object 2
     else if(hCount<=wall_hStartPos[1][1]+h+wall_hOffset[1][1]+wall_objWidth[1][1]&&hCount>=wall_hStartPos[1][1]+h+wall_hOffset[1][1]&&vCount<=wall_vStartPos[1][1]+v+wall_vOffset[1][1]+wall_objHeight[1][1]&&vCount>=wall_vStartPos[1][1]+v+wall_vOffset[1][1])
         begin
-            Sel<=3; //cyan
+            Sel<=6; //white
         end 
 //        //object 3
     else if(hCount<=wall_hStartPos[2][1]+h+wall_hOffset[2][1]+wall_objWidth[2][1]&&hCount>=wall_hStartPos[2][1]+h+wall_hOffset[2][1]&&vCount<=wall_vStartPos[2][1]+v+wall_vOffset[2][1]+wall_objHeight[2][1]&&vCount>=wall_vStartPos[2][1]+v+wall_vOffset[2][1])
         begin
-            Sel<=4; //yellow
+            Sel<=6; //white
         end 
 //        //object 4
     else if(hCount<=wall_hStartPos[3][1]+h+wall_hOffset[3][1]+wall_objWidth[3][1]&&hCount>=wall_hStartPos[3][1]+h+wall_hOffset[3][1]&&vCount<=wall_vStartPos[3][1]+v+wall_vOffset[3][1]+wall_objHeight[3][1]&&vCount>=wall_vStartPos[3][1]+v+wall_vOffset[3][1])
         begin
-            Sel<=5; //magenta
+            Sel<=6; //white
         end 
 
 
@@ -140,84 +140,84 @@ begin
 //WALL 2
     else if(hCount<=wall_hStartPos[0][2]+h+wall_hOffset[0][2]+wall_objWidth[0][2]&&hCount>=wall_hStartPos[0][2]+h+wall_hOffset[0][2]&&vCount<=wall_vStartPos[0][2]+v+wall_vOffset[0][2]+wall_objHeight[0][2]&&vCount>=wall_vStartPos[0][2]+v+wall_vOffset[0][2])
      begin
-        Sel<=2; //red
+                                Sel<=6; //white
     end 
     //object 2
     else if(hCount<=wall_hStartPos[1][2]+h+wall_hOffset[1][2]+wall_objWidth[1][2]&&hCount>=wall_hStartPos[1][2]+h+wall_hOffset[1][2]&&vCount<=wall_vStartPos[1][2]+v+wall_vOffset[1][2]+wall_objHeight[1][2]&&vCount>=wall_vStartPos[1][2]+v+wall_vOffset[1][2])
         begin
-            Sel<=3; //cyan
+                                Sel<=6; //white
         end 
 //        //object 3
     else if(hCount<=wall_hStartPos[2][2]+h+wall_hOffset[2][2]+wall_objWidth[2][2]&&hCount>=wall_hStartPos[2][2]+h+wall_hOffset[2][2]&&vCount<=wall_vStartPos[2][2]+v+wall_vOffset[2][2]+wall_objHeight[2][2]&&vCount>=wall_vStartPos[2][2]+v+wall_vOffset[2][2])
         begin
-            Sel<=4; //yellow
+                                Sel<=6; //white
         end 
 //        //object 4
     else if(hCount<=wall_hStartPos[3][2]+h+wall_hOffset[3][2]+wall_objWidth[3][2]&&hCount>=wall_hStartPos[3][2]+h+wall_hOffset[3][2]&&vCount<=wall_vStartPos[3][2]+v+wall_vOffset[3][2]+wall_objHeight[3][2]&&vCount>=wall_vStartPos[3][2]+v+wall_vOffset[3][2])
         begin
-            Sel<=5; //magenta
+                                Sel<=6; //white
         end 
 
 // WALL 3
     else if(hCount<=wall_hStartPos[0][3]+h+wall_hOffset[0][3]+wall_objWidth[0][3]&&hCount>=wall_hStartPos[0][3]+h+wall_hOffset[0][3]&&vCount<=wall_vStartPos[0][3]+v+wall_vOffset[0][3]+wall_objHeight[0][3]&&vCount>=wall_vStartPos[0][3]+v+wall_vOffset[0][3])
      begin
-        Sel<=2; //red
+                                Sel<=6; //white
     end 
     //object 2
     else if(hCount<=wall_hStartPos[1][3]+h+wall_hOffset[1][3]+wall_objWidth[1][3]&&hCount>=wall_hStartPos[1][3]+h+wall_hOffset[1][3]&&vCount<=wall_vStartPos[1][3]+v+wall_vOffset[1][3]+wall_objHeight[1][3]&&vCount>=wall_vStartPos[1][3]+v+wall_vOffset[1][3])
         begin
-            Sel<=3; //cyan
+                                Sel<=6; //white
         end 
 //        //object 3
     else if(hCount<=wall_hStartPos[2][3]+h+wall_hOffset[2][3]+wall_objWidth[2][3]&&hCount>=wall_hStartPos[2][3]+h+wall_hOffset[2][3]&&vCount<=wall_vStartPos[2][3]+v+wall_vOffset[2][3]+wall_objHeight[2][3]&&vCount>=wall_vStartPos[2][3]+v+wall_vOffset[2][3])
         begin
-            Sel<=4; //yellow
+                                Sel<=6; //white
         end 
 //        //object 4
     else if(hCount<=wall_hStartPos[3][3]+h+wall_hOffset[3][3]+wall_objWidth[3][3]&&hCount>=wall_hStartPos[3][3]+h+wall_hOffset[3][3]&&vCount<=wall_vStartPos[3][3]+v+wall_vOffset[3][3]+wall_objHeight[3][3]&&vCount>=wall_vStartPos[3][3]+v+wall_vOffset[3][3])
         begin
-            Sel<=5; //magenta
+                                Sel<=6; //white
         end 
         
 // WALL 4
                 else if(hCount<=wall_hStartPos[0][4]+h+wall_hOffset[0][4]+wall_objWidth[0][4]&&hCount>=wall_hStartPos[0][4]+h+wall_hOffset[0][4]&&vCount<=wall_vStartPos[0][4]+v+wall_vOffset[0][4]+wall_objHeight[0][4]&&vCount>=wall_vStartPos[0][4]+v+wall_vOffset[0][4])
                  begin
-                    Sel<=2; //red
+                                Sel<=6; //white
                 end 
                 //object 2
                 else if(hCount<=wall_hStartPos[1][4]+h+wall_hOffset[1][4]+wall_objWidth[1][4]&&hCount>=wall_hStartPos[1][4]+h+wall_hOffset[1][4]&&vCount<=wall_vStartPos[1][4]+v+wall_vOffset[1][4]+wall_objHeight[1][4]&&vCount>=wall_vStartPos[1][4]+v+wall_vOffset[1][4])
                     begin
-                        Sel<=3; //cyan
+                                Sel<=6; //white
                     end 
         //        //object 3
                 else if(hCount<=wall_hStartPos[2][4]+h+wall_hOffset[2][4]+wall_objWidth[2][4]&&hCount>=wall_hStartPos[2][4]+h+wall_hOffset[2][4]&&vCount<=wall_vStartPos[2][4]+v+wall_vOffset[2][4]+wall_objHeight[2][4]&&vCount>=wall_vStartPos[2][4]+v+wall_vOffset[2][4])
                     begin
-                        Sel<=4; //yellow
+                                Sel<=6; //white
                     end 
         //        //object 4
                 else if(hCount<=wall_hStartPos[3][4]+h+wall_hOffset[3][4]+wall_objWidth[3][4]&&hCount>=wall_hStartPos[3][4]+h+wall_hOffset[3][4]&&vCount<=wall_vStartPos[3][4]+v+wall_vOffset[3][4]+wall_objHeight[3][4]&&vCount>=wall_vStartPos[3][4]+v+wall_vOffset[3][4])
                     begin
-                        Sel<=5; //magenta
+                                Sel<=6; //white
                     end 
 // WALL 5
                 else if(hCount<=wall_hStartPos[0][5]+h+wall_hOffset[0][5]+wall_objWidth[0][5]&&hCount>=wall_hStartPos[0][5]+h+wall_hOffset[0][5]&&vCount<=wall_vStartPos[0][5]+v+wall_vOffset[0][5]+wall_objHeight[0][5]&&vCount>=wall_vStartPos[0][5]+v+wall_vOffset[0][5])
                  begin
-                    Sel<=2; //red
+                                Sel<=6; //white
                 end 
                 //object 2
                 else if(hCount<=wall_hStartPos[1][5]+h+wall_hOffset[1][5]+wall_objWidth[1][5]&&hCount>=wall_hStartPos[1][5]+h+wall_hOffset[1][5]&&vCount<=wall_vStartPos[1][5]+v+wall_vOffset[1][5]+wall_objHeight[1][5]&&vCount>=wall_vStartPos[1][5]+v+wall_vOffset[1][5])
                     begin
-                        Sel<=3; //cyan
+                                Sel<=6; //white
                     end 
         //        //object 3
                 else if(hCount<=wall_hStartPos[2][5]+h+wall_hOffset[2][5]+wall_objWidth[2][5]&&hCount>=wall_hStartPos[2][5]+h+wall_hOffset[2][5]&&vCount<=wall_vStartPos[2][5]+v+wall_vOffset[2][5]+wall_objHeight[2][5]&&vCount>=wall_vStartPos[2][5]+v+wall_vOffset[2][5])
                     begin
-                        Sel<=4; //yellow
+                                Sel<=6; //white
                     end 
         //        //object 4
                 else if(hCount<=wall_hStartPos[3][5]+h+wall_hOffset[3][5]+wall_objWidth[3][5]&&hCount>=wall_hStartPos[3][5]+h+wall_hOffset[3][5]&&vCount<=wall_vStartPos[3][5]+v+wall_vOffset[3][5]+wall_objHeight[3][5]&&vCount>=wall_vStartPos[3][5]+v+wall_vOffset[3][5])
                     begin
-                        Sel<=5; //magenta
+                                Sel<=6; //white
                     end 
 //======================================================================================                    
 //WALLS
@@ -226,22 +226,22 @@ begin
                                 //object 1 
                         else if(hCount<=hStartPos[0][0]+h+hOffset[0][0]+objWidth[0][0]&&hCount>=hStartPos[0][0]+h+hOffset[0][0]&&vCount<=vStartPos[0][0]+v+vOffset[0][0]+objHeight[0][0]&&vCount>=vStartPos[0][0]+v+vOffset[0][0])
                          begin
-                            Sel<=2; //red
+                                Sel<=6; //white
                         end 
                         //object 2
                         else if(hCount<=hStartPos[1][0]+h+hOffset[1][0]+objWidth[1][0]&&hCount>=hStartPos[1][0]+h+hOffset[1][0]&&vCount<=vStartPos[1][0]+v+vOffset[1][0]+objHeight[1][0]&&vCount>=vStartPos[1][0]+v+vOffset[1][0])
                             begin
-                                Sel<=3; //cyan
+                                Sel<=6; //white
                             end 
                     //        //object 3
                         else if(hCount<=hStartPos[2][0]+h+hOffset[2][0]+objWidth[2][0]&&hCount>=hStartPos[2][0]+h+hOffset[2][0]&&vCount<=vStartPos[2][0]+v+vOffset[2][0]+objHeight[2][0]&&vCount>=vStartPos[2][0]+v+vOffset[2][0])
                             begin
-                                Sel<=4; //yellow
+                                Sel<=6; //white
                             end 
                     //        //object 4
                         else if(hCount<=hStartPos[3][0]+h+hOffset[3][0]+objWidth[3][0]&&hCount>=hStartPos[3][0]+h+hOffset[3][0]&&vCount<=vStartPos[3][0]+v+vOffset[3][0]+objHeight[3][0]&&vCount>=vStartPos[3][0]+v+vOffset[3][0])
                             begin
-                                Sel<=5; //magenta
+                                Sel<=6; //white
                             end 
                     
                     
