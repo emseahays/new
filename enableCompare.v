@@ -169,6 +169,7 @@ downEnable_all[23]<=downEnable[3][5];
         //scroll 5
         rightEnable_all[20]<=rightEnable[0][5]; 
   
+//just testing
 //enable/disable down    
     if(downEnable_all == 24'hFFFFFF)        downEnable_o <= 1;
     else        downEnable_o <= 0;
