@@ -35,8 +35,8 @@ module enableCompare(
 
 //assign up_Enable=1'b1;
 //assign down_Enable=1'b1;
-assign leftEnable_o=1'b1;
-assign rightEnable_o=1'b1;
+//assign leftEnable_o=1'b1;
+//assign rightEnable_o=1'b1;
 
 reg [23:0] upEnable_all; 
 reg [23:0] downEnable_all;
@@ -110,86 +110,84 @@ downEnable_all[23]<=downEnable[3][5];
   upEnable_all[23]<=upEnable[3][5];  
 
 
-//// LEFT ENABLE 
-//    //scroll 0
-//    leftEnable_all[0]<=leftEnable[0][0];
-//    leftEnable_all[1]<=leftEnable[1][0];
-//    leftEnable_all[2]<=leftEnable[2][0];
-//    leftEnable_all[3]<=leftEnable[3][0];
-//    //scroll 1
-//    leftEnable_all[4]<=leftEnable[0][1];
-//    leftEnable_all[5]<=leftEnable[1][1];
-//    leftEnable_all[6]<=leftEnable[2][1];
-//    leftEnable_all[7]<=leftEnable[3][1];
-//    //scroll 2
-//    leftEnable_all [8]<=leftEnable[0][2];    
-//    leftEnable_all [9]<=leftEnable[1][2];
-//    leftEnable_all[10]<=leftEnable[2][2];
-//    leftEnable_all[11]<=leftEnable[3][2];
-//    //scroll 3
-//    leftEnable_all[12]<=leftEnable[0][3];
-//    leftEnable_all[13]<=leftEnable[1][3];
-//    leftEnable_all[14]<=leftEnable[2][3];
-//    leftEnable_all[15]<=leftEnable[3][3];
-//    //scroll 4
-//    leftEnable_all[16]<=leftEnable[0][4];    
-//    leftEnable_all[17]<=leftEnable[1][4];
-//    leftEnable_all[18]<=leftEnable[2][4];
-//    leftEnable_all[19]<=leftEnable[3][4];
-//    //scroll 5
-//    leftEnable_all[20]<=leftEnable[0][5];
-//    leftEnable_all[21]<=leftEnable[1][5];
-//    leftEnable_all[22]<=leftEnable[2][5];
-//    leftEnable_all[23]<=leftEnable[3][5];  
+
+// LEFT ENABLE 
+    //scroll 0
+    leftEnable_all[0]<=leftEnable[0][0];
+    leftEnable_all[1]<=leftEnable[1][0];
+    leftEnable_all[2]<=leftEnable[2][0];
+    leftEnable_all[3]<=leftEnable[3][0];
+    //scroll 1
+    leftEnable_all[4]<=leftEnable[0][1];
+    leftEnable_all[5]<=leftEnable[1][1];
+    leftEnable_all[6]<=leftEnable[2][1];
+    leftEnable_all[7]<=leftEnable[3][1];
+    //scroll 2
+    leftEnable_all [8]<=leftEnable[0][2];    
+    leftEnable_all [9]<=leftEnable[1][2];
+    leftEnable_all[10]<=leftEnable[2][2];
+    leftEnable_all[11]<=leftEnable[3][2];
+    //scroll 3
+    leftEnable_all[12]<=leftEnable[0][3];
+    leftEnable_all[13]<=leftEnable[1][3];
+    leftEnable_all[14]<=leftEnable[2][3];
+    leftEnable_all[15]<=leftEnable[3][3];
+    //scroll 4
+    leftEnable_all[16]<=leftEnable[0][4];    
+    leftEnable_all[17]<=leftEnable[1][4];
+    leftEnable_all[18]<=leftEnable[2][4];
+    leftEnable_all[19]<=leftEnable[3][4];
+    //scroll 5
+    leftEnable_all[20]<=leftEnable[0][5];
+    leftEnable_all[21]<=leftEnable[1][5];
+    leftEnable_all[22]<=leftEnable[2][5];
+    leftEnable_all[23]<=leftEnable[3][5];  
   
-//    // RIGHT ENABLE 
-//        //scroll 0
-//        rightEnable_all[0]<=rightEnable[0][0];
-//        rightEnable_all[1]<=rightEnable[1][0];
-//        rightEnable_all[2]<=rightEnable[2][0];
-//        rightEnable_all[3]<=rightEnable[3][0];
-//        //scroll 1
-//        rightEnable_all[4]<=rightEnable[0][1];
-//        rightEnable_all[5]<=rightEnable[1][1];
-//        rightEnable_all[6]<=rightEnable[2][1];
-//        rightEnable_all[7]<=rightEnable[3][1];
-//        //scroll 2
-//        rightEnable_all [8]<=rightEnable[0][2];    
-//        rightEnable_all [9]<=rightEnable[1][2];
-//        rightEnable_all[10]<=rightEnable[2][2];
-//        rightEnable_all[11]<=rightEnable[3][2];
-//        //scroll 3
-//        rightEnable_all[12]<=rightEnable[0][3];
-//        rightEnable_all[13]<=rightEnable[1][3];
-//        rightEnable_all[14]<=rightEnable[2][3];
-//        rightEnable_all[15]<=rightEnable[3][3];
-//        //scroll 4
-//        rightEnable_all[16]<=rightEnable[0][4];    
-//        rightEnable_all[17]<=rightEnable[1][4];
-//        rightEnable_all[18]<=rightEnable[2][4];
-//        rightEnable_all[19]<=rightEnable[3][4];
-//        //scroll 5
-//        rightEnable_all[20]<=rightEnable[0][5]; 
-//        rightEnable_all[21]<=rightEnable[1][5];
-//        rightEnable_all[22]<=rightEnable[2][5];
-//        rightEnable_all[23]<=rightEnable[3][5];  
-        
-//just testing
+// RIGHT ENABLE 
+    //scroll 0
+    rightEnable_all[0]<=rightEnable[0][0];
+    rightEnable_all[1]<=rightEnable[1][0];
+    rightEnable_all[2]<=rightEnable[2][0];
+    rightEnable_all[3]<=rightEnable[3][0];
+    //scroll 1
+    rightEnable_all[4]<=rightEnable[0][1];
+    rightEnable_all[5]<=rightEnable[1][1];
+    rightEnable_all[6]<=rightEnable[2][1];
+    rightEnable_all[7]<=rightEnable[3][1];
+    //scroll 2
+    rightEnable_all [8]<=rightEnable[0][2];    
+    rightEnable_all [9]<=rightEnable[1][2];
+    rightEnable_all[10]<=rightEnable[2][2];
+    rightEnable_all[11]<=rightEnable[3][2];
+    //scroll 3
+    rightEnable_all[12]<=rightEnable[0][3];
+    rightEnable_all[13]<=rightEnable[1][3];
+    rightEnable_all[14]<=rightEnable[2][3];
+    rightEnable_all[15]<=rightEnable[3][3];
+    //scroll 4
+    rightEnable_all[16]<=rightEnable[0][4];    
+    rightEnable_all[17]<=rightEnable[1][4];
+    rightEnable_all[18]<=rightEnable[2][4];
+    rightEnable_all[19]<=rightEnable[3][4];
+    //scroll 5
+    rightEnable_all[20]<=rightEnable[0][5];
+    rightEnable_all[21]<=rightEnable[1][5];
+    rightEnable_all[22]<=rightEnable[2][5];
+    rightEnable_all[23]<=rightEnable[3][5];  
+    
+    
 //enable/disable down    
     if(downEnable_all == 24'hFFFFFF)        downEnable_o <= 1;
     else        downEnable_o <= 0;
 //enable/disable up    
-  if(upEnable_all == 24'hFFFFFF)      upEnable_o <= 1;
-  else      upEnable_o <= 0;
-
-
-////enable/disable left    
-//  if(leftEnable_all == 24'hFFFFFF)      leftEnable_o <= 1;
-//  else      leftEnable_o <= 0;
-
-////enable/disable right    
-//  if(rightEnable_all == 24'hFFFFFF)      rightEnable_o <= 1;
-//  else      rightEnable_o <= 0;
-//end
+    if(upEnable_all == 24'hFFFFFF)      upEnable_o <= 1;
+    else      upEnable_o <= 0;
+//enable/disable down    
+    if(leftEnable_all == 24'hFFFFFF)        leftEnable_o <= 1;
+    else        leftEnable_o <= 0;
+//enable/disable up    
+    if(rightEnable_all == 24'hFFFFFF)      rightEnable_o <= 1;
+    else      rightEnable_o <= 0;
+    
 end
 endmodule
