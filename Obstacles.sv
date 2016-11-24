@@ -53,7 +53,7 @@ output rightEnable[3:0][5:0]
     parameter yellow=4;
     parameter magenta=5;
 
- //SCROLL 0
+ //WALL 0
  
     parameter row_num=5;
     parameter col_num=1;
@@ -98,7 +98,7 @@ output rightEnable[3:0][5:0]
     
     
     
-    //scroll 0
+    //wall 0
     Rectangle wall_0_rect_1(player_color, 4'd2,1'd1,player_hPos,player_vPos,rst,btnClk,4'd2,rect1_vStartPos,rect1_hStartPos,rectWidth,rectHeight,vStartPos[0][0],hStartPos[0][0],objWidth[0][0],objHeight[0][0],vOffset[0][0],hOffset[0][0], color_o[0][0], upEnable[0][0], downEnable[0][0], leftEnable[0][0], rightEnable[0][0]);
     Rectangle wall_0_rect_2(player_color, 4'd3,1'd1,player_hPos,player_vPos,rst,btnClk,4'd2,rect2_vStartPos,rect2_hStartPos,rectWidth,rectHeight,vStartPos[1][0],hStartPos[1][0],objWidth[1][0],objHeight[1][0],vOffset[1][0],hOffset[1][0], color_o[1][0], upEnable[1][0], downEnable[1][0], leftEnable[1][0], rightEnable[1][0]);
     Rectangle wall_0_rect_3(player_color, 4'd4,1'd1,player_hPos,player_vPos,rst,btnClk,4'd2,rect3_vStartPos,rect3_hStartPos,rectWidth,rectHeight,vStartPos[2][0],hStartPos[2][0],objWidth[2][0],objHeight[2][0],vOffset[2][0],hOffset[2][0], color_o[2][0], upEnable[2][0], downEnable[2][0], leftEnable[2][0], rightEnable[2][0]);
@@ -106,7 +106,7 @@ output rightEnable[3:0][5:0]
 
  
  //=======================================================================================
- //SCROLL 1   
+ //WALL 1   
  //=======================================================================================
          parameter row_num1=10;
          parameter col_num1=1;
@@ -137,7 +137,7 @@ output rightEnable[3:0][5:0]
     
 
      //=======================================================================================
-     //SCROLL 2   
+     //WALL 2   
      //=======================================================================================
            parameter row_num2=17;
            parameter col_num2=1;
@@ -166,9 +166,9 @@ output rightEnable[3:0][5:0]
            Rectangle wall_2_rect_3(player_color, 4'd4,1'd1,player_hPos,player_vPos,rst,btnClk,4'd2,rect3_vStartPos2,rect3_hStartPos2,rectWidth,rectHeight,vStartPos[2][2],hStartPos[2][2],objWidth[2][2],objHeight[2][2],vOffset[2][2],hOffset[2][2], color_o[2][2], upEnable[2][2], downEnable[2][2], leftEnable[2][2], rightEnable[2][2]);
            Rectangle wall_2_rect_4(player_color, 4'd5,1'd1,player_hPos,player_vPos,rst,btnClk,4'd2,rect4_vStartPos2,rect4_hStartPos2,rectWidth,rectHeight,vStartPos[3][2],hStartPos[3][2],objWidth[3][2],objHeight[3][2],vOffset[3][2],hOffset[3][2], color_o[3][2], upEnable[3][2], downEnable[3][2], leftEnable[3][2], rightEnable[3][2]);  
      //=======================================================================================
-     //SCROLL 3   
+     //WALL 3   
      //=======================================================================================
-           parameter row_num3=22;
+           parameter row_num3=22+3;
            parameter col_num3=1;
         
            parameter wall_vOffset3=12*row_num3; 
@@ -196,7 +196,7 @@ output rightEnable[3:0][5:0]
            Rectangle wall_3_rect_4(player_color, 4'd5,1'd1,player_hPos,player_vPos,rst,btnClk,4'd1,rect4_vStartPos3,rect4_hStartPos3,rectWidth,rectHeight,vStartPos[3][3],hStartPos[3][3],objWidth[3][3],objHeight[3][3],vOffset[3][3],hOffset[3][3], color_o[3][3], upEnable[3][3], downEnable[3][3], leftEnable[3][3], rightEnable[3][3]);  
         
         //=======================================================================================
-        //SCROLL 4   
+        //WALL 4   
         //=======================================================================================
               parameter row_num4=29;
               parameter col_num4=1;
@@ -226,7 +226,7 @@ output rightEnable[3:0][5:0]
               Rectangle wall_4_rect_4(player_color, 4'd5,1'd1,player_hPos,player_vPos,rst,btnClk,4'd2,rect4_vStartPos4,rect4_hStartPos4,rectWidth,rectHeight,vStartPos[3][4],hStartPos[3][4],objWidth[3][4],objHeight[3][4],vOffset[3][4],hOffset[3][4], color_o[3][4], upEnable[3][4], downEnable[3][4], leftEnable[3][4], rightEnable[3][4]);  
 
         //=======================================================================================
-        //SCROLL 5   
+        //WALL 5   
         //=======================================================================================
               parameter row_num5=34;
               parameter col_num5=1;
@@ -256,7 +256,7 @@ output rightEnable[3:0][5:0]
               Rectangle wall_5_rect_4(player_color, 4'd5,1'd1,player_hPos,player_vPos,rst,btnClk,4'd0,rect4_vStartPos5,rect4_hStartPos5,rectWidth,rectHeight,vStartPos[3][5],hStartPos[3][5],objWidth[3][5],objHeight[3][5],vOffset[3][5],hOffset[3][5], color_o[3][5], upEnable[3][5], downEnable[3][5], leftEnable[3][5], rightEnable[3][5]);  
 
 //        //=======================================================================================
-//        //SCROLL 6  
+//        //wall 6  
 //        //=======================================================================================
 //              parameter row_num6=34;
 //              parameter col_num6=1;
