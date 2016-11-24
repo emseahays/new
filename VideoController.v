@@ -27,14 +27,20 @@ input [3:0] player_color,
     input [2:0] In, //REMOVE LATER
     input btnDim, //CPU Reset
     input [3:0] btns,
-    
+        //stuff for wall to display
+    input  [31:0] wall_vStartPos [3:0][5:0],
+    input  [31:0] wall_hStartPos [3:0][5:0],
+    input  [31:0] wall_objWidth  [3:0][5:0],
+    input  [31:0] wall_objHeight [3:0][5:0],
+    input  [31:0] wall_vOffset   [3:0][5:0],
+    input  [31:0] wall_hOffset   [3:0][5:0],
     //stuff for scroll to display
-    input  [31:0] vStartPos [3:0][5:0],
-    input  [31:0] hStartPos [3:0][5:0],
-    input  [31:0] objWidth [3:0][5:0],
-    input  [31:0] objHeight [3:0][5:0],
-    input  [31:0] vOffset [3:0][5:0],
-    input  [31:0] hOffset [3:0][5:0],
+    input  [31:0] vStartPos  [3:0][5:0],
+    input  [31:0] hStartPos  [3:0][5:0],
+    input  [31:0] objWidth   [3:0][5:0],
+    input  [31:0] objHeight  [3:0][5:0],
+    input  [31:0] vOffset    [3:0][5:0],
+    input  [31:0] hOffset    [3:0][5:0],
     //stuff for player obj
     input  [31:0] player_vStartPos ,
     input  [31:0] player_hStartPos ,
@@ -102,11 +108,19 @@ input [3:0] player_color,
 //        );
     CompareVSync M5(vCount_w,VS);
 
-/*    input [31:0] hCount,
+/*module CompareDisp(    	
+    input [31:0] hCount,
 input [31:0] vCount,
 input [3:0] btns,
 input rst,    
 input clk,
+//stuff for wall to display
+input  [31:0] wall_vStartPos [3:0][5:0],
+input  [31:0] wall_hStartPos [3:0][5:0],
+input  [31:0] wall_objWidth  [3:0][5:0],
+input  [31:0] wall_objHeight [3:0][5:0],
+input  [31:0] wall_vOffset   [3:0][5:0],
+input  [31:0] wall_hOffset   [3:0][5:0],
 //input btnClk,
 input  [31:0] vStartPos [3:0][5:0],
 input  [31:0] hStartPos [3:0][5:0],
@@ -125,7 +139,8 @@ input  [31:0] player_hOffset ,
 
 input [3:0] player_color,
 
-output reg [2:0] Sel*/
+output reg [2:0] Sel
+);*/
     CompareDisp M6(
 
 
@@ -135,6 +150,12 @@ output reg [2:0] Sel*/
     btns,
     rst,
     clk,
+     wall_vStartPos ,
+     wall_hStartPos ,
+     wall_objWidth  ,
+     wall_objHeight ,
+     wall_vOffset   ,
+     wall_hOffset   ,
     vStartPos,
     hStartPos,
     objWidth,
