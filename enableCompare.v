@@ -28,15 +28,15 @@ module enableCompare(
     
     output reg upEnable_o,
     output reg downEnable_o,
-    output  leftEnable_o,
-    output  rightEnable_o
+    output reg leftEnable_o,
+    output  reg rightEnable_o
 
 );
 
 //assign up_Enable=1'b1;
 //assign down_Enable=1'b1;
-assign leftEnable_o=1'b1;
-assign rightEnable_o=1'b1;
+//assign leftEnable_o=1'b1;
+//assign rightEnable_o=1'b1;
 
 reg [23:0] upEnable_all; 
 reg [23:0] downEnable_all;
