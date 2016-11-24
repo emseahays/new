@@ -145,6 +145,9 @@ PlayerObject playerObj(
 wire [3:0] color_o_w [3:0][5:0];   
 // Scrolling color bars
 Scrolls G9(player_hPos_w, player_vPos_w, player_color_w, rst, btnClk_w, uBtns_w, vStartPos_w, hStartPos_w, 
-objWidth_w, objHeight_w, vOffset_w, hOffset_w, color_o_w, enableUp_w, enableDown_w, enableLeft_w, enableRight_w);  
+objWidth_w, objHeight_w, vOffset_w, hOffset_w, color_o_w, enableUp_w, enableDown_w, enableLeft_w, enableRight_w); 
+
+Obstacles G12(player_hPos_w, player_vPos_w, player_color_w, rst, btnClk_w, uBtns_w, vStartPos_w, hStartPos_w, 
+objWidth_w, objHeight_w, vOffset_w, hOffset_w, color_o_w, enableUp_w, enableDown_w, enableLeft_w, enableRight_w); 
 
 endmodule
