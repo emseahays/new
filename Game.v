@@ -77,12 +77,13 @@ wire [31:0] player_hOffset_w ;
 
 
 wire  [3:0] player_color_w;
-wire  [3:0] wall_color_w;
-
+wire [3:0] scroll_color_o_w [3:0][5:0];  
+wire [3:0] wall_color_o_w [3:0][5:0];  
 
 VideoController V1( 
     player_color_w, 
-    wall_color_w, 
+    wall_color_o_w, 
+     scroll_color_o_w, 
     clk, 
     rst, 
     In,
@@ -180,13 +181,12 @@ PlayerObject playerObj(
     player_color_w    
     );
           
-wire [3:0] color_o_w [3:0][5:0];  
-wire [3:0] wall_color_o_w [3:0][5:0];  
+
 
  
 // Scrolling color bars
 Scrolls G9(player_hPos_w, player_vPos_w, player_color_w, rst, btnClk_w, uBtns_w, vStartPos_w, hStartPos_w, 
-objWidth_w, objHeight_w, vOffset_w, hOffset_w, color_o_w, enableUp_w, enableDown_w, enableLeft_w, enableRight_w); 
+objWidth_w, objHeight_w, vOffset_w, hOffset_w, scroll_color_o_w, enableUp_w, enableDown_w, enableLeft_w, enableRight_w); 
 
 
 /*module Obstacles(           
