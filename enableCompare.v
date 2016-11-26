@@ -25,6 +25,11 @@ module enableCompare(
     input downEnable[3:0][5:0],
     input leftEnable[3:0][5:0],
     input rightEnable[3:0][5:0],
+    //wall
+        input wall_upEnable[3:0][5:0],
+    input wall_downEnable[3:0][5:0],
+    input wall_leftEnable[3:0][5:0],
+    input wall_rightEnable[3:0][5:0],
     
     output reg upEnable_o,
     output reg downEnable_o,

@@ -134,6 +134,7 @@ always@(posedge btnClk, posedge rst) begin
     if((player_hPos==hStartPos+objWidth)            //player left edge is on rectangles right edge
     &&(player_vPos>=vStartPos+vOffset)             //player top edge is not above rectangle top edge
     &&(player_vPos+12<=vStartPos+vOffset+objWidth)           //player bottom edge is not below rectangle top edge
+   &&(rect_color!=player_color)                             //disable only if colors dont match
     ) 
     begin 
         leftEnable<=1'b0;
@@ -143,7 +144,9 @@ always@(posedge btnClk, posedge rst) begin
     if((player_hPos+12==hStartPos)                    //player right edge is on rectangles left edge
     &&(player_vPos>=vStartPos+vOffset)                      //player top edge is not above rectangle top edge
     &&(player_vPos+12<=vStartPos+vOffset+objWidth)           //player bottom edge is not below rectangle top edge
+   &&(rect_color!=player_color)                             //disable only if colors dont match
     ) 
+    
     begin 
         rightEnable<=1'b0;
     end

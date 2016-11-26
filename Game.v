@@ -146,6 +146,11 @@ enableCompare G10 (
     enableLeft_w,
     enableRight_w,
     
+    wall_enableUp_w,
+    wall_enableDown_w,
+    wall_enableLeft_w,
+    wall_enableRight_w,
+    
     up_Enable_w,
     down_Enable_w,
     left_Enable_w,
