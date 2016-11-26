@@ -22,8 +22,7 @@
 
 module VideoController(
 input [3:0] player_color,
-input [3:0] wall_color [3:0][5:0],
-input [3:0] scroll_color [3:0][5:0],
+input [3:0] wall_color,
 
     input clk,
     input rst,
@@ -144,7 +143,10 @@ input [3:0] player_color,
 
 output reg [2:0] Sel
 );*/
-    CompareDisp M6(    
+    CompareDisp M6(
+
+
+    
     hCount_w,
     vCount_w,
     btns,
@@ -169,8 +171,7 @@ output reg [2:0] Sel
     player_vOffset ,      
     player_hOffset, 
         player_color,
-        wall_color, 
-        scroll_color,  
+        wall_color,   
     Sel_w);
     
 //    module Mux(

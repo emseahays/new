@@ -35,8 +35,8 @@ module enableCompare(
 
 //assign up_Enable=1'b1;
 //assign down_Enable=1'b1;
-assign leftEnable_o=1'b1;
-assign rightEnable_o=1'b1;
+//assign leftEnable_o=1'b1;
+//assign rightEnable_o=1'b1;
 
 reg [23:0] upEnable_all; 
 reg [23:0] downEnable_all;
@@ -182,12 +182,12 @@ downEnable_all[23]<=downEnable[3][5];
 //enable/disable up    
     if(upEnable_all == 24'hFFFFFF)      upEnable_o <= 1;
     else      upEnable_o <= 0;
-////enable/disable down    
-//    if(leftEnable_all == 24'hFFFFFF)        leftEnable_o <= 1;
-//    else        leftEnable_o <= 0;
-////enable/disable up    
-//    if(rightEnable_all == 24'hFFFFFF)      rightEnable_o <= 1;
-//    else      rightEnable_o <= 0;
+//enable/disable down    
+    if(leftEnable_all == 24'hFFFFFF)        leftEnable_o <= 1;
+    else        leftEnable_o <= 0;
+//enable/disable up    
+    if(rightEnable_all == 24'hFFFFFF)      rightEnable_o <= 1;
+    else      rightEnable_o <= 0;
     
 end
 endmodule
