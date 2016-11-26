@@ -22,23 +22,23 @@
 
 module PlayerObject(
     input upEnable,
-input downEnable,
-input leftEnable,
-input rightEnable,
-input rst,
-input btnClk2,
-input [3:0] btns,
-output   [31:0] player_vStartPos,
-output  [31:0] player_hStartPos,
-output  [31:0] player_objWidth, 
-output  [31:0] player_objHeight ,
-output  [31:0] player_vOffset ,
-output  [31:0] player_hOffset,
-output  [31:0] hPos,
-output  [31:0] vPos,
-output [3:0] player_color
-//output [2:0] status
-);
+    input downEnable,
+    input leftEnable,
+    input rightEnable,
+    input rst,
+    input btnClk2,
+    input [3:0] btns,
+    output   [31:0] player_vStartPos,
+    output  [31:0] player_hStartPos,
+    output  [31:0] player_objWidth, 
+    output  [31:0] player_objHeight ,
+    output  [31:0] player_vOffset ,
+    output  [31:0] player_hOffset,
+    output  [31:0] hPos,
+    output  [31:0] vPos,
+    output [3:0] player_color
+    //output [2:0] status
+    );
 
 
 //Size
@@ -47,7 +47,7 @@ parameter rectWidth=12; //player obj is a square
 
 //position
 parameter vStartPos=480-2*rectHeight-6*rectHeight;
-parameter hStartPos=320-rectHeight;
+parameter hStartPos=320-rectHeight + 7;
 
 
 
@@ -72,27 +72,27 @@ output [3:0] color_o,
 output reg [2:0] status       //blocked, alive, dead, moving        */
 
 PlayerRectangle rect_player_(
- upEnable,
-downEnable,
-leftEnable,
-rightEnable,
-rst,
-btnClk2,
-btns,
-4'd2, //red
-vStartPos,
-hStartPos,
-rectWidth,
-rectHeight,
-player_vStartPos,
-player_hStartPos,
-player_objWidth,
-player_objHeight,
-player_vOffset,
-player_hOffset,
-hPos,
-vPos,
-player_color
-//    status
-);
+        upEnable,
+        downEnable,
+        leftEnable,
+        rightEnable,
+        rst,
+        btnClk2,
+        btns,
+        4'd2, //red
+        vStartPos,
+        hStartPos,
+        rectWidth,
+        rectHeight,
+        player_vStartPos,
+        player_hStartPos,
+        player_objWidth,
+        player_objHeight,
+        player_vOffset,
+        player_hOffset,
+        hPos,
+        vPos,
+        player_color
+        //    status
+        );
 endmodule   
