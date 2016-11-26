@@ -387,7 +387,7 @@ wall_downEnable_all[23]<=wall_downEnable[3][5];
 
 
 //enable/disable down    
-    if(downEnable_all == 24'h0&&wall_downEnable_all == 24'h0)        downEnable_o <= 0;
+    if(downEnable_all == 24'h0&&wall_downEnable_all == 24'h0)        downEnable_o <= 1;
     else        downEnable_o <= 0;
 //enable/disable up    
     if(upEnable_all == 24'h0&&wall_upEnable_all == 24'h0)      upEnable_o <= 1;

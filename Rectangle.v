@@ -105,7 +105,7 @@ always@(posedge btnClk, posedge rst) begin
         &&  (player_vPos+12==vStartPos+vOffset)                                      //player is on top border of rectangle 
          )                                                  
     begin
-        downEnable <= 1'b0; //disable downButton
+        downEnable <= 1'b1; //disable downButton
     end
     else
     begin  
