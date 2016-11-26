@@ -283,10 +283,10 @@ output rightEnable[3:0][5:0]
 //              parameter rect4_vStartPos6=wall_vOffset6;
 //              parameter rect4_hStartPos6=4*wall_hOffset6;    
               
-//              Rectangle wall_6_rect_1(4'd6,1'd1,player_hPos,player_vPos,rst,btnClk,4'd0,rect1_vStartPos6,rect1_hStartPos6,rectWidth,rectHeight,vStartPos[0][6],hStartPos[0][6],objWidth[0][6],objHeight[0][6],vOffset[0][6],hOffset[0][6], color_o[0][6]);
-//              Rectangle wall_6_rect_2(4'd6,1'd1,player_hPos,player_vPos,rst,btnClk,4'd0,rect2_vStartPos6,rect2_hStartPos6,rectWidth,rectHeight,vStartPos[1][6],hStartPos[1][6],objWidth[1][6],objHeight[1][6],vOffset[1][6],hOffset[1][6], color_o[1][6]);
-//              Rectangle wall_6_rect_3(4'd6,1'd1,player_hPos,player_vPos,rst,btnClk,4'd0,rect3_vStartPos6,rect3_hStartPos6,rectWidth,rectHeight,vStartPos[2][6],hStartPos[2][6],objWidth[2][6],objHeight[2][6],vOffset[2][6],hOffset[2][6], color_o[2][6]);
-//              Rectangle wall_6_rect_4(4'd6,1'd1,player_hPos,player_vPos,rst,btnClk,4'd0,rect4_vStartPos6,rect4_hStartPos6,rectWidth,rectHeight,vStartPos[3][6],hStartPos[3][6],objWidth[3][6],objHeight[3][6],vOffset[3][6],hOffset[3][6], color_o[3][6]);  
+              Rectangle wall_6_rect_1(4'd6,1'd1,player_hPos,player_vPos,rst,btnClk,4'd0,rect1_vStartPos6,rect1_hStartPos6,rectWidth,rectHeight,vStartPos[0][6],hStartPos[0][6],objWidth[0][6],objHeight[0][6],vOffset[0][6],hOffset[0][6], color_o[0][6]);
+              Rectangle wall_6_rect_2(4'd6,1'd1,player_hPos,player_vPos,rst,btnClk,4'd0,rect2_vStartPos6,rect2_hStartPos6,rectWidth,rectHeight,vStartPos[1][6],hStartPos[1][6],objWidth[1][6],objHeight[1][6],vOffset[1][6],hOffset[1][6], color_o[1][6]);
+              Rectangle wall_6_rect_3(4'd6,1'd1,player_hPos,player_vPos,rst,btnClk,4'd0,rect3_vStartPos6,rect3_hStartPos6,rectWidth,rectHeight,vStartPos[2][6],hStartPos[2][6],objWidth[2][6],objHeight[2][6],vOffset[2][6],hOffset[2][6], color_o[2][6]);
+              Rectangle wall_6_rect_4(4'd6,1'd1,player_hPos,player_vPos,rst,btnClk,4'd0,rect4_vStartPos6,rect4_hStartPos6,rectWidth,rectHeight,vStartPos[3][6],hStartPos[3][6],objWidth[3][6],objHeight[3][6],vOffset[3][6],hOffset[3][6], color_o[3][6]);  
 
 
 endmodule
