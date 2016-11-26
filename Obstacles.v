@@ -130,10 +130,10 @@ output rightEnable[3:0][5:0]
        parameter rect4_vStartPos1=wall_vOffset1;
        parameter rect4_hStartPos1=4*wall_hOffset1;    
        
-       Rectangle wall_1_rect_1(player_color, 4'd6,1'd0,player_hPos,player_vPos,rst,btnClk,4'd0,rect1_vStartPos1,rect1_hStartPos1,rectWidth,rectHeight,vStartPos[0][1],hStartPos[0][1],objWidth[0][1],objHeight[0][1],vOffset[0][1],hOffset[0][1], color_o[0][1], upEnable[0][1], downEnable[0][1], leftEnable[0][1], rightEnable[0][1]);
+//       Rectangle wall_1_rect_1(player_color, 4'd6,1'd0,player_hPos,player_vPos,rst,btnClk,4'd0,rect1_vStartPos1,rect1_hStartPos1,rectWidth,rectHeight,vStartPos[0][1],hStartPos[0][1],objWidth[0][1],objHeight[0][1],vOffset[0][1],hOffset[0][1], color_o[0][1], upEnable[0][1], downEnable[0][1], leftEnable[0][1], rightEnable[0][1]);
        Rectangle wall_1_rect_2(player_color, 4'd6,1'd0,player_hPos,player_vPos,rst,btnClk,4'd0,rect2_vStartPos1,rect2_hStartPos1,rectWidth,rectHeight,vStartPos[1][1],hStartPos[1][1],objWidth[1][1],objHeight[1][1],vOffset[1][1],hOffset[1][1], color_o[1][1], upEnable[1][1], downEnable[1][1], leftEnable[1][1], rightEnable[1][1]);
        Rectangle wall_1_rect_3(player_color, 4'd6,1'd0,player_hPos,player_vPos,rst,btnClk,4'd0,rect3_vStartPos1,rect3_hStartPos1,rectWidth,rectHeight,vStartPos[2][1],hStartPos[2][1],objWidth[2][1],objHeight[2][1],vOffset[2][1],hOffset[2][1], color_o[2][1], upEnable[2][1], downEnable[2][1], leftEnable[2][1], rightEnable[2][1]);
-//       Rectangle wall_1_rect_4(player_color, 4'd6,1'd0,player_hPos,player_vPos,rst,btnClk,4'd0,rect4_vStartPos1,rect4_hStartPos1,rectWidth,rectHeight,vStartPos[3][1],hStartPos[3][1],objWidth[3][1],objHeight[3][1],vOffset[3][1],hOffset[3][1], color_o[3][1], upEnable[3][1], downEnable[3][1], leftEnable[3][1], rightEnable[3][1]);  
+       Rectangle wall_1_rect_4(player_color, 4'd6,1'd0,player_hPos,player_vPos,rst,btnClk,4'd0,rect4_vStartPos1,rect4_hStartPos1,rectWidth,rectHeight,vStartPos[3][1],hStartPos[3][1],objWidth[3][1],objHeight[3][1],vOffset[3][1],hOffset[3][1], color_o[3][1], upEnable[3][1], downEnable[3][1], leftEnable[3][1], rightEnable[3][1]);  
     
 
      //=======================================================================================
@@ -220,9 +220,9 @@ output rightEnable[3:0][5:0]
               parameter rect4_vStartPos4=wall_vOffset4;
               parameter rect4_hStartPos4=4*wall_hOffset4;    
               
-//              Rectangle wall_4_rect_1(player_color, 4'd6,1'd0,player_hPos,player_vPos,rst,btnClk,4'd0,rect1_vStartPos4,rect1_hStartPos4,rectWidth,rectHeight,vStartPos[0][4],hStartPos[0][4],objWidth[0][4],objHeight[0][4],vOffset[0][4],hOffset[0][4], color_o[0][4], upEnable[0][4], downEnable[0][4], leftEnable[0][4], rightEnable[0][4]);
+              Rectangle wall_4_rect_1(player_color, 4'd6,1'd0,player_hPos,player_vPos,rst,btnClk,4'd0,rect1_vStartPos4,rect1_hStartPos4,rectWidth,rectHeight,vStartPos[0][4],hStartPos[0][4],objWidth[0][4],objHeight[0][4],vOffset[0][4],hOffset[0][4], color_o[0][4], upEnable[0][4], downEnable[0][4], leftEnable[0][4], rightEnable[0][4]);
               Rectangle wall_4_rect_2(player_color, 4'd6,1'd0,player_hPos,player_vPos,rst,btnClk,4'd0,rect2_vStartPos4,rect2_hStartPos4,rectWidth,rectHeight,vStartPos[1][4],hStartPos[1][4],objWidth[1][4],objHeight[1][4],vOffset[1][4],hOffset[1][4], color_o[1][4], upEnable[1][4], downEnable[1][4], leftEnable[1][4], rightEnable[1][4]);
-              Rectangle wall_4_rect_3(player_color, 4'd6,1'd0,player_hPos,player_vPos,rst,btnClk,4'd0,rect3_vStartPos4,rect3_hStartPos4,rectWidth,rectHeight,vStartPos[2][4],hStartPos[2][4],objWidth[2][4],objHeight[2][4],vOffset[2][4],hOffset[2][4], color_o[2][4], upEnable[2][4], downEnable[2][4], leftEnable[2][4], rightEnable[2][4]);
+//              Rectangle wall_4_rect_3(player_color, 4'd6,1'd0,player_hPos,player_vPos,rst,btnClk,4'd0,rect3_vStartPos4,rect3_hStartPos4,rectWidth,rectHeight,vStartPos[2][4],hStartPos[2][4],objWidth[2][4],objHeight[2][4],vOffset[2][4],hOffset[2][4], color_o[2][4], upEnable[2][4], downEnable[2][4], leftEnable[2][4], rightEnable[2][4]);
               Rectangle wall_4_rect_4(player_color, 4'd6,1'd0,player_hPos,player_vPos,rst,btnClk,4'd0,rect4_vStartPos4,rect4_hStartPos4,rectWidth,rectHeight,vStartPos[3][4],hStartPos[3][4],objWidth[3][4],objHeight[3][4],vOffset[3][4],hOffset[3][4], color_o[3][4], upEnable[3][4], downEnable[3][4], leftEnable[3][4], rightEnable[3][4]);  
 
         //=======================================================================================
@@ -252,8 +252,8 @@ output rightEnable[3:0][5:0]
               
               Rectangle wall_5_rect_1(player_color, 4'd6,1'd0,player_hPos,player_vPos,rst,btnClk,4'd0,rect1_vStartPos5,rect1_hStartPos5,rectWidth,rectHeight,vStartPos[0][5],hStartPos[0][5],objWidth[0][5],objHeight[0][5],vOffset[0][5],hOffset[0][5], color_o[0][5], upEnable[0][5], downEnable[0][5], leftEnable[0][5], rightEnable[0][5]);
               Rectangle wall_5_rect_2(player_color, 4'd6,1'd0,player_hPos,player_vPos,rst,btnClk,4'd0,rect2_vStartPos5,rect2_hStartPos5,rectWidth,rectHeight,vStartPos[1][5],hStartPos[1][5],objWidth[1][5],objHeight[1][5],vOffset[1][5],hOffset[1][5], color_o[1][5], upEnable[1][5], downEnable[1][5], leftEnable[1][5], rightEnable[1][5]);
-              Rectangle wall_5_rect_3(player_color, 4'd6,1'd0,player_hPos,player_vPos,rst,btnClk,4'd0,rect3_vStartPos5,rect3_hStartPos5,rectWidth,rectHeight,vStartPos[2][5],hStartPos[2][5],objWidth[2][5],objHeight[2][5],vOffset[2][5],hOffset[2][5], color_o[2][5], upEnable[2][5], downEnable[2][5], leftEnable[2][5], rightEnable[2][5]);
-//              Rectangle wall_5_rect_4(player_color, 4'd6,1'd0,player_hPos,player_vPos,rst,btnClk,4'd0,rect4_vStartPos5,rect4_hStartPos5,rectWidth,rectHeight,vStartPos[3][5],hStartPos[3][5],objWidth[3][5],objHeight[3][5],vOffset[3][5],hOffset[3][5], color_o[3][5], upEnable[3][5], downEnable[3][5], leftEnable[3][5], rightEnable[3][5]);  
+//              Rectangle wall_5_rect_3(player_color, 4'd6,1'd0,player_hPos,player_vPos,rst,btnClk,4'd0,rect3_vStartPos5,rect3_hStartPos5,rectWidth,rectHeight,vStartPos[2][5],hStartPos[2][5],objWidth[2][5],objHeight[2][5],vOffset[2][5],hOffset[2][5], color_o[2][5], upEnable[2][5], downEnable[2][5], leftEnable[2][5], rightEnable[2][5]);
+              Rectangle wall_5_rect_4(player_color, 4'd6,1'd0,player_hPos,player_vPos,rst,btnClk,4'd0,rect4_vStartPos5,rect4_hStartPos5,rectWidth,rectHeight,vStartPos[3][5],hStartPos[3][5],objWidth[3][5],objHeight[3][5],vOffset[3][5],hOffset[3][5], color_o[3][5], upEnable[3][5], downEnable[3][5], leftEnable[3][5], rightEnable[3][5]);  
 
 //        //=======================================================================================
 //        //wall 6  
