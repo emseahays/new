@@ -28,8 +28,8 @@ module enableCompare(
     
     output reg upEnable_o,
     output reg downEnable_o,
-    output  leftEnable_o,
-    output   rightEnable_o
+    output  reg leftEnable_o,
+    output   reg rightEnable_o
 
 );
 
