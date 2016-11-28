@@ -242,4 +242,18 @@ wall_enableDown_w,
 wall_enableLeft_w, 
 wall_enableRight_w); 
 
+wire [2:0] level;
+wire world;
+wire [2:0] gameStatus;
+
+//input clk,
+//input reset,
+//input levelPassed,              // If player passes level
+//input lose,                      // If player losses
+//output reg [2:0] level,         // Current game level
+//output reg world,               // Current game world
+//output reg [2:0] gameStatus           // 0 = playing, 1 = level win, 2 = world win, 3 = Game win, 4 = gameOver
+
+GameFSM GF1 (clk, rst, levelPassed, lose, level, world, gameStatus);
+
 endmodule
