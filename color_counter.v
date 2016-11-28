@@ -22,39 +22,47 @@
 
 module color_counter(
     input clk,
+    input rst,
     output reg [3:0] color
     );
     
-    reg [3:0] count = 0;
+    reg [2:0] count = 0;
     
     always @ (posedge clk) begin
         count <= count +1;
-        if(count == 1)begin
+        
+        if(rst==1)begin
+            count<=2;
+            
+        end
+        
+       else if(count == 2)begin
         
             color <=2;
             
         end
+
         
-        else if (count ==2) begin
+        else if (count ==3) begin
        
             color <=3; 
               
         end
         
-        else if (count ==3) begin
+        else if (count ==4) begin
        
             color <=4; 
               
         end
 
-        else if (count ==4) begin
+        else if (count ==5) begin
        
             color <=5; 
               
         end
         
         else begin
-            count<=0;
+            count<=2;
         end
         
        
