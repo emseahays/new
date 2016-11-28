@@ -122,7 +122,7 @@ Audio A1(clk,rst,sel,en,pwmPin,ampPin);
 Decoder_4to3 D1(uBtns_w[3],uBtns_w[2],uBtns_w[1],uBtns_w[0],sel);
 
 color_clock C2 (clk,color_clk_w);
-color_counter C3(color_clk_w, color_w);
+color_counter C3(color_clk_w, rst, color_w);
 
 //GAME CONTROLLER
 //======================================== 
