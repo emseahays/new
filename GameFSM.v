@@ -3,7 +3,7 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 11/25/2016 07:58:51 PM
+// Create Date: 11/28/2016 02:39:36 PM
 // Design Name: 
 // Module Name: GameFSM
 // Project Name: 
@@ -119,6 +119,4 @@ module GameFSM(
             end            
         endcase
     end
-    
-    
 endmodule
