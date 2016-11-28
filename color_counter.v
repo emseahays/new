@@ -25,7 +25,7 @@ module color_counter(
     output reg [3:0] color
     );
     
-    reg [1:0] count = 0;
+    reg [3:0] count = 0;
     
     always @ (posedge clk) begin
         count <= count +1;
@@ -54,7 +54,7 @@ module color_counter(
         end
         
         else begin
-            count <= 0;
+            count<=0;
         end
         
        
