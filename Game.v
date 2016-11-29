@@ -254,6 +254,6 @@ wire [2:0] gameStatus;
 //output reg world,               // Current game world
 //output reg [2:0] gameStatus           // 0 = playing, 1 = level win, 2 = world win, 3 = Game win, 4 = gameOver
 
-GameFSM GF1 (clk, rst, levelPassed, lose, level, world, gameStatus);
+FSM FSM1 (clk, rst, levelPassed, lose, level, world, gameStatus);
 
 endmodule
