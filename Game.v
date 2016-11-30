@@ -52,28 +52,28 @@ input dEnable //display Enable
 
 wire [3:0] uBtns_w;
 //for scrolls
-wire [10:0] vStartPos_w [3:0][5:0];
-wire [10:0] hStartPos_w [3:0][5:0];
-wire [10:0] objWidth_w [3:0][5:0];
-wire [10:0] objHeight_w [3:0][5:0];
-wire [10:0] vOffset_w [3:0][5:0];
-wire [10:0] hOffset_w [3:0][5:0];
+wire [31:0] vStartPos_w [3:0][5:0];
+wire [31:0] hStartPos_w [3:0][5:0];
+wire [31:0] objWidth_w [3:0][5:0];
+wire [31:0] objHeight_w [3:0][5:0];
+wire [31:0] vOffset_w [3:0][5:0];
+wire [31:0] hOffset_w [3:0][5:0];
 
 //wire for obstacles
-wire [10:0] wall_vStartPos_w [3:0][5:0];
-wire [10:0] wall_hStartPos_w [3:0][5:0];
-wire [10:0] wall_objWidth_w [3:0][5:0];
-wire [10:0] wall_objHeight_w [3:0][5:0];
-wire [10:0] wall_vOffset_w [3:0][5:0];
-wire [10:0] wall_hOffset_w [3:0][5:0];
+wire [31:0] wall_vStartPos_w [3:0][5:0];
+wire [31:0] wall_hStartPos_w [3:0][5:0];
+wire [31:0] wall_objWidth_w [3:0][5:0];
+wire [31:0] wall_objHeight_w [3:0][5:0];
+wire [31:0] wall_vOffset_w [3:0][5:0];
+wire [31:0] wall_hOffset_w [3:0][5:0];
 
 //for player obj
-wire [10:0] player_vStartPos_w ;
-wire [10:0] player_hStartPos_w  ;
-wire [10:0] player_objWidth_w   ;
-wire [10:0] player_objHeight_w  ;
-wire [10:0] player_vOffset_w ;
-wire [10:0] player_hOffset_w ;
+wire [31:0] player_vStartPos_w ;
+wire [31:0] player_hStartPos_w  ;
+wire [31:0] player_objWidth_w   ;
+wire [31:0] player_objHeight_w  ;
+wire [31:0] player_vOffset_w ;
+wire [31:0] player_hOffset_w ;
 
 
 wire  [3:0] player_color_w;

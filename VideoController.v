@@ -3,7 +3,7 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 09/30/2016 12:26:40 AM
+// Create Date: 09/30/2016 10:26:40 AM
 // Design Name: 
 // Module Name: VideoController
 // Project Name: 
@@ -33,26 +33,26 @@ input [3:0] scroll_color [3:0][5:0],
     input btnDim, //CPU Reset
     input [3:0] btns,
         //stuff for wall to display
-    input  [10:0] wall_vStartPos [3:0][5:0],
-    input  [10:0] wall_hStartPos [3:0][5:0],
-    input  [10:0] wall_objWidth  [3:0][5:0],
-    input  [10:0] wall_objHeight [3:0][5:0],
-    input  [10:0] wall_vOffset   [3:0][5:0],
-    input  [10:0] wall_hOffset   [3:0][5:0],
+    input  [31:0] wall_vStartPos [3:0][5:0],
+    input  [31:0] wall_hStartPos [3:0][5:0],
+    input  [31:0] wall_objWidth  [3:0][5:0],
+    input  [31:0] wall_objHeight [3:0][5:0],
+    input  [31:0] wall_vOffset   [3:0][5:0],
+    input  [31:0] wall_hOffset   [3:0][5:0],
     //stuff for scroll to display
-    input  [10:0] vStartPos  [3:0][5:0],
-    input  [10:0] hStartPos  [3:0][5:0],
-    input  [10:0] objWidth   [3:0][5:0],
-    input  [10:0] objHeight  [3:0][5:0],
-    input  [10:0] vOffset    [3:0][5:0],
-    input  [10:0] hOffset    [3:0][5:0],
+    input  [31:0] vStartPos  [3:0][5:0],
+    input  [31:0] hStartPos  [3:0][5:0],
+    input  [31:0] objWidth   [3:0][5:0],
+    input  [31:0] objHeight  [3:0][5:0],
+    input  [31:0] vOffset    [3:0][5:0],
+    input  [31:0] hOffset    [3:0][5:0],
     //stuff for player obj
-    input  [10:0] player_vStartPos ,
-    input  [10:0] player_hStartPos ,
-    input  [10:0] player_objWidth ,
-    input  [10:0] player_objHeight ,
-    input  [10:0] player_vOffset ,
-    input  [10:0] player_hOffset ,
+    input  [31:0] player_vStartPos ,
+    input  [31:0] player_hStartPos ,
+    input  [31:0] player_objWidth ,
+    input  [31:0] player_objHeight ,
+    input  [31:0] player_vOffset ,
+    input  [31:0] player_hOffset ,
    
     
     output HS,

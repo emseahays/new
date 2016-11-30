@@ -3,7 +3,7 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 11/17/2016 12:56:34 AM
+// Create Date: 11/17/2016 10:56:34 AM
 // Design Name: 
 // Module Name: enableCompare
 // Project Name: 

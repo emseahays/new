@@ -22,18 +22,18 @@
 
 module Scrolls(
 input [2:0] level,
-input [10:0] player_hPos,
-input [10:0] player_vPos,
+input [31:0] player_hPos,
+input [31:0] player_vPos,
 input [3:0] player_color,
 input rst,
 input btnClk,
 input [3:0] btns,
-output   [10:0] vStartPos[3:0][5:0],
-output  [10:0] hStartPos[3:0][5:0],
-output  [10:0] objWidth [3:0][5:0],
-output  [10:0] objHeight[3:0][5:0],
-output  [10:0] vOffset[3:0][5:0],
-output  [10:0] hOffset[3:0][5:0],
+output   [31:0] vStartPos[3:0][5:0],
+output  [31:0] hStartPos[3:0][5:0],
+output  [31:0] objWidth [3:0][5:0],
+output  [31:0] objHeight[3:0][5:0],
+output  [31:0] vOffset[3:0][5:0],
+output  [31:0] hOffset[3:0][5:0],
 output [3:0] color_o[3:0][5:0],
 output upEnable[3:0][5:0],
 output downEnable[3:0][5:0],
@@ -225,10 +225,10 @@ end
            parameter rect4_vStartPos2=scroll_vOffset2;
            parameter rect4_hStartPos2=4*scroll_hOffset2;    
            
-           Rectangle scroll_2_rect_1(scroll_2_visible,layer_color, 4'd2,1'd1,player_hPos,player_vPos,rst,btnClk,4'd2,rect1_vStartPos2,rect1_hStartPos2,rectWidth,rectHeight,vStartPos[0][2],hStartPos[0][2],objWidth[0][2],objHeight[0][2],vOffset[0][2],hOffset[0][2], color_o[0][2], upEnable[0][2], downEnable[0][2], leftEnable[0][2], rightEnable[0][2],visible [0][2]);
-           Rectangle scroll_2_rect_2(scroll_2_visible,layer_color, 4'd3,1'd1,player_hPos,player_vPos,rst,btnClk,4'd2,rect2_vStartPos2,rect2_hStartPos2,rectWidth,rectHeight,vStartPos[1][2],hStartPos[1][2],objWidth[1][2],objHeight[1][2],vOffset[1][2],hOffset[1][2], color_o[1][2], upEnable[1][2], downEnable[1][2], leftEnable[1][2], rightEnable[1][2],visible [1][2]);
-           Rectangle scroll_2_rect_3(scroll_2_visible,layer_color, 4'd4,1'd1,player_hPos,player_vPos,rst,btnClk,4'd2,rect3_vStartPos2,rect3_hStartPos2,rectWidth,rectHeight,vStartPos[2][2],hStartPos[2][2],objWidth[2][2],objHeight[2][2],vOffset[2][2],hOffset[2][2], color_o[2][2], upEnable[2][2], downEnable[2][2], leftEnable[2][2], rightEnable[2][2],visible [2][2]);
-           Rectangle scroll_2_rect_4(scroll_2_visible,layer_color, 4'd5,1'd1,player_hPos,player_vPos,rst,btnClk,4'd2,rect4_vStartPos2,rect4_hStartPos2,rectWidth,rectHeight,vStartPos[3][2],hStartPos[3][2],objWidth[3][2],objHeight[3][2],vOffset[3][2],hOffset[3][2], color_o[3][2], upEnable[3][2], downEnable[3][2], leftEnable[3][2], rightEnable[3][2],visible [3][2]);  
+           Rectangle scroll_2_rect_1(scroll_2_visible,player_color, 4'd2,1'd1,player_hPos,player_vPos,rst,btnClk,4'd2,rect1_vStartPos2,rect1_hStartPos2,rectWidth,rectHeight,vStartPos[0][2],hStartPos[0][2],objWidth[0][2],objHeight[0][2],vOffset[0][2],hOffset[0][2], color_o[0][2], upEnable[0][2], downEnable[0][2], leftEnable[0][2], rightEnable[0][2],visible [0][2]);
+           Rectangle scroll_2_rect_2(scroll_2_visible,player_color, 4'd3,1'd1,player_hPos,player_vPos,rst,btnClk,4'd2,rect2_vStartPos2,rect2_hStartPos2,rectWidth,rectHeight,vStartPos[1][2],hStartPos[1][2],objWidth[1][2],objHeight[1][2],vOffset[1][2],hOffset[1][2], color_o[1][2], upEnable[1][2], downEnable[1][2], leftEnable[1][2], rightEnable[1][2],visible [1][2]);
+           Rectangle scroll_2_rect_3(scroll_2_visible,player_color, 4'd4,1'd1,player_hPos,player_vPos,rst,btnClk,4'd2,rect3_vStartPos2,rect3_hStartPos2,rectWidth,rectHeight,vStartPos[2][2],hStartPos[2][2],objWidth[2][2],objHeight[2][2],vOffset[2][2],hOffset[2][2], color_o[2][2], upEnable[2][2], downEnable[2][2], leftEnable[2][2], rightEnable[2][2],visible [2][2]);
+           Rectangle scroll_2_rect_4(scroll_2_visible,player_color, 4'd5,1'd1,player_hPos,player_vPos,rst,btnClk,4'd2,rect4_vStartPos2,rect4_hStartPos2,rectWidth,rectHeight,vStartPos[3][2],hStartPos[3][2],objWidth[3][2],objHeight[3][2],vOffset[3][2],hOffset[3][2], color_o[3][2], upEnable[3][2], downEnable[3][2], leftEnable[3][2], rightEnable[3][2],visible [3][2]);  
      //=======================================================================================
      //SCROLL 3   
      //=======================================================================================
