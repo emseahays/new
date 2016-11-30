@@ -225,6 +225,7 @@ PlayerObject playerObj(
  
 // Scrolling color bars
 Scrolls G9(
+3'd5,
 player_hPos_w, 
 player_vPos_w,
 player_color_w, 
