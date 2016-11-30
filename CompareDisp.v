@@ -101,12 +101,12 @@ begin
 //        //object 3
     else if(wall_visible[2][0]==1&&hCount<=wall_hStartPos[2][0]+h+wall_hOffset[2][0]+wall_objWidth[2][0]&&hCount>=wall_hStartPos[2][0]+h+wall_hOffset[2][0]&&vCount<=wall_vStartPos[2][0]+v+wall_vOffset[2][0]+wall_objHeight[2][0]&&vCount>=wall_vStartPos[2][0]+v+wall_vOffset[2][0])
         begin
-            Sel<=wall_color[1][0]; //white
+            Sel<=wall_color[2][0]; //white
         end 
 //        //object 4
     else if(wall_visible[3][0]==1&&hCount<=wall_hStartPos[3][0]+h+wall_hOffset[3][0]+wall_objWidth[3][0]&&hCount>=wall_hStartPos[3][0]+h+wall_hOffset[3][0]&&vCount<=wall_vStartPos[3][0]+v+wall_vOffset[3][0]+wall_objHeight[3][0]&&vCount>=wall_vStartPos[3][0]+v+wall_vOffset[3][0])
         begin
-            Sel<=wall_color[1][0]; //white
+            Sel<=wall_color[3][0]; //white
         end 
 
 
