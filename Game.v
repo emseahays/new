@@ -80,7 +80,12 @@ wire  [3:0] player_color_w;
 wire [3:0] scroll_color_o_w [3:0][5:0];  
 wire [3:0] wall_color_o_w [3:0][5:0];  
 
-VideoController V1( 
+wire scroll_visible_w  [3:0][5:0]; 
+wire wall_visible_w  [3:0][5:0]; 
+
+VideoController V1(
+    wall_visible_w, 
+    scroll_visible_w,  
     player_color_w, 
     wall_color_o_w, 
      scroll_color_o_w, 
@@ -144,7 +149,8 @@ wire wall_enableUp_w     [3:0][5:0];
 wire wall_enableDown_w   [3:0][5:0];
 wire wall_enableLeft_w   [3:0][5:0];
 wire wall_enableRight_w  [3:0][5:0];              
-           
+ 
+
        
 enableCompare G10 (
     enableUp_w,
@@ -193,12 +199,50 @@ PlayerObject playerObj(
     player_color_w    
     );
           
-
+/*module Scrolls(
+    input [2:0] level,
+    input [31:0] player_hPos,
+    input [31:0] player_vPos,
+    input [3:0] player_color,
+    input rst,
+    input btnClk,
+    input [3:0] btns,
+    output   [31:0] vStartPos[3:0][5:0],
+    output  [31:0] hStartPos[3:0][5:0],
+    output  [31:0] objWidth [3:0][5:0],
+    output  [31:0] objHeight[3:0][5:0],
+    output  [31:0] vOffset[3:0][5:0],
+    output  [31:0] hOffset[3:0][5:0],
+    output [3:0] color_o[3:0][5:0],
+    output upEnable[3:0][5:0],
+    output downEnable[3:0][5:0],
+    output leftEnable[3:0][5:0],
+    output rightEnable[3:0][5:0],
+    output [31:0] player_vStartPos,
+    output [31:0] player_hStartPos,
+    output reg visible[3:0][5:0]*/
 
  
 // Scrolling color bars
-Scrolls G9(player_hPos_w, player_vPos_w, player_color_w, rst, btnClk_w, uBtns_w, vStartPos_w, hStartPos_w, 
-objWidth_w, objHeight_w, vOffset_w, hOffset_w, scroll_color_o_w, enableUp_w, enableDown_w, enableLeft_w, enableRight_w); 
+Scrolls G9(
+player_hPos_w, 
+player_vPos_w,
+player_color_w, 
+rst, 
+btnClk_w, 
+uBtns_w, 
+vStartPos_w, 
+hStartPos_w, 
+objWidth_w, 
+objHeight_w, 
+vOffset_w, 
+hOffset_w, 
+scroll_color_o_w, 
+enableUp_w, 
+enableDown_w, 
+enableLeft_w, 
+enableRight_w,
+scroll_visible_w); 
 
 
 /*module Obstacles(           
@@ -221,6 +265,7 @@ output downEnable[3:0][5:0],
 output leftEnable[3:0][5:0],
 output rightEnable[3:0][5:0]);*/
 Obstacles G12(
+3'd0,
 player_hPos_w, 
 player_vPos_w, 
 player_color_w, 
@@ -240,7 +285,9 @@ wall_color_o_w,
 wall_enableUp_w, 
 wall_enableDown_w, 
 wall_enableLeft_w, 
-wall_enableRight_w); 
+wall_enableRight_w,
+wall_visible_w
+); 
 
 wire [2:0] level;
 wire world;

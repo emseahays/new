@@ -21,6 +21,8 @@
 
 
 module VideoController(
+input wall_visible[3:0][5:0], 
+input scroll_visible[3:0][5:0], 	
 input [3:0] player_color,
 input [3:0] wall_color [3:0][5:0],
 input [3:0] scroll_color [3:0][5:0],
@@ -111,6 +113,7 @@ input [3:0] scroll_color [3:0][5:0],
 //        );
     CompareVSync M5(vCount_w,VS);
 
+
 /*module CompareDisp(    	
     input [31:0] hCount,
 input [31:0] vCount,
@@ -144,7 +147,9 @@ input [3:0] player_color,
 
 output reg [2:0] Sel
 );*/
-    CompareDisp M6(    
+    CompareDisp M6(
+    wall_visible, 
+    scroll_visible,    
     hCount_w,
     vCount_w,
     btns,

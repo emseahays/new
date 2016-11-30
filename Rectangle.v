@@ -21,6 +21,7 @@
 
 
 module Rectangle(
+    input visible, 
     input [3:0] player_color,
     input [3:0] rect_color,
     input passable,
@@ -43,7 +44,8 @@ module Rectangle(
     output reg upEnable,
     output reg downEnable,
     output  reg leftEnable,
-    output  reg rightEnable
+    output  reg rightEnable,
+    output visible_o
 );
 
 
@@ -53,6 +55,7 @@ assign vStartPos_o=vStartPos;
 assign hStartPos_o=hStartPos;
 assign objWidth_o=objWidth;
 assign objHeight_o=objHeight;
+assign visible=visible_o;
 
 //update objects location
 
@@ -92,7 +95,7 @@ always@(posedge btnClk, posedge rst) begin
         end
         
     endcase   
-        
+  if(visible==1)begin      
     // DOWN DISABLE
     if((player_hPos>=hStartPos+hOffset&&player_hPos+12<=hStartPos+hOffset+objWidth)    // player is between left and right edges of this rectangle
     &&  (player_vPos+objHeight==vStartPos+vOffset)                                      //player is on top border of rectangle 
@@ -179,6 +182,7 @@ always@(posedge btnClk, posedge rst) begin
    
    
   
+end
 end
 end
 
