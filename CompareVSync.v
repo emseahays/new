@@ -3,7 +3,7 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 09/30/2016 12:26:40 AM
+// Create Date: 09/30/2016 10:26:40 AM
 // Design Name: 
 // Module Name: CompareVSync
 // Project Name: 
