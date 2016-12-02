@@ -81,7 +81,8 @@ module FSM(
                 lives <= maxLives;
                 livesTemp <= 0;
                 enable <= 0;
-                if(startButton) nextState <= playGame;
+                    //if(startButton) nextState <= playGame;
+                nextState <= playGame;
             end
             playGame:begin
                 gameStatus <= 1;
@@ -98,7 +99,7 @@ module FSM(
             levelInc: begin
                 gameStatus <= 2;
                 level <= levelTemp + 1; // increment Level
-                enable <= 1;
+                if (playerStatus == 0) enable <= 1;
                 if (endTime == 1) begin 
                     enable <= 0;
                     if( level == maxLevel)nextState <=  worldInc;

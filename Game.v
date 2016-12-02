@@ -21,33 +21,40 @@
 
 
 module Game(
-    //video ins/outs
 input clk,
 input rst,
-input [2:0] In, //REMOVE LATER - for diff crosshair colors
+
+//BUTTONS
 input btnDim, //CPU Reset
-//input [3:0] uBtns, //btnU, btnD,btnR,btnL
+//input startButton,
+
+input [1:0] playerStatus,
+input [2:0] In, //REMOVE LATER - for diff crosshair colors
+
+// AUDIO
+input en,     //enable audio
+
+// PS2 (Keyboard)
 input PS2_CLK,
 input PS2_DATA,
+
+
+// OUTPUTS =========================================
+// VGA
 output HS,
 output VS,
 output [3:0] vgaRed,
 output [3:0] vgaGreen,
 output [3:0] vgaBlue,
-//audio ins/outs
-input en,
+
+// AUDIO
 output  pwmPin,
 output  ampPin,
-//decoder
-//input btnU, 
-//input btnD, 
-//input btnR, 
-//input btnL, 
-output out2muxSel,
 
-//GAME CONTROLLER
-input modeSelect,
-input dEnable //display Enable
+// Other
+// FSM
+output [2:0] gameStatus,
+output [2:0] level
 );
 
 wire [3:0] uBtns_w;
@@ -223,9 +230,30 @@ PlayerObject playerObj(
     output reg visible[3:0][5:0]*/
 
  
-// Scrolling color bars
+// Scrolling color bars ------------------------------------------
+
+//input [2:0] level,
+//input [31:0] player_hPos,
+//input [31:0] player_vPos,
+//input [3:0] player_color,
+//input rst,
+//input btnClk,
+//input [3:0] btns,
+//output   [31:0] vStartPos[3:0][5:0],
+//output  [31:0] hStartPos[3:0][5:0],
+//output  [31:0] objWidth [3:0][5:0],
+//output  [31:0] objHeight[3:0][5:0],
+//output  [31:0] vOffset[3:0][5:0],
+//output  [31:0] hOffset[3:0][5:0],
+//output [3:0] color_o[3:0][5:0],
+//output upEnable[3:0][5:0],
+//output downEnable[3:0][5:0],
+//output leftEnable[3:0][5:0],
+//output rightEnable[3:0][5:0],
+//output reg visible[3:0][5:0]
+
 Scrolls G9(
-3'd5,
+level,
 player_hPos_w, 
 player_vPos_w,
 player_color_w, 
@@ -246,27 +274,37 @@ enableRight_w,
 scroll_visible_w); 
 
 
-/*module Obstacles(           
-                            
-input [31:0] player_hPos,   
-input [31:0] player_vPos,   
-input [3:0] player_color,   
-input rst,                  
-input btnClk,               
-input [3:0] btns,           
-output   [31:0] vStartPos[3:
-output  [31:0] hStartPos[3:0
-output  [31:0] objWidth [3:0
-output  [31:0] objHeight[3:0
-output  [31:0] vOffset[3:0][
-output  [31:0] hOffset[3:0][
-output [3:0] color_o[3:0][5:
-output upEnable[3:0][5:0],  
+// module Obstacles -----------------------------------           
+/*                            
+input [1:0] world,
+input [31:0] player_hPos,
+input [31:0] player_vPos,
+input [3:0] player_color,
+input rst,
+input btnClk,
+input [3:0] btns,
+
+output   [31:0] vStartPos[3:0][5:0],
+output  [31:0] hStartPos[3:0][5:0],
+output  [31:0] objWidth [3:0][5:0],
+output  [31:0] objHeight[3:0][5:0],
+output  [31:0] vOffset[3:0][5:0],
+output  [31:0] hOffset[3:0][5:0],
+
+output [3:0] color_o[3:0][5:0],
+
+output upEnable[3:0][5:0],
 output downEnable[3:0][5:0],
 output leftEnable[3:0][5:0],
-output rightEnable[3:0][5:0]);*/
+output rightEnable[3:0][5:0],
+output reg visible[3:0][5:0];
+*/
+
+
+wire [1:0] world;
+
 Obstacles G12(
-3'd0,
+world,
 player_hPos_w, 
 player_vPos_w, 
 player_color_w, 
@@ -290,18 +328,19 @@ wall_enableRight_w,
 wall_visible_w
 ); 
 
-wire [2:0] level;
-wire world;
-wire [2:0] gameStatus;
+// wire [2:0] level;
+// wire [2:0] gameStatus;
+// wire [1:0] playerStatus;
 
-//input clk,
-//input reset,
-//input levelPassed,              // If player passes level
-//input lose,                      // If player losses
-//output reg [2:0] level,         // Current game level
-//output reg world,               // Current game world
-//output reg [2:0] gameStatus           // 0 = playing, 1 = level win, 2 = world win, 3 = Game win, 4 = gameOver
-
-FSM FSM1 (clk, rst, levelPassed, lose, level, world, gameStatus);
+//    input startButton,
+//    input [1:0] playerStatus, // 0 = playing 1 = levelpass 2 = died
+//    input clk,
+//    input reset,
+//    output reg [2:0] gameStatus,  //0 = start, 1 = playing, 2 = levelInc, 3 = worldInc, 4 = livesInc, 5= loseGame, 6 = winGame
+//    output reg [1:0] world,
+//    output reg [2:0] level,
+//    output reg [3:0] lives
+    
+FSM FSM1 (startButton, playerStatus, clk, rst, gameStatus, world, level, lives);
 
 endmodule
