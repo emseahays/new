@@ -30,7 +30,7 @@ module textDisplayCounter(
     integer count;
     integer countTemp;
     
-    parameter maxCount = 2000;
+    parameter maxCount = 10;
     
     always @ (posedge clk, posedge reset) begin
         if(reset) begin
