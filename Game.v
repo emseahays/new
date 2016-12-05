@@ -28,8 +28,9 @@ input rst,
 input btnDim, //CPU Reset
 //input startButton,
 
+//SWITCHES
 input [1:0] playerStatus,
-input [2:0] In, //REMOVE LATER - for diff crosshair colors
+// input [2:0] In, //REMOVE LATER - for diff crosshair colors
 
 // AUDIO
 input en,     //enable audio
@@ -283,16 +284,13 @@ input [3:0] player_color,
 input rst,
 input btnClk,
 input [3:0] btns,
-
 output   [31:0] vStartPos[3:0][5:0],
 output  [31:0] hStartPos[3:0][5:0],
 output  [31:0] objWidth [3:0][5:0],
 output  [31:0] objHeight[3:0][5:0],
 output  [31:0] vOffset[3:0][5:0],
 output  [31:0] hOffset[3:0][5:0],
-
 output [3:0] color_o[3:0][5:0],
-
 output upEnable[3:0][5:0],
 output downEnable[3:0][5:0],
 output leftEnable[3:0][5:0],

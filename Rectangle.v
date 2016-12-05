@@ -133,40 +133,40 @@ always@(posedge btnClk, posedge rst) begin
     begin 
         upEnable <= 1'b0;  //enable upButton      
     end
-//    //Left Disable
-//    if((player_hPos==hStartPos+objWidth)            //player left edge is on rectangles right edge
-//    &&(player_vPos>=vStartPos+vOffset)             //player top edge is not above rectangle top edge
-//    &&(player_vPos+12<=vStartPos+vOffset+objWidth)           //player bottom edge is not below rectangle top edge
-//   &&(rect_color!=player_color)                             //disable only if colors dont match
-//    ) 
-//    begin 
-//        leftEnable<=1'b1;
-//    end
-//    else leftEnable<=1'b0;
-//        //right Disable
-//    if((player_hPos+12==hStartPos)                    //player right edge is on rectangles left edge
-//    &&(player_vPos>=vStartPos+vOffset)                      //player top edge is not above rectangle top edge
-//    &&(player_vPos+12<=vStartPos+vOffset+objWidth)           //player bottom edge is not below rectangle top edge
-//   &&(rect_color!=player_color)                             //disable only if colors dont match
-//    ) 
+    //Left Disable
+    if((player_hPos==hStartPos+objWidth)            //player left edge is on rectangles right edge
+    &&(player_vPos>=vStartPos+vOffset)             //player top edge is not above rectangle top edge
+    &&(player_vPos+12<=vStartPos+vOffset+objWidth)           //player bottom edge is not below rectangle top edge
+   &&(rect_color!=player_color)                             //disable only if colors dont match
+    ) 
+    begin 
+        leftEnable<=1'b1;
+    end
+    else leftEnable<=1'b0;
+        //right Disable
+    if((player_hPos+12==hStartPos)                    //player right edge is on rectangles left edge
+    &&(player_vPos>=vStartPos+vOffset)                      //player top edge is not above rectangle top edge
+    &&(player_vPos+12<=vStartPos+vOffset+objWidth)           //player bottom edge is not below rectangle top edge
+   &&(rect_color!=player_color)                             //disable only if colors dont match
+    ) 
     
-//    begin 
-//        rightEnable<=1'b1;
-//    end
-//    else rightEnable<=1'b0;
+    begin 
+        rightEnable<=1'b1;
+    end
+    else rightEnable<=1'b0;
     
-     // LEFT/RIGHT ENABLE/DISABLE -- "if hit by diff color"
-   if((player_vPos == vStartPos + vOffset) // inside rectangle
-   && (((player_hPos < hStartPos + hOffset) && ( player_hPos + objHeight > hStartPos + hOffset)) // left side of block is inside player
-   || ((player_hPos < hStartPos + hOffset + objWidth) && ( player_hPos + objHeight > hStartPos + hOffset + objWidth))) // right side of block
-   && ((rect_color != player_color)))
-   begin
-       // Disable Controls
-       downEnable <= 1'b0;
-       upEnable <= 1'b0;
-       leftEnable <= 1'b0;
-       rightEnable <= 1'b0; 
-   end
+//     // LEFT/RIGHT ENABLE/DISABLE -- "if hit by diff color"
+//   if((player_vPos == vStartPos + vOffset) // inside rectangle
+//   && (((player_hPos < hStartPos + hOffset) && ( player_hPos + objHeight > hStartPos + hOffset)) // left side of block is inside player
+//   || ((player_hPos < hStartPos + hOffset + objWidth) && ( player_hPos + objHeight > hStartPos + hOffset + objWidth))) // right side of block
+//   && ((rect_color != player_color)))
+//   begin
+//       // Disable Controls
+//       downEnable <= 1'b0;
+//       upEnable <= 1'b0;
+//       leftEnable <= 1'b0;
+//       rightEnable <= 1'b0; 
+//   end
 //   else
 //   begin
 //        //Enable Controls
