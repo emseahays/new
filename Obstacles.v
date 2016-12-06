@@ -21,7 +21,7 @@
 
 
 module Obstacles(
-input [2:0] world,
+input [1:0] world,
 input [31:0] player_hPos,
 input [31:0] player_vPos,
 input [3:0] player_color,
