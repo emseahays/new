@@ -21,25 +21,25 @@
 
 
 module Obstacles(
-input [1:0] world,
+input [2:0] world,
 input [31:0] player_hPos,
 input [31:0] player_vPos,
 input [3:0] player_color,
-input rst,
-input btnClk,
-input [3:0] btns,
-output   [31:0] vStartPos[3:0][5:0],
-output  [31:0] hStartPos[3:0][5:0],
-output  [31:0] objWidth [3:0][5:0],
-output  [31:0] objHeight[3:0][5:0],
-output  [31:0] vOffset[3:0][5:0],
-output  [31:0] hOffset[3:0][5:0],
-output [3:0] color_o[3:0][5:0],
-output upEnable[3:0][5:0],
-output downEnable[3:0][5:0],
-output leftEnable[3:0][5:0],
-output rightEnable[3:0][5:0],
-output reg visible[3:0][5:0]
+input rst,                              
+input btnClk,                           //speed of movement - depend on clk speed
+input [3:0] btns,                       //direction of movement
+output   [31:0] vStartPos[23:0][5:0],
+output  [31:0] hStartPos[23:0][5:0],
+output  [31:0] objWidth [23:0][5:0],
+output  [31:0] objHeight[23:0][5:0],
+output  [31:0] vOffset[23:0][5:0],
+output  [31:0] hOffset[23:0][5:0],
+output [3:0] color_o[23:0][5:0],
+output upEnable[23:0][5:0],
+output downEnable[23:0][5:0],
+output leftEnable[23:0][5:0],
+output rightEnable[23:0][5:0],
+output reg visible[23:0][5:0]
 //output reg [31:0] hPos[3:0][5:0],
 //output reg [31:0] vPos[3:0][5:0]
     );
@@ -49,14 +49,36 @@ output reg visible[3:0][5:0]
     parameter rectWidth=128; //a width allowing 3 bars to show while hiding one behind one edge border of equal width
     parameter rectHeight=12;
     
+    //COLORS
     parameter red=2;
     parameter cyan=3;
     parameter yellow=4;
     parameter magenta=5;
-    parameter white=6;
-
- //WALL 0
- 
+    parameter white=6;      //for walls
+    parameter green=7;      //for destination
+    
+    //VISIBLE
+    parameter vis=1; //visble
+    parameter invis=0; //invisble
+    
+    //PASSABLE - can pass on color match if passable (like a scroll)
+    parameter pass=1;
+    parameter noPass=0;
+    
+    
+    //SCROLLING DIRECTIONS
+    parameter left=   4'b0001;
+    parameter right= 4'b0010;
+    parameter down= 4'b0100;
+    parameter up=4'b1000;
+    parameter notMoving=4'd0;
+    
+    //DEFAULT START POSITION - all should use this, then use excel sheet to set offset position
+    parameter vDefault=12;
+    parameter hDefault=128;
+    
+    
+    //WALL 0 
     parameter row_num=5+3;
     parameter col_num=1;
        
