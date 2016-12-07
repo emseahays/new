@@ -47,7 +47,7 @@ parameter rectHeight=12;
 parameter rectWidth=12; //player obj is a square
 
 //position
-parameter vStartPos=480-2*rectHeight-6*rectHeight;
+parameter vStartPos=480-3*rectHeight-6*rectHeight;
 parameter hStartPos=320-rectHeight;
 
 
