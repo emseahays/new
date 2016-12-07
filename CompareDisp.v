@@ -21,7 +21,7 @@
 
 
 module CompareDisp( 
-input wall_visible[3:0][5:0], 
+input wall_visible[23:0][5:0], 
 input scroll_visible[3:0][5:0],   	
 input [31:0] hCount,
 input [31:0] vCount,
@@ -29,12 +29,12 @@ input [3:0] btns,
 input rst,    
 input clk,
 //stuff for wall to display
-input  [31:0] wall_vStartPos [3:0][5:0],
-input  [31:0] wall_hStartPos [3:0][5:0],
-input  [31:0] wall_objWidth  [3:0][5:0],
-input  [31:0] wall_objHeight [3:0][5:0],
-input  [31:0] wall_vOffset   [3:0][5:0],
-input  [31:0] wall_hOffset   [3:0][5:0],
+input  [31:0] wall_vStartPos [23:0][5:0],
+input  [31:0] wall_hStartPos [23:0][5:0],
+input  [31:0] wall_objWidth  [23:0][5:0],
+input  [31:0] wall_objHeight [23:0][5:0],
+input  [31:0] wall_vOffset   [23:0][5:0],
+input  [31:0] wall_hOffset   [23:0][5:0],
 //input btnClk,
 input  [31:0] vStartPos [3:0][5:0],
 input  [31:0] hStartPos [3:0][5:0],
@@ -52,7 +52,7 @@ input  [31:0] player_hOffset ,
 
 
 input [3:0] player_color,
-input [3:0] wall_color [3:0][5:0],
+input [3:0] wall_color [23:0][5:0],
 input [3:0] scroll_color [3:0][5:0],
 
 output reg [2:0] Sel
