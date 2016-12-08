@@ -21,7 +21,7 @@
 
 
 module Rectangle(
-    input visible, 
+    input  visible, 
     input [3:0] player_color,
     input [3:0] rect_color,
     input passable,
