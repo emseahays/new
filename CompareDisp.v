@@ -21,6 +21,10 @@
 
 
 module CompareDisp( 
+input [3:0] dest_rect_color,
+input [31:0] dest_rect_vPos,
+input [31:0] dest_rect_hPos,
+input dest_rect_visible,
 input wall_visible[23:0][5:0], 
 input scroll_visible[3:0][5:0],   	
 input [31:0] hCount,
@@ -87,7 +91,11 @@ begin
      begin
         Sel<=player_color; //wild
     end 
-//WALL 0
+    //DESTINATION RECTANGLE
+    else if(dest_rect_visible==1&&hCount<=dest_rect_hPos+h+12&&hCount>=dest_rect_hPos+h&&vCount<=dest_rect_vPos+v+12&&vCount>=dest_rect_vPos+v)
+     begin
+        Sel<=dest_rect_color; //green
+    end //WALL 0
     else if(wall_visible[0 ][0]==1&&hCount<=wall_hStartPos[0 ][0]+h+wall_hOffset[0 ][0]+wall_objWidth[0 ][0]&&hCount>=wall_hStartPos[0 ][0]+h+wall_hOffset[0 ][0]&&vCount<=wall_vStartPos[0 ][0]+v+wall_vOffset[0 ][0]+wall_objHeight[0 ][0]&&vCount>=wall_vStartPos[0 ][0]+v+wall_vOffset[0 ][0]) Sel<=wall_color[0 ][0]; 
     else if(wall_visible[1 ][0]==1&&hCount<=wall_hStartPos[1 ][0]+h+wall_hOffset[1 ][0]+wall_objWidth[1 ][0]&&hCount>=wall_hStartPos[1 ][0]+h+wall_hOffset[1 ][0]&&vCount<=wall_vStartPos[1 ][0]+v+wall_vOffset[1 ][0]+wall_objHeight[1 ][0]&&vCount>=wall_vStartPos[1 ][0]+v+wall_vOffset[1 ][0]) Sel<=wall_color[1 ][0]; 
     else if(wall_visible[2 ][0]==1&&hCount<=wall_hStartPos[2 ][0]+h+wall_hOffset[2 ][0]+wall_objWidth[2 ][0]&&hCount>=wall_hStartPos[2 ][0]+h+wall_hOffset[2 ][0]&&vCount<=wall_vStartPos[2 ][0]+v+wall_vOffset[2 ][0]+wall_objHeight[2 ][0]&&vCount>=wall_vStartPos[2 ][0]+v+wall_vOffset[2 ][0]) Sel<=wall_color[2 ][0]; 

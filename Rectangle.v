@@ -57,7 +57,7 @@ assign vStartPos_o=vStartPos;
 assign hStartPos_o=hStartPos;
 assign objWidth_o=objWidth;
 assign objHeight_o=objHeight;
-assign visible=visible_o;
+assign visible_o=visible;
 
 //update objects location
 

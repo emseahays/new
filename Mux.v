@@ -120,6 +120,13 @@ module Mux(
             vgaGreen<=dimCounter;
             vgaBlue<=dimCounter;   
         end
+        else if(Sel==7)
+        begin
+            vgaRed<=0;
+            vgaGreen<=dimCounter;
+            vgaBlue<=0;   
+        end
+
         else
         begin
             //Default to black pixels

@@ -21,6 +21,10 @@
 
 
 module VideoController(
+input [3:0] dest_rect_color,
+input [31:0] dest_rect_vPos,
+input [31:0] dest_rect_hPos,
+input dest_rect_visible,
 input wall_visible[23:0][5:0], 
 input scroll_visible[3:0][5:0], 	
 input [3:0] player_color,
@@ -148,7 +152,11 @@ input [3:0] player_color,
 output reg [2:0] Sel
 );*/
     CompareDisp M6(
-    wall_visible, 
+dest_rect_color,
+dest_rect_vPos,
+dest_rect_hPos,
+dest_rect_visible,    
+wall_visible, 
     scroll_visible,    
     hCount_w,
     vCount_w,
