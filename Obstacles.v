@@ -45,9 +45,6 @@ output reg visible[23:0][5:0]
     );
     
     
-    //for each
-    parameter rectWidth=128; //a width allowing 3 bars to show while hiding one behind one edge border of equal width
-    parameter rectHeight=12;
     
     //COLORS
     parameter red=2;
