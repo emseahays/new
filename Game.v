@@ -68,12 +68,12 @@ wire [31:0] vOffset_w [3:0][5:0];
 wire [31:0] hOffset_w [3:0][5:0];
 
 //wire for obstacles
-wire [31:0] wall_vStartPos_w [3:0][5:0];
-wire [31:0] wall_hStartPos_w [3:0][5:0];
-wire [31:0] wall_objWidth_w [3:0][5:0];
-wire [31:0] wall_objHeight_w [3:0][5:0];
-wire [31:0] wall_vOffset_w [3:0][5:0];
-wire [31:0] wall_hOffset_w [3:0][5:0];
+wire [31:0] wall_vStartPos_w [23:0][5:0];
+wire [31:0] wall_hStartPos_w [23:0][5:0];
+wire [31:0] wall_objWidth_w [23:0][5:0];
+wire [31:0] wall_objHeight_w [23:0][5:0];
+wire [31:0] wall_vOffset_w [23:0][5:0];
+wire [31:0] wall_hOffset_w [23:0][5:0];
 
 //for player obj
 wire [31:0] player_vStartPos_w ;
@@ -86,10 +86,10 @@ wire [31:0] player_hOffset_w ;
 
 wire  [3:0] player_color_w;
 wire [3:0] scroll_color_o_w [3:0][5:0];  
-wire [3:0] wall_color_o_w [3:0][5:0];  
+wire [3:0] wall_color_o_w [23:0][5:0];  
 
 wire scroll_visible_w  [3:0][5:0]; 
-wire wall_visible_w  [3:0][5:0]; 
+wire wall_visible_w  [23:0][5:0]; 
 
 VideoController V1(
     wall_visible_w, 
@@ -153,10 +153,10 @@ wire enableDown_w   [3:0][5:0];
 wire enableLeft_w   [3:0][5:0];
 wire enableRight_w  [3:0][5:0];   
 
-wire wall_enableUp_w     [3:0][5:0];
-wire wall_enableDown_w   [3:0][5:0];
-wire wall_enableLeft_w   [3:0][5:0];
-wire wall_enableRight_w  [3:0][5:0];              
+wire wall_enableUp_w     [23:0][5:0];
+wire wall_enableDown_w   [23:0][5:0];
+wire wall_enableLeft_w   [23:0][5:0];
+wire wall_enableRight_w  [23:0][5:0];              
  
 
        
@@ -339,6 +339,6 @@ wall_visible_w
 //    output reg [2:0] level,
 //    output reg [3:0] lives
     
-FSM FSM1 (startButton, playerStatus, clk, rst, gameStatus, world, level, lives);
+//FSM FSM1 (startButton, playerStatus, clk, rst, gameStatus, world, level, lives);
 
 endmodule
