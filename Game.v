@@ -306,7 +306,7 @@ output reg visible[3:0][5:0];
 */
 
 
-wire [1:0] world;
+wire [2:0] world;
 
 Obstacles G12(
 world,

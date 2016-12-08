@@ -131,16 +131,23 @@ output level_complete
     reg  scroll_4_visible;
     reg  scroll_5_visible;
     //Destination rectangle postion
-    reg rect_vStart;
-    reg rect_hStart;
+    reg [31:0] rect_vStart;
+    reg [31:0] rect_hStart;
     
 /*This always block enables and disables rectangles by setting 
  the visible property on and off based on level input */  
-always@(*) begin
+always@(level,rst,btnClk) begin
     if(rst==1)
     begin
+    scroll_0_visible<=1;
+    scroll_1_visible<=0;
+    scroll_2_visible<=0;
+    scroll_3_visible<=0;
+    scroll_4_visible<=0;
+    scroll_5_visible<=0;
     rect_vStart<=12;
-    rect_hStart<=128+12*16; 
+    rect_hStart<=128+12*16;  
+
     end      
     if(level==0)begin
         scroll_0_visible<=1;
@@ -240,8 +247,8 @@ output reg level_complete
         green,
         player_hPos,
         player_vPos,
-        12,
-        128+12*16,
+        rect_vStart,
+        rect_hStart,
         dest_rect_vPos,
         dest_rect_hPos, 
         dest_rect_color, 

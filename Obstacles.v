@@ -106,7 +106,7 @@ output reg visible[23:0][5:0]
     reg  wall_3_visible;
     reg  wall_4_visible;
     reg  wall_5_visible;
-always@(*) begin
+always@(world) begin
     if(world==0)begin
         wall_0_visible<=1;
         wall_1_visible<=0;
