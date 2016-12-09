@@ -96,12 +96,12 @@ wire screen_visible_w  [23:0][5:0];
 
 
 //for player obj
-wire [11:0] player_vStartPos_w ;
-wire [11:0] player_hStartPos_w  ;
-wire [11:0] player_objWidth_w   ;
-wire [11:0] player_objHeight_w  ;
-wire [31:0] player_vOffset_w ;
-wire [31:0] player_hOffset_w ;
+wire [11:0] player_vStartPos_w;
+wire [11:0] player_hStartPos_w;
+wire [11:0] player_objWidth_w;
+wire [11:0] player_objHeight_w;
+wire [31:0] player_vOffset_w;
+wire [31:0] player_hOffset_w;
 wire  [3:0] player_color_w;
 
 
