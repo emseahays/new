@@ -60,8 +60,8 @@ input  [11:0] player_vStartPos ,
 input  [11:0] player_hStartPos ,
 input  [11:0] player_objWidth ,
 input  [11:0] player_objHeight ,
-input  [11:0] player_vOffset ,
-input  [11:0] player_hOffset ,
+input  [31:0] player_vOffset ,
+input  [31:0] player_hOffset ,
 
 
 input [3:0] player_color,
