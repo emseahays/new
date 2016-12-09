@@ -36,6 +36,7 @@ input [1:0] playerStatus,
 input [2:0] World,
 input [2:0] Level,
 
+
 // AUDIO
 input en,     //enable audio
 
@@ -54,12 +55,12 @@ output [3:0] vgaBlue,
 
 // AUDIO
 output  pwmPin,
-output  ampPin,
+output  ampPin
 
 // Other
 // FSM
-output [2:0] gameStatus,
-output [2:0] level
+//output [2:0] gameStatus,
+//output [2:0] level
 );
 
 wire [3:0] uBtns_w;
@@ -70,6 +71,8 @@ wire [31:0] objWidth_w [3:0][5:0];
 wire [31:0] objHeight_w [3:0][5:0];
 wire [31:0] vOffset_w [3:0][5:0];
 wire [31:0] hOffset_w [3:0][5:0];
+wire [3:0] scroll_color_o_w [3:0][5:0];  
+wire scroll_visible_w  [3:0][5:0]; 
 
 //wire for obstacles (walls)
 wire [31:0] wall_vStartPos_w [23:0][5:0];
@@ -78,6 +81,8 @@ wire [31:0] wall_objWidth_w [23:0][5:0];
 wire [31:0] wall_objHeight_w [23:0][5:0];
 wire [31:0] wall_vOffset_w [23:0][5:0];
 wire [31:0] wall_hOffset_w [23:0][5:0];
+wire wall_visible_w  [23:0][5:0]; 
+wire [3:0] wall_color_o_w [23:0][5:0];  
 
 //wire for obstacles (screens)
 wire [31:0] screen_vStartPos_w [23:0][5:0];
@@ -97,15 +102,12 @@ wire [31:0] player_objWidth_w   ;
 wire [31:0] player_objHeight_w  ;
 wire [31:0] player_vOffset_w ;
 wire [31:0] player_hOffset_w ;
-
-
 wire  [3:0] player_color_w;
-wire [3:0] scroll_color_o_w [3:0][5:0];  
-wire [3:0] wall_color_o_w [23:0][5:0];  
 
 
-wire scroll_visible_w  [3:0][5:0]; 
-wire wall_visible_w  [23:0][5:0]; 
+
+
+
 
 
 
@@ -164,7 +166,9 @@ screen_visible_w,
     );
 
 wire [2:0] sel;
-wire color_clk_w;
+
+//Wires for Player Object Color Switch Timer
+wire color_clk_w;  
 wire [3:0] color_w;
 
 Audio A1(clk,rst,sel,en,pwmPin,ampPin);
@@ -177,6 +181,8 @@ color_counter C3(color_clk_w, rst, color_w);
 
 //GAME CONTROLLER
 //======================================== 
+
+//wires from EnableCompare for scroll collision detection
 wire up_Enable_w;
 wire down_Enable_w;
 wire left_Enable_w;
@@ -184,18 +190,22 @@ wire right_Enable_w;
 
 ps2interface G5(clk,PS2_CLK,PS2_DATA,rst,uBtns_w);
 
+
 wire btnClk_w;
 
+//wires from Scroll Rectangles for scroll collision detection
 wire enableUp_w     [3:0][5:0];
 wire enableDown_w   [3:0][5:0];
 wire enableLeft_w   [3:0][5:0];
 wire enableRight_w  [3:0][5:0];   
 
+//wires from Obstacle Rectangles for scroll collision detection
 wire wall_enableUp_w     [23:0][5:0];
 wire wall_enableDown_w   [23:0][5:0];
 wire wall_enableLeft_w   [23:0][5:0];
 wire wall_enableRight_w  [23:0][5:0];          
 
+//wires from Obstacle Rectangles for scroll collision detection (Not Connected to Anything -- Just pleases the compiler)
 wire screen_enableUp_w     [23:0][5:0];
 wire screen_enableDown_w   [23:0][5:0];
 wire screen_enableLeft_w   [23:0][5:0];
@@ -226,9 +236,10 @@ BtnClk2 G11(clk,rst,btnClk2_w);
 // CLOCK DIVIDER (RECTANGLE)
 BtnClk G6(clk,rst,btnClk_w);
 
-
+//Wires to Rectangles & DestRect, to know player location
 wire [31:0] player_hPos_w; 
 wire [31:0] player_vPos_w;
+
 // PLAYER OBJECT
 PlayerObject playerObj(
     up_Enable_w,
@@ -336,8 +347,12 @@ output rightEnable[3:0][5:0],
 output reg visible[3:0][5:0];
 */
 
-
+//wire from FSM to Obstacles
 wire [2:0] world;
+//wire from FSM to Scrolls
+wire [2:0] level;
+//wire from FSM to Screens
+wire [2:0] gameStatus;
 
 Obstacles Worlds(
 World,
