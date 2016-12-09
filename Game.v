@@ -21,33 +21,41 @@
 
 
 module Game(
-    //video ins/outs
 input clk,
 input rst,
-input [2:0] In, //REMOVE LATER - for diff crosshair colors
+
+//BUTTONS
 input btnDim, //CPU Reset
-//input [3:0] uBtns, //btnU, btnD,btnR,btnL
+//input startButton,
+
+//SWITCHES
+input [1:0] playerStatus,
+// input [2:0] In, //REMOVE LATER - for diff crosshair colors
+
+// AUDIO
+input en,     //enable audio
+
+// PS2 (Keyboard)
 input PS2_CLK,
 input PS2_DATA,
+
+
+// OUTPUTS =========================================
+// VGA
 output HS,
 output VS,
 output [3:0] vgaRed,
 output [3:0] vgaGreen,
 output [3:0] vgaBlue,
-//audio ins/outs
-input en,
+
+// AUDIO
 output  pwmPin,
 output  ampPin,
-//decoder
-//input btnU, 
-//input btnD, 
-//input btnR, 
-//input btnL, 
-output out2muxSel,
 
-//GAME CONTROLLER
-input modeSelect,
-input dEnable //display Enable
+// Other
+// FSM
+output [2:0] gameStatus,
+output [2:0] level
 );
 
 wire [3:0] uBtns_w;
@@ -60,12 +68,12 @@ wire [31:0] vOffset_w [3:0][5:0];
 wire [31:0] hOffset_w [3:0][5:0];
 
 //wire for obstacles
-wire [31:0] wall_vStartPos_w [3:0][5:0];
-wire [31:0] wall_hStartPos_w [3:0][5:0];
-wire [31:0] wall_objWidth_w [3:0][5:0];
-wire [31:0] wall_objHeight_w [3:0][5:0];
-wire [31:0] wall_vOffset_w [3:0][5:0];
-wire [31:0] wall_hOffset_w [3:0][5:0];
+wire [31:0] wall_vStartPos_w [23:0][5:0];
+wire [31:0] wall_hStartPos_w [23:0][5:0];
+wire [31:0] wall_objWidth_w [23:0][5:0];
+wire [31:0] wall_objHeight_w [23:0][5:0];
+wire [31:0] wall_vOffset_w [23:0][5:0];
+wire [31:0] wall_hOffset_w [23:0][5:0];
 
 //for player obj
 wire [31:0] player_vStartPos_w ;
@@ -78,12 +86,29 @@ wire [31:0] player_hOffset_w ;
 
 wire  [3:0] player_color_w;
 wire [3:0] scroll_color_o_w [3:0][5:0];  
-wire [3:0] wall_color_o_w [3:0][5:0];  
+wire [3:0] wall_color_o_w [23:0][5:0];  
 
-VideoController V1( 
+wire scroll_visible_w  [3:0][5:0]; 
+wire wall_visible_w  [23:0][5:0]; 
+
+//WIRES FOR DESTINATION RECTANGLE
+wire [3:0] dest_rect_color_w;
+wire [31:0] dest_rect_vPos_w;
+wire [31:0] dest_rect_hPos_w;
+wire dest_rect_visible_w;
+wire level_complete_w;
+
+
+VideoController V1(
+    dest_rect_color_w,
+    dest_rect_vPos_w,
+    dest_rect_hPos_w,
+    dest_rect_visible_w,
+    wall_visible_w, 
+    scroll_visible_w,  
     player_color_w, 
     wall_color_o_w, 
-     scroll_color_o_w, 
+    scroll_color_o_w, 
     clk, 
     rst, 
     In,
@@ -140,11 +165,12 @@ wire enableDown_w   [3:0][5:0];
 wire enableLeft_w   [3:0][5:0];
 wire enableRight_w  [3:0][5:0];   
 
-wire wall_enableUp_w     [3:0][5:0];
-wire wall_enableDown_w   [3:0][5:0];
-wire wall_enableLeft_w   [3:0][5:0];
-wire wall_enableRight_w  [3:0][5:0];              
-           
+wire wall_enableUp_w     [23:0][5:0];
+wire wall_enableDown_w   [23:0][5:0];
+wire wall_enableLeft_w   [23:0][5:0];
+wire wall_enableRight_w  [23:0][5:0];              
+ 
+
        
 enableCompare G10 (
     enableUp_w,
@@ -193,34 +219,97 @@ PlayerObject playerObj(
     player_color_w    
     );
           
-
-
- 
-// Scrolling color bars
-Scrolls G9(player_hPos_w, player_vPos_w, player_color_w, rst, btnClk_w, uBtns_w, vStartPos_w, hStartPos_w, 
-objWidth_w, objHeight_w, vOffset_w, hOffset_w, scroll_color_o_w, enableUp_w, enableDown_w, enableLeft_w, enableRight_w); 
-
-
-/*module Obstacles(           
-                            
-input [31:0] player_hPos,   
-input [31:0] player_vPos,   
-input [3:0] player_color,   
-input rst,                  
-input btnClk,               
-input [3:0] btns,           
-output   [31:0] vStartPos[3:
-output  [31:0] hStartPos[3:0
-output  [31:0] objWidth [3:0
-output  [31:0] objHeight[3:0
-output  [31:0] vOffset[3:0][
-output  [31:0] hOffset[3:0][
-output [3:0] color_o[3:0][5:
-output upEnable[3:0][5:0],  
+/*module Scrolls(
+module Scrolls(
+input [2:0] level,
+input [31:0] player_hPos,
+input [31:0] player_vPos,
+input [3:0] player_color,
+input rst,
+input btnClk,
+input [3:0] btns,
+output   [31:0] vStartPos[3:0][5:0],
+output  [31:0] hStartPos[3:0][5:0],
+output  [31:0] objWidth [3:0][5:0],
+output  [31:0] objHeight[3:0][5:0],
+output  [31:0] vOffset[3:0][5:0],
+output  [31:0] hOffset[3:0][5:0],
+output [3:0] color_o[3:0][5:0],
+output upEnable[3:0][5:0],
 output downEnable[3:0][5:0],
 output leftEnable[3:0][5:0],
-output rightEnable[3:0][5:0]);*/
+output rightEnable[3:0][5:0],
+//output [31:0] player_vStartPos,
+//output [31:0] player_hStartPos,
+output reg visible[3:0][5:0],
+//output reg [31:0] hPos[3:0][5:0],
+//output reg [31:0] vPos[3:0][5:0]
+output [3:0] dest_rect_color,
+output [31:0] dest_rect_vPos,
+output [31:0] dest_rect_hPos,
+output dest_rect_visible,
+output level_complete
+    );*/
+
+ 
+
+
+Scrolls G9(
+level,
+player_hPos_w, 
+player_vPos_w,
+player_color_w, 
+rst, 
+btnClk_w, 
+uBtns_w, 
+vStartPos_w, 
+hStartPos_w, 
+objWidth_w, 
+objHeight_w, 
+vOffset_w, 
+hOffset_w, 
+scroll_color_o_w, 
+enableUp_w, 
+enableDown_w, 
+enableLeft_w, 
+enableRight_w,
+scroll_visible_w,
+dest_rect_color_w,
+dest_rect_vPos_w,
+dest_rect_hPos_w,
+dest_rect_visible_w,
+level_complete_w
+); 
+
+
+// module Obstacles -----------------------------------           
+/*                            
+input [1:0] world,
+input [31:0] player_hPos,
+input [31:0] player_vPos,
+input [3:0] player_color,
+input rst,
+input btnClk,
+input [3:0] btns,
+output   [31:0] vStartPos[3:0][5:0],
+output  [31:0] hStartPos[3:0][5:0],
+output  [31:0] objWidth [3:0][5:0],
+output  [31:0] objHeight[3:0][5:0],
+output  [31:0] vOffset[3:0][5:0],
+output  [31:0] hOffset[3:0][5:0],
+output [3:0] color_o[3:0][5:0],
+output upEnable[3:0][5:0],
+output downEnable[3:0][5:0],
+output leftEnable[3:0][5:0],
+output rightEnable[3:0][5:0],
+output reg visible[3:0][5:0];
+*/
+
+
+wire [2:0] world;
+
 Obstacles G12(
+world,
 player_hPos_w, 
 player_vPos_w, 
 player_color_w, 
@@ -240,20 +329,23 @@ wall_color_o_w,
 wall_enableUp_w, 
 wall_enableDown_w, 
 wall_enableLeft_w, 
-wall_enableRight_w); 
+wall_enableRight_w,
+wall_visible_w
+); 
 
-wire [2:0] level;
-wire world;
-wire [2:0] gameStatus;
+// wire [2:0] level;
+// wire [2:0] gameStatus;
+// wire [1:0] playerStatus;
 
-//input clk,
-//input reset,
-//input levelPassed,              // If player passes level
-//input lose,                      // If player losses
-//output reg [2:0] level,         // Current game level
-//output reg world,               // Current game world
-//output reg [2:0] gameStatus           // 0 = playing, 1 = level win, 2 = world win, 3 = Game win, 4 = gameOver
-
-GameFSM GF1 (clk, rst, levelPassed, lose, level, world, gameStatus);
+//    input startButton,
+//    input [1:0] playerStatus, // 0 = playing 1 = levelpass 2 = died
+//    input clk,
+//    input reset,
+//    output reg [2:0] gameStatus,  //0 = start, 1 = playing, 2 = levelInc, 3 = worldInc, 4 = livesInc, 5= loseGame, 6 = winGame
+//    output reg [1:0] world,
+//    output reg [2:0] level,
+//    output reg [3:0] lives
+    
+//FSM FSM1 (startButton, playerStatus, clk, rst, gameStatus, world, level, lives);
 
 endmodule

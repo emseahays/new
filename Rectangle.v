@@ -21,6 +21,7 @@
 
 
 module Rectangle(
+    input  visible, 
     input [3:0] player_color,
     input [3:0] rect_color,
     input passable,
@@ -43,9 +44,12 @@ module Rectangle(
     output reg upEnable,
     output reg downEnable,
     output  reg leftEnable,
-    output  reg rightEnable
+    output  reg rightEnable,
+    output visible_o
 );
 
+parameter pWidth=12;
+parameter pHeight=12;
 
 assign rect_color_o = rect_color; 
 
@@ -53,6 +57,7 @@ assign vStartPos_o=vStartPos;
 assign hStartPos_o=hStartPos;
 assign objWidth_o=objWidth;
 assign objHeight_o=objHeight;
+assign visible_o=visible;
 
 //update objects location
 
@@ -92,17 +97,17 @@ always@(posedge btnClk, posedge rst) begin
         end
         
     endcase   
-        
+  if(visible==1)begin      
     // DOWN DISABLE
-    if((player_hPos>=hStartPos+hOffset&&player_hPos+12<=hStartPos+hOffset+objWidth)    // player is between left and right edges of this rectangle
-    &&  (player_vPos+objHeight==vStartPos+vOffset)                                      //player is on top border of rectangle 
+    if((player_hPos>=hStartPos+hOffset&&player_hPos+pWidth<=hStartPos+hOffset+objWidth)    // player is between left and right edges of this rectangle
+    &&  (player_vPos+pHeight==vStartPos+vOffset)                                      //player is on top border of rectangle 
     && (rect_color!=player_color) )                                             //not color match 
     begin
         downEnable <= 1'b1; //disable downButton
     end 
-    else if(((player_hPos<hStartPos+hOffset&&player_hPos+12>hStartPos+hOffset)        //player is on left edge of rectangle
-    ||(player_hPos<hStartPos+hOffset+objWidth&&player_hPos+12>hStartPos+hOffset+objWidth))      // is on right edge of rectangle
-        &&  (player_vPos+12==vStartPos+vOffset)                                      //player is on top border of rectangle 
+    else if(((player_hPos<hStartPos+hOffset&&player_hPos+pWidth>hStartPos+hOffset)        //player is on left edge of rectangle
+    ||(player_hPos<hStartPos+hOffset+objWidth&&player_hPos+pWidth>hStartPos+hOffset+objWidth))      // is on right edge of rectangle
+        &&  (player_vPos+pHeight==vStartPos+vOffset)                                      //player is on top border of rectangle 
          )                                                  
     begin
         downEnable <= 1'b1; //disable downButton
@@ -113,14 +118,14 @@ always@(posedge btnClk, posedge rst) begin
     end
     
      //UP DISABLE
-    if((player_hPos>=hStartPos+hOffset&&player_hPos+12<=hStartPos+hOffset+objWidth)      // player is between left and right edges of this rectangle
+    if((player_hPos>=hStartPos+hOffset&&player_hPos+pHeight<=hStartPos+hOffset+objWidth)      // player is between left and right edges of this rectangle
     && (player_vPos==vStartPos+vOffset+objHeight)                                          //player is on bottom border of rectangle       
     && (rect_color!=player_color) )                                                  //not color match 
     begin
         upEnable <= 1'b1; //disable upButton
     end
-    else if(((player_hPos<hStartPos+hOffset&&player_hPos+objHeight>hStartPos+hOffset)        //player is on left edge of rectangle
-    ||(player_hPos<hStartPos+hOffset+objWidth&&player_hPos+objHeight>hStartPos+hOffset+objWidth))      // is on right edge of rectangle
+    else if(((player_hPos<hStartPos+hOffset&&player_hPos+pWidth>hStartPos+hOffset)        //player is on left edge of rectangle
+    ||(player_hPos<hStartPos+hOffset+objWidth&&player_hPos+pWidth>hStartPos+hOffset+objWidth))      // is on right edge of rectangle
         && (player_vPos==vStartPos+vOffset+objHeight)                                         //player is on bottom border of rectangle  
          )                                                 
     begin
@@ -133,7 +138,7 @@ always@(posedge btnClk, posedge rst) begin
     //Left Disable
     if((player_hPos==hStartPos+objWidth)            //player left edge is on rectangles right edge
     &&(player_vPos>=vStartPos+vOffset)             //player top edge is not above rectangle top edge
-    &&(player_vPos+12<=vStartPos+vOffset+objWidth)           //player bottom edge is not below rectangle top edge
+    &&(player_vPos+pHeight<=vStartPos+vOffset+objHeight)           //player bottom edge is not below rectangle top edge
    &&(rect_color!=player_color)                             //disable only if colors dont match
     ) 
     begin 
@@ -141,9 +146,9 @@ always@(posedge btnClk, posedge rst) begin
     end
     else leftEnable<=1'b0;
         //right Disable
-    if((player_hPos+12==hStartPos)                    //player right edge is on rectangles left edge
+    if((player_hPos+pWidth==hStartPos)                    //player right edge is on rectangles left edge
     &&(player_vPos>=vStartPos+vOffset)                      //player top edge is not above rectangle top edge
-    &&(player_vPos+12<=vStartPos+vOffset+objWidth)           //player bottom edge is not below rectangle top edge
+    &&(player_vPos+pWidth<=vStartPos+vOffset+objHeight)           //player bottom edge is not below rectangle top edge
    &&(rect_color!=player_color)                             //disable only if colors dont match
     ) 
     
@@ -179,6 +184,7 @@ always@(posedge btnClk, posedge rst) begin
    
    
   
+end
 end
 end
 

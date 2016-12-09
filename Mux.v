@@ -3,7 +3,7 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 09/30/2016 12:26:40 AM
+// Create Date: 09/30/2016 10:26:40 AM
 // Design Name: 
 // Module Name: Mux
 // Project Name: 
@@ -120,6 +120,13 @@ module Mux(
             vgaGreen<=dimCounter;
             vgaBlue<=dimCounter;   
         end
+        else if(Sel==7)
+        begin
+            vgaRed<=0;
+            vgaGreen<=dimCounter;
+            vgaBlue<=0;   
+        end
+
         else
         begin
             //Default to black pixels

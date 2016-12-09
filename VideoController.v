@@ -3,7 +3,7 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 09/30/2016 12:26:40 AM
+// Create Date: 09/30/2016 10:26:40 AM
 // Design Name: 
 // Module Name: VideoController
 // Project Name: 
@@ -21,8 +21,14 @@
 
 
 module VideoController(
+input [3:0] dest_rect_color,
+input [31:0] dest_rect_vPos,
+input [31:0] dest_rect_hPos,
+input dest_rect_visible,
+input wall_visible[23:0][5:0], 
+input scroll_visible[3:0][5:0], 	
 input [3:0] player_color,
-input [3:0] wall_color [3:0][5:0],
+input [3:0] wall_color [23:0][5:0],
 input [3:0] scroll_color [3:0][5:0],
 
     input clk,
@@ -31,12 +37,12 @@ input [3:0] scroll_color [3:0][5:0],
     input btnDim, //CPU Reset
     input [3:0] btns,
         //stuff for wall to display
-    input  [31:0] wall_vStartPos [3:0][5:0],
-    input  [31:0] wall_hStartPos [3:0][5:0],
-    input  [31:0] wall_objWidth  [3:0][5:0],
-    input  [31:0] wall_objHeight [3:0][5:0],
-    input  [31:0] wall_vOffset   [3:0][5:0],
-    input  [31:0] wall_hOffset   [3:0][5:0],
+    input  [31:0] wall_vStartPos [23:0][5:0],
+    input  [31:0] wall_hStartPos [23:0][5:0],
+    input  [31:0] wall_objWidth  [23:0][5:0],
+    input  [31:0] wall_objHeight [23:0][5:0],
+    input  [31:0] wall_vOffset   [23:0][5:0],
+    input  [31:0] wall_hOffset   [23:0][5:0],
     //stuff for scroll to display
     input  [31:0] vStartPos  [3:0][5:0],
     input  [31:0] hStartPos  [3:0][5:0],
@@ -111,6 +117,7 @@ input [3:0] scroll_color [3:0][5:0],
 //        );
     CompareVSync M5(vCount_w,VS);
 
+
 /*module CompareDisp(    	
     input [31:0] hCount,
 input [31:0] vCount,
@@ -144,7 +151,13 @@ input [3:0] player_color,
 
 output reg [2:0] Sel
 );*/
-    CompareDisp M6(    
+    CompareDisp M6(
+dest_rect_color,
+dest_rect_vPos,
+dest_rect_hPos,
+dest_rect_visible,    
+wall_visible, 
+    scroll_visible,    
     hCount_w,
     vCount_w,
     btns,
