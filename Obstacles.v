@@ -22,16 +22,16 @@
 
 module Obstacles(
 input [2:0] world,
-input [31:0] player_hPos,
-input [31:0] player_vPos,
+input [11:0] player_hPos,
+input [11:0] player_vPos,
 input [3:0] player_color,
 input rst,                              
 input btnClk,                           //speed of movement - depend on clk speed
 input [3:0] btns,                       //direction of movement
-output   [31:0] vStartPos[23:0][5:0],
-output  [31:0] hStartPos[23:0][5:0],
-output  [31:0] objWidth [23:0][5:0],
-output  [31:0] objHeight[23:0][5:0],
+output   [11:0] vStartPos[23:0][5:0],
+output  [11:0] hStartPos[23:0][5:0],
+output  [11:0] objWidth [23:0][5:0],
+output  [11:0] objHeight[23:0][5:0],
 output  [31:0] vOffset[23:0][5:0],
 output  [31:0] hOffset[23:0][5:0],
 output [3:0] color_o[23:0][5:0],
