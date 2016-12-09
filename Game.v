@@ -28,9 +28,13 @@ input rst,
 input btnDim, //CPU Reset
 //input startButton,
 
+
 //SWITCHES
 input [1:0] playerStatus,
 // input [2:0] In, //REMOVE LATER - for diff crosshair colors
+
+input [2:0] World,
+input [2:0] Level,
 
 // AUDIO
 input en,     //enable audio
@@ -67,13 +71,24 @@ wire [31:0] objHeight_w [3:0][5:0];
 wire [31:0] vOffset_w [3:0][5:0];
 wire [31:0] hOffset_w [3:0][5:0];
 
-//wire for obstacles
+//wire for obstacles (walls)
 wire [31:0] wall_vStartPos_w [23:0][5:0];
 wire [31:0] wall_hStartPos_w [23:0][5:0];
 wire [31:0] wall_objWidth_w [23:0][5:0];
 wire [31:0] wall_objHeight_w [23:0][5:0];
 wire [31:0] wall_vOffset_w [23:0][5:0];
 wire [31:0] wall_hOffset_w [23:0][5:0];
+
+//wire for obstacles (screens)
+wire [31:0] screen_vStartPos_w [23:0][5:0];
+wire [31:0] screen_hStartPos_w [23:0][5:0];
+wire [31:0] screen_objWidth_w [23:0][5:0];
+wire [31:0] screen_objHeight_w [23:0][5:0];
+wire [31:0] screen_vOffset_w [23:0][5:0];
+wire [31:0] screen_hOffset_w [23:0][5:0];
+wire [3:0] screen_color_o_w [23:0][5:0];  
+wire screen_visible_w  [23:0][5:0]; 
+
 
 //for player obj
 wire [31:0] player_vStartPos_w ;
@@ -88,8 +103,11 @@ wire  [3:0] player_color_w;
 wire [3:0] scroll_color_o_w [3:0][5:0];  
 wire [3:0] wall_color_o_w [23:0][5:0];  
 
+
 wire scroll_visible_w  [3:0][5:0]; 
 wire wall_visible_w  [23:0][5:0]; 
+
+
 
 //WIRES FOR DESTINATION RECTANGLE
 wire [3:0] dest_rect_color_w;
@@ -100,6 +118,14 @@ wire level_complete_w;
 
 
 VideoController V1(
+ screen_vStartPos_w,
+ screen_hStartPos_w,
+ screen_objWidth_w,
+ screen_objHeight_w,
+ screen_vOffset_w,
+ screen_hOffset_w,
+ screen_color_o_w,
+screen_visible_w,
     dest_rect_color_w,
     dest_rect_vPos_w,
     dest_rect_hPos_w,
@@ -168,7 +194,12 @@ wire enableRight_w  [3:0][5:0];
 wire wall_enableUp_w     [23:0][5:0];
 wire wall_enableDown_w   [23:0][5:0];
 wire wall_enableLeft_w   [23:0][5:0];
-wire wall_enableRight_w  [23:0][5:0];              
+wire wall_enableRight_w  [23:0][5:0];          
+
+wire screen_enableUp_w     [23:0][5:0];
+wire screen_enableDown_w   [23:0][5:0];
+wire screen_enableLeft_w   [23:0][5:0];
+wire screen_enableRight_w  [23:0][5:0];     
  
 
        
@@ -254,8 +285,8 @@ output level_complete
  
 
 
-Scrolls G9(
-level,
+Scrolls Levels(
+Level,
 player_hPos_w, 
 player_vPos_w,
 player_color_w, 
@@ -308,8 +339,8 @@ output reg visible[3:0][5:0];
 
 wire [2:0] world;
 
-Obstacles G12(
-world,
+Obstacles Worlds(
+World,
 player_hPos_w, 
 player_vPos_w, 
 player_color_w, 
@@ -331,6 +362,31 @@ wall_enableDown_w,
 wall_enableLeft_w, 
 wall_enableRight_w,
 wall_visible_w
+); 
+
+Screens Display_Screens(
+World,
+player_hPos_w, 
+player_vPos_w, 
+player_color_w, 
+rst, 
+btnClk_w,
+uBtns_w,
+
+screen_vStartPos_w, 
+screen_hStartPos_w, 
+screen_objWidth_w, 
+screen_objHeight_w, 
+screen_vOffset_w,  
+screen_hOffset_w, 
+
+screen_color_o_w, 
+
+screen_enableUp_w, 
+screen_enableDown_w, 
+screen_enableLeft_w, 
+screen_enableRight_w,
+screen_visible_w
 ); 
 
 // wire [2:0] level;
