@@ -24,12 +24,12 @@ module DestRect(
 input rst,                  //reset
 input visible,              //whether or not destination rectangle is visible
 input [3:0] rect_color,     //color of Destination Rectangle
-input [31:0] player_hPos,   //
-input [31:0] player_vPos,
-input  [31:0] vStartPos,
-input  [31:0] hStartPos,
-output  [31:0] vStartPos_o,
-output  [31:0] hStartPos_o,
+input [11:0] player_hPos,   //
+input [11:0] player_vPos,
+input  [11:0] vStartPos,
+input  [11:0] hStartPos,
+output  [11:0] vStartPos_o,
+output  [11:0] hStartPos_o,
 output [3:0] rect_color_o,
 output visible_o,
 output reg level_complete

@@ -22,16 +22,16 @@
 
 module Scrolls(
 input [2:0] level,
-input [31:0] player_hPos,
-input [31:0] player_vPos,
+input [11:0] player_hPos,
+input [11:0] player_vPos,
 input [3:0] player_color,
 input rst,
 input btnClk,
 input [3:0] btns,
-output   [31:0] vStartPos[3:0][5:0],
-output  [31:0] hStartPos[3:0][5:0],
-output  [31:0] objWidth [3:0][5:0],
-output  [31:0] objHeight[3:0][5:0],
+output   [11:0] vStartPos[3:0][5:0],
+output  [11:0] hStartPos[3:0][5:0],
+output  [11:0] objWidth [3:0][5:0],
+output  [11:0] objHeight[3:0][5:0],
 output  [31:0] vOffset[3:0][5:0],
 output  [31:0] hOffset[3:0][5:0],
 output [3:0] color_o[3:0][5:0],
@@ -45,8 +45,8 @@ output reg visible[3:0][5:0],
 //output reg [31:0] hPos[3:0][5:0],
 //output reg [31:0] vPos[3:0][5:0]
 output [3:0] dest_rect_color,
-output [31:0] dest_rect_vPos,
-output [31:0] dest_rect_hPos,
+output [11:0] dest_rect_vPos,
+output [11:0] dest_rect_hPos,
 output dest_rect_visible,
 output level_complete
     );
