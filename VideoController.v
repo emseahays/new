@@ -21,6 +21,14 @@
 
 
 module VideoController(
+input [31:0] screen_vStartPos [23:0][5:0],
+input [31:0] screen_hStartPos [23:0][5:0],
+input [31:0] screen_objWidth [23:0][5:0],
+input [31:0] screen_objHeight [23:0][5:0],
+input [31:0] screen_vOffset [23:0][5:0],
+input [31:0] screen_hOffset[23:0][5:0],
+input [3:0] screen_color [23:0][5:0],  
+input screen_visible  [23:0][5:0], 
 input [3:0] dest_rect_color,
 input [31:0] dest_rect_vPos,
 input [31:0] dest_rect_hPos,
@@ -152,6 +160,15 @@ input [3:0] player_color,
 output reg [2:0] Sel
 );*/
     CompareDisp M6(
+screen_vStartPos,
+screen_hStartPos ,
+screen_objWidth ,
+screen_objHeight ,
+screen_vOffset ,
+screen_hOffset,
+screen_color ,  
+screen_visible  ,    
+    
 dest_rect_color,
 dest_rect_vPos,
 dest_rect_hPos,
