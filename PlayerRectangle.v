@@ -21,6 +21,7 @@
 
 
 module PlayerRectangle(
+
     input upEnable,
     input downEnable,
     input leftEnable,
@@ -43,7 +44,8 @@ module PlayerRectangle(
     output reg [11:0] hPos,
     output reg [11:0] vPos,
     output [3:0] color_o,
-    output reg levelPassed
+    output reg player_dead
+    
     
     //output reg [2:0] status       //blocked, alive, dead, moving
 
@@ -54,6 +56,63 @@ module PlayerRectangle(
     assign hStartPos_o=hStartPos;
     assign objWidth_o=objWidth;
     assign objHeight_o=objHeight;
+    
+
+    reg player_dead_tmp;
+        // State Variables
+       reg [1:0] currentState;
+       reg [1:0] nextState;
+       
+       parameter   waitState   = 0;
+       parameter   buttonPress = 1;
+       parameter   buttonHold  = 2;
+                   
+       // 
+       reg [3:0] buttons_temp;
+    
+//=============================================================
+//FINITE STATE MACHINE
+//=============================================================
+         //State Register
+         always @(posedge btnClk, posedge rst) begin
+             if(rst) currentState <= waitState;
+             else currentState <=  nextState;
+         end
+        //State Logic
+         always @ (*) begin
+               nextState <=  currentState;
+               case(currentState) 
+                   waitState: begin
+                       if(player_dead_tmp != 1'd0) begin             // If button is pressed go to next state
+                           nextState <= buttonPress;
+                       end
+                   end
+                   buttonPress: begin
+                       player_dead <= player_dead_tmp;             // Output last saved button input until time is up.
+                       nextState <=  buttonHold;
+                   end
+                   buttonHold: begin
+                       player_dead <= 1'd0;               // Return output to 0 after 1 clk cycle 
+                       if(player_dead_tmp==4'd0) begin                 // When there are no button presses, return to wait state
+                           nextState <= waitState;
+                       end
+                       else nextState<=buttonHold;
+                       end
+                   default: begin   
+                   player_dead <= 1'd0;                                 
+                   end            
+               endcase
+           end    
+
+//update player status
+always@(upEnable,downEnable,leftEnable,rightEnable)
+begin
+    if(upEnable==1&&downEnable==1&&leftEnable==1&&rightEnable==1) player_dead_tmp<=1;
+    else player_dead_tmp<=0;
+
+end
+
+
 
     //update objects location
 
@@ -70,8 +129,7 @@ module PlayerRectangle(
                              vOffset<=vOffset-12;
                         end
                         else begin
-                            vOffset<=480-objHeight-vStartPos;// if player gets to top of screen
-                            levelPassed <= 1;
+                            vOffset<=480-objHeight-vStartPos;
                         end
                     end
                 end

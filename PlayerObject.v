@@ -37,8 +37,8 @@ output  [31:0] player_vOffset ,
 output  [31:0] player_hOffset,
 output  [11:0] hPos,
 output  [11:0] vPos,
-output [3:0] player_color
-//output [2:0] status
+output [3:0] player_color,
+output player_dead
 );
 
 
@@ -93,7 +93,7 @@ player_vOffset,
 player_hOffset,
 hPos,
 vPos,
-player_color
-//    status
+player_color,
+player_dead
 );
 endmodule   
