@@ -157,31 +157,31 @@ always@(posedge btnClk, posedge rst) begin
     end
     else rightEnable<=1'b0;
     
-//     // LEFT/RIGHT ENABLE/DISABLE -- "if hit by diff color"
-//   if((player_vPos == vStartPos + vOffset) // inside rectangle
-//   && (((player_hPos < hStartPos + hOffset) && ( player_hPos + objHeight > hStartPos + hOffset)) // left side of block is inside player
-//   || ((player_hPos < hStartPos + hOffset + objWidth) && ( player_hPos + objHeight > hStartPos + hOffset + objWidth))) // right side of block
-//   && ((rect_color != player_color)))
-//   begin
-//       // Disable Controls
-//       downEnable <= 1'b0;
-//       upEnable <= 1'b0;
-//       leftEnable <= 1'b0;
-//       rightEnable <= 1'b0; 
-//   end
-//   else
-//   begin
-//        //Enable Controls
-//       downEnable <= 1'b1;
-//       upEnable <= 1'b1;
-//       leftEnable <= 1'b1;
-//       rightEnable <= 1'b1;       
-//    end
-   
-
-    
-    
-   
+     // LEFT/RIGHT ENABLE/DISABLE -- "if hit by diff color"
+   if((player_vPos == vStartPos + vOffset) // inside rectangle
+   && (((player_hPos < hStartPos + hOffset) && ( player_hPos + objHeight > hStartPos + hOffset)) // left side of block is inside player
+   || ((player_hPos < hStartPos + hOffset + objWidth) && ( player_hPos + objHeight > hStartPos + hOffset + objWidth))) // right side of block
+   && ((rect_color != player_color)))
+   begin
+       // Disable Controls
+       downEnable <= 1'b1;
+       upEnable <= 1'b1;
+       leftEnable <= 1'b1;
+       rightEnable <= 1'b1; 
+   end
+        // LEFT/RIGHT ENABLE/DISABLE -- "if hit by diff color"
+ if((player_vPos == vStartPos + vOffset) // inside rectangle
+ && (((player_hPos < hStartPos + hOffset) && ( player_hPos + objHeight > hStartPos + hOffset)) // left side of block is inside player
+ || ((player_hPos < hStartPos + hOffset + objWidth) && ( player_hPos + objHeight > hStartPos + hOffset + objWidth))) // right side of block
+ && ((rect_color == player_color)))
+ begin
+     // Enable Controls
+     downEnable <= 1'b0;
+     upEnable <= 1'b0;
+     leftEnable <= 1'b0;
+     rightEnable <= 1'b0; 
+ end 
+  
    
   
 end
