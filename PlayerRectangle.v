@@ -102,7 +102,7 @@ input playerDisable,
 //update player status
 always@(upEnable,downEnable,leftEnable,rightEnable)
 begin
-    if(upEnable==1&&downEnable==1&&leftEnable==1&&rightEnable==1) player_dead_tmp<=1;
+    if(upEnable==0&&downEnable==0&&leftEnable==0&&rightEnable==0) player_dead_tmp<=1;
     else player_dead_tmp<=0;
 
 end
@@ -133,7 +133,7 @@ end
                 end
                 4:begin //btnD
                     if(downEnable==1) begin
-                        if(!(upEnable==1&&vOffset+vStartPos>=480)) vOffset<=vOffset+12;
+                        if(!(vOffset+vStartPos>=480)) vOffset<=vOffset+12;
                         else vOffset<=0-vStartPos;
                     end
                 end

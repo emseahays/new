@@ -28,9 +28,9 @@ input start_btn,            //btnD or Ctrl
 input player_dead,    //input comes from PlayerObject Module
 input level_complete, //input comes from Scrolls Module
 output  [2:0] level,       //goes to Scrolls Modules
-output  [2:0]world,       //goes to Obstacles module
+output  [2:0] world,       //goes to Obstacles module
 output reg [2:0]screen, //1=Play, 2=Lose, 3=Win, 4=L+, 5=W+
-output [2:0]lives,   //[2:0]LED
+output [2:0] lives,   //[2:0]LED
 output reg playerDisable //disable player movement to prevent disrupting game state by
 );
 
@@ -124,11 +124,10 @@ case(currentState)
         worldReset<=1;
         levelReset<=1;
         screen<=playScreen;
-        playerDisable<=0;
         //reset internal registers
-        level_count<=0;
-        world_count<=0;
-        lives_count<=startLives;
+//        level_count<=0;
+//        world_count<=0;
+//        lives_count<=startLives;
         //transitions
         if(start_btn==1)         nextState<=play;
         else                        nextState<=init;
@@ -171,7 +170,6 @@ case(currentState)
     worldInc_display: begin
         //outputs
         screen<=worldUpScreen;
-
         //transitions
         if(continue_btn==1)nextState<=play;
         else nextState<=worldInc_display;
