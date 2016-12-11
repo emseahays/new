@@ -31,7 +31,8 @@ output  [2:0] level,       //goes to Scrolls Modules
 output  [2:0] world,       //goes to Obstacles module
 output reg [2:0]screen, //1=Play, 2=Lose, 3=Win, 4=L+, 5=W+
 output [2:0] lives,   //[2:0]LED
-output reg playerDisable //disable player movement to prevent disrupting game state by
+output reg playerDisable, //disable player movement to prevent disrupting game state by
+output reg resetSelect
 );
 
 
@@ -43,8 +44,10 @@ parameter   levelInc_display = 3;
 parameter   worldInc = 4;
 parameter   worldInc_display = 5;
 parameter   lifeDecr =6;
-parameter   win_display=7;
-parameter   lose_display=8;
+parameter   lifeDecr_wait=7;
+parameter   win_display=8;
+parameter   lose_display=9;
+parameter   reset=10;
 
 //state registers            
 reg [4:0] currentState;
@@ -56,8 +59,7 @@ reg [2:0] world_count;
 reg [2:0] level_count;  
 
 //parameters for state logic
-parameter levelMax=5;   //max number of levels per world
-parameter worldMax=5;   //max number of worlds per game
+parameter worldMax=6;   //max number of worlds per game
 parameter startLives=7; //number of lives a player starts with
 
 //parameters for screen display
@@ -67,6 +69,7 @@ parameter loseScreen=2;
 parameter winScreen=3;
 parameter levelUpScreen=4;
 parameter worldUpScreen=5;
+
  
 //registers for counters 
 reg levelEnable; 
@@ -102,24 +105,23 @@ begin
 // Define the assumed value for all outputs
 screen<=blankScreen;   //most of the time the display screen will have no messages to display
 playerDisable<=1;       //most of the states should disable player movements to prevent unwanted state transitions
-levelEnable=0; 
-levelReset=0; 
-worldEnable=0; 
-worldReset=0; 
-livesEnable=0; 
-livesReset=0; 
+levelEnable<=0; 
+levelReset<=0; 
+worldEnable<=0; 
+worldReset<=0; 
+livesEnable<=0; 
+livesReset<=0; 
+resetSelect=0;
 
 nextState <= currentState; //set to initial state defined in state register
 
 case(currentState)
     init: begin
         //outputs
-
         livesReset<=1;
         worldReset<=1;
         levelReset<=1;
         screen<=playScreen;
-
         //transitions
         if(start_btn==1)         nextState<=play;
         else                        nextState<=init;
@@ -168,31 +170,26 @@ case(currentState)
     end  
     lifeDecr: begin
         //outputs
-//        lives<=lives_count-1;
         livesEnable<=1;
         playerDisable<=0; //enable player to move out of scroll while decrementing
         //transitions
-        nextState<=play;
     nextState<=play;
     end
     win_display: begin
         //outputs
         screen<=winScreen;
         //transitions
-        if(continue_btn==1)nextState<=init;
         else nextState<=win_display;
     end
     lose_display: begin
         //outputs
         screen<=loseScreen;
         //transitions
-        if(continue_btn==1)nextState<=init;
         else nextState<=lose_display;
     end  
      default: begin
         //outputs
         //transitions
-        nextState <= init;
      end
 endcase    
 end

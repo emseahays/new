@@ -140,86 +140,76 @@ output level_complete
 always@(level,rst,btnClk) begin
     if(rst==1)
     begin
-    scroll_0_visible<=1;
+    scroll_0_visible<=0;
     scroll_1_visible<=0;
     scroll_2_visible<=0;
     scroll_3_visible<=0;
     scroll_4_visible<=0;
     scroll_5_visible<=0;
+    //place destination rectangle at top middle
     rect_vStart<=12;
     rect_hStart<=128+12*16;  
 
-    end      
-    if(level==0)begin
-        scroll_0_visible<=1;
+    end  
+     if(level==0)begin
+        //dont show any scrolls
+        scroll_0_visible<=0;
         scroll_1_visible<=0;
         scroll_2_visible<=0;
         scroll_3_visible<=0;
         scroll_4_visible<=0;
         scroll_5_visible<=0;
+        //place destination rectangle at top middle
+        rect_vStart<=12;
+        rect_hStart<=128+12*16;  
+     end   
+    else if(level==1)begin
+
+        scroll_0_visible<=1;
+        scroll_1_visible<=0;
+        scroll_2_visible<=0;
+        scroll_3_visible<=0;
+        scroll_4_visible<=0;
+        scroll_5_visible<=1;
+        //place destination rectangle at bottom middle
+        rect_vStart<=12+12*37;
+        rect_hStart<=128+12*16;  
+     end   
+    else if(level==2)begin
+
+        scroll_0_visible<=1;
+        scroll_1_visible<=1;
+        scroll_2_visible<=0;
+        scroll_3_visible<=0;
+        scroll_4_visible<=1;
+        scroll_5_visible<=1;
+        //place destination rectangle at top middle
         rect_vStart<=12;
         rect_hStart<=128+12*16;  
      end
-   else if(level==1) begin 
+   else if(level==3) begin
         scroll_0_visible<=1; 
         scroll_1_visible<=1; 
-        scroll_2_visible<=0; 
-        scroll_3_visible<=0; 
-        scroll_4_visible<=0; 
-        scroll_5_visible<=0; 
-        rect_vStart<=12;
-        rect_hStart<=128+12*8;  
+        scroll_2_visible<=1; 
+        scroll_3_visible<=1; 
+        scroll_4_visible<=1; 
+        scroll_5_visible<=1; 
+        //place destination rectangle at bottom middle
+        rect_vStart<=12+12*37;
+        rect_hStart<=128+12*16;  
             end
-   else if(level==2)begin 
-        scroll_0_visible<=1; 
-        scroll_1_visible<=1; 
-        scroll_2_visible<=1; 
-        scroll_3_visible<=0; 
-        scroll_4_visible<=0; 
-        scroll_5_visible<=0;
-        rect_vStart<=12;
-        rect_hStart<=128+12*31;  
-             end
-    else if(level==3)begin 
-        scroll_0_visible<=1; 
-        scroll_1_visible<=1; 
-        scroll_2_visible<=1; 
-        scroll_3_visible<=1; 
-        scroll_4_visible<=0; 
-        scroll_5_visible<=0;  
-        rect_vStart<=12;
-        rect_hStart<=128+12*2;  
-           end
-    else if(level==4)begin 
-        scroll_0_visible<=1; 
-        scroll_1_visible<=1; 
-        scroll_2_visible<=1; 
-        scroll_3_visible<=1; 
-        scroll_4_visible<=1; 
-        scroll_5_visible<=0;
-        rect_vStart<=12;
-        rect_hStart<=128+12*24;  
-             end
-    else if(level==5)begin 
-        scroll_0_visible<=1; 
-        scroll_1_visible<=1; 
-        scroll_2_visible<=1; 
-        scroll_3_visible<=1; 
-        scroll_4_visible<=1; 
-        scroll_5_visible<=1;
-        rect_vStart<=12;
-        rect_hStart<=128+12*28;  
-                 end
+
     else 
     begin
-        scroll_0_visible<=1;  
+        scroll_0_visible<=0;  
         scroll_1_visible<=0; 
         scroll_2_visible<=0; 
         scroll_3_visible<=0; 
         scroll_4_visible<=0; 
-        scroll_5_visible<=0; 
+        scroll_5_visible<=0;
+        //place destination rectangle at top middle 
         rect_vStart<=12;
-        rect_hStart<=128+12*31;  
+        rect_hStart<=128+12*16;  
         end
 end
 
@@ -442,11 +432,16 @@ output reg level_complete
               parameter rect4_vStartPos5=scroll_vOffset5;
               parameter rect4_hStartPos5=4*scroll_hOffset5;    
               
-              Rectangle scroll_5_rect_1(scroll_5_visible,player_color, red      ,passable,player_hPos,player_vPos,rst,btnClk,4'd1,rect1_vStartPos5,rect1_hStartPos5,rectWidth,rectHeight,vStartPos[0][5],hStartPos[0][5],objWidth[0][5],objHeight[0][5],vOffset[0][5],hOffset[0][5], color_o[0][5], upEnable[0][5], downEnable[0][5], leftEnable[0][5], rightEnable[0][5],visible [0][5]);
-              Rectangle scroll_5_rect_2(scroll_5_visible,player_color, cyan     ,passable,player_hPos,player_vPos,rst,btnClk,4'd1,rect2_vStartPos5,rect2_hStartPos5,rectWidth,rectHeight,vStartPos[1][5],hStartPos[1][5],objWidth[1][5],objHeight[1][5],vOffset[1][5],hOffset[1][5], color_o[1][5], upEnable[1][5], downEnable[1][5], leftEnable[1][5], rightEnable[1][5],visible [1][5]);
-              Rectangle scroll_5_rect_3(scroll_5_visible,player_color, yellow   ,passable,player_hPos,player_vPos,rst,btnClk,4'd1,rect3_vStartPos5,rect3_hStartPos5,rectWidth,rectHeight,vStartPos[2][5],hStartPos[2][5],objWidth[2][5],objHeight[2][5],vOffset[2][5],hOffset[2][5], color_o[2][5], upEnable[2][5], downEnable[2][5], leftEnable[2][5], rightEnable[2][5],visible [2][5]);
-              Rectangle scroll_5_rect_4(scroll_5_visible,player_color, magenta  ,passable,player_hPos,player_vPos,rst,btnClk,4'd1,rect4_vStartPos5,rect4_hStartPos5,rectWidth,rectHeight,vStartPos[3][5],hStartPos[3][5],objWidth[3][5],objHeight[3][5],vOffset[3][5],hOffset[3][5], color_o[3][5], upEnable[3][5], downEnable[3][5], leftEnable[3][5], rightEnable[3][5],visible [3][5]);  
+//              Rectangle scroll_5_rect_1(scroll_5_visible,player_color, red      ,passable,player_hPos,player_vPos,rst,btnClk,4'd1,rect1_vStartPos5,rect1_hStartPos5,rectWidth,rectHeight,vStartPos[0][5],hStartPos[0][5],objWidth[0][5],objHeight[0][5],vOffset[0][5],hOffset[0][5], color_o[0][5], upEnable[0][5], downEnable[0][5], leftEnable[0][5], rightEnable[0][5],visible [0][5]);
+//              Rectangle scroll_5_rect_2(scroll_5_visible,player_color, cyan     ,passable,player_hPos,player_vPos,rst,btnClk,4'd1,rect2_vStartPos5,rect2_hStartPos5,rectWidth,rectHeight,vStartPos[1][5],hStartPos[1][5],objWidth[1][5],objHeight[1][5],vOffset[1][5],hOffset[1][5], color_o[1][5], upEnable[1][5], downEnable[1][5], leftEnable[1][5], rightEnable[1][5],visible [1][5]);
+//              Rectangle scroll_5_rect_3(scroll_5_visible,player_color, yellow   ,passable,player_hPos,player_vPos,rst,btnClk,4'd1,rect3_vStartPos5,rect3_hStartPos5,rectWidth,rectHeight,vStartPos[2][5],hStartPos[2][5],objWidth[2][5],objHeight[2][5],vOffset[2][5],hOffset[2][5], color_o[2][5], upEnable[2][5], downEnable[2][5], leftEnable[2][5], rightEnable[2][5],visible [2][5]);
+//              Rectangle scroll_5_rect_4(scroll_5_visible,player_color, magenta  ,passable,player_hPos,player_vPos,rst,btnClk,4'd1,rect4_vStartPos5,rect4_hStartPos5,rectWidth,rectHeight,vStartPos[3][5],hStartPos[3][5],objWidth[3][5],objHeight[3][5],vOffset[3][5],hOffset[3][5], color_o[3][5], upEnable[3][5], downEnable[3][5], leftEnable[3][5], rightEnable[3][5],visible [3][5]);  
 
+                        //for test
+                      Rectangle scroll_5_rect_1(scroll_5_visible,player_color, 4'd2,1'd1,player_hPos,player_vPos,rst,btnClk,4'd0,rect1_vStartPos5,128,12,12,vStartPos[0][5],hStartPos[0][5],objWidth[0][5],objHeight[0][5],vOffset[0][5],hOffset[0][5], color_o[0][5], upEnable[0][5], downEnable[0][5], leftEnable[0][5], rightEnable[0][5],visible [0][5]);
+                      Rectangle scroll_5_rect_2(scroll_5_visible,player_color, 4'd3,1'd1,player_hPos,player_vPos,rst,btnClk,4'd0,rect2_vStartPos5,128+12,12,12,vStartPos[1][5],hStartPos[1][5],objWidth[1][5],objHeight[1][5],vOffset[1][5],hOffset[1][5], color_o[1][5], upEnable[1][5], downEnable[1][5], leftEnable[1][5], rightEnable[1][5],visible [1][5]);
+                      Rectangle scroll_5_rect_3(scroll_5_visible,player_color, 4'd4,1'd1,player_hPos,player_vPos,rst,btnClk,4'd0,rect3_vStartPos5,128+2*12,12,12,vStartPos[2][5],hStartPos[2][5],objWidth[2][5],objHeight[2][5],vOffset[2][5],hOffset[2][5], color_o[2][5], upEnable[2][5], downEnable[2][5], leftEnable[2][5], rightEnable[2][5],visible [2][5]);
+                      Rectangle scroll_5_rect_4(scroll_5_visible,player_color, 4'd2,1'd1,player_hPos,player_vPos,rst,btnClk,4'd0,rect4_vStartPos5,128+3*12,128,12,vStartPos[3][5],hStartPos[3][5],objWidth[3][5],objHeight[3][5],vOffset[3][5],hOffset[3][5], color_o[3][5], upEnable[3][5], downEnable[3][5], leftEnable[3][5], rightEnable[3][5],visible [3][5]);  
 
 
 endmodule

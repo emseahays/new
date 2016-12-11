@@ -101,7 +101,7 @@ input playerDisable,
 //           end    
 
 //update player status
-always@(upEnable,downEnable,leftEnable,rightEnable)
+always@( upEnable, downEnable, leftEnable, rightEnable)
 begin
     if(upEnable==0&&downEnable==0&&leftEnable==0&&rightEnable==0) player_dead<=1;
     else player_dead<=0;

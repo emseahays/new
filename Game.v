@@ -66,6 +66,12 @@ output [2:0] lives //[2:0]LED
 //output [2:0] level
 );
 
+//reset wire from rst mux -- allows game FSM to control rst and for user to control reset
+wire rst_w;
+wire resetSelect_w;
+
+Reset_Mux rst_mux(rst,resetSelect_w,rst_w);
+
 wire [3:0] uBtns_w;
 //for scrolls
 wire [11:0] vStartPos_w [3:0][5:0];
@@ -141,7 +147,7 @@ player_color_w,
 wall_color_o_w, 
 scroll_color_o_w, 
 clk, 
-rst, 
+rst_w, 
 In,
 btnDim,
 uBtns_w,
@@ -170,17 +176,13 @@ vgaBlue
 
 wire [2:0] sel;
 
-//Wires for Player Object Color Switch Timer
-wire color_clk_w;  
-wire [3:0] color_w;
 
-Audio A1(clk,rst,sel,en,pwmPin,ampPin);
+
+Audio A1(clk,rst_w,sel,en,pwmPin,ampPin);
 
 
 Decoder_4to3 D1(uBtns_w[3],uBtns_w[2],uBtns_w[1],uBtns_w[0],sel);
 
-color_clock C2 (clk,color_clk_w);
-color_counter C3(color_clk_w, rst, color_w);
 
 //GAME CONTROLLER
 //======================================== 
@@ -194,7 +196,14 @@ wire right_Enable_w;
 //wires from PS2interface to Game FSM 
 wire continue_btn_w; 
 wire ctrl_btn_w;
-ps2interface G5(clk,PS2_CLK,PS2_DATA,rst,uBtns_w, continue_btn_w,start_btn_w);
+ps2interface G5(clk,PS2_CLK,PS2_DATA,rst_w,uBtns_w, continue_btn_w,start_btn_w);
+
+//Wires for Player Object Color Switch Timer
+wire color_clk_w;  
+wire [3:0] color_w;
+
+color_clock C2 (clk,color_clk_w);
+color_counter C3(color_clk_w, rst_w,continue_btn_w, color_w);
 
 
 wire btnClk_w;
@@ -238,9 +247,9 @@ enableCompare G10 (
    
 wire btnClk2_w;
 // CLOCK DIVIDER (PLAYER OBJECT)
-BtnClk2 G11(clk,rst,btnClk2_w);
+BtnClk2 G11(clk,rst_w,btnClk2_w);
 // CLOCK DIVIDER (RECTANGLE)
-BtnClk G6(clk,rst,btnClk_w);
+BtnClk G6(clk,rst_w,btnClk_w);
 
 //Wires to Rectangles & DestRect, to know player location
 wire [11:0] player_hPos_w; 
@@ -257,7 +266,7 @@ PlayerObject playerObj(
     down_Enable_w,
     left_Enable_w,
     right_Enable_w,  
-    rst,
+    rst_w,
     clk,
     uBtns_w,
     color_w,
@@ -321,7 +330,7 @@ level_w,
 player_hPos_w, 
 player_vPos_w,
 player_color_w, 
-rst, 
+rst_w, 
 btnClk_w, 
 uBtns_w, 
 vStartPos_w, 
@@ -381,7 +390,7 @@ world_w,
 player_hPos_w, 
 player_vPos_w, 
 player_color_w, 
-rst, 
+rst_w, 
 btnClk_w,
 uBtns_w,
 
@@ -406,7 +415,7 @@ screen_w,
 player_hPos_w, 
 player_vPos_w, 
 player_color_w, 
-rst, 
+rst_w, 
 btnClk_w,
 uBtns_w,
 
@@ -442,7 +451,7 @@ output reg playerDisable //disable player movement to prevent disrupting game st
     
 FSM FSM1 (
 clk,
-rst,
+rst_w,
 continue_btn_w,
 start_btn_w, 
 player_dead_w, 
@@ -451,7 +460,8 @@ level_w,
 world_w, 
 screen_w, 
 lives,
-playerDisable_w
+playerDisable_w,
+resetSelect_w
 );
 
 endmodule

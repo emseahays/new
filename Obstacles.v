@@ -109,6 +109,14 @@ output reg visible[23:0][5:0]
     
 always@(world) begin
     if(world==0)begin
+        wall_0_visible<=0;
+        wall_1_visible<=0;
+        wall_2_visible<=0;
+        wall_3_visible<=0;
+        wall_4_visible<=0;
+        wall_5_visible<=0;  
+     end
+    else if(world==1)begin
         wall_0_visible<=1;
         wall_1_visible<=0;
         wall_2_visible<=0;
@@ -116,35 +124,35 @@ always@(world) begin
         wall_4_visible<=0;
         wall_5_visible<=0;  
      end
-    else if(world==1)begin 
+    else if(world==2)begin 
         wall_0_visible<=0; 
         wall_1_visible<=1; 
         wall_2_visible<=0; 
         wall_3_visible<=0; 
         wall_4_visible<=0; 
         wall_5_visible<=0;     end
-    else if(world==2)begin 
+    else if(world==3)begin 
         wall_0_visible<=0; 
         wall_1_visible<=0; 
         wall_2_visible<=1; 
         wall_3_visible<=0; 
         wall_4_visible<=0; 
         wall_5_visible<=0;     end
-    else if(world==3)begin 
+    else if(world==4)begin 
         wall_0_visible<=0; 
         wall_1_visible<=0; 
         wall_2_visible<=0; 
         wall_3_visible<=1; 
         wall_4_visible<=0; 
         wall_5_visible<=0;     end
-    else if(world==4)begin 
+    else if(world==5)begin 
         wall_0_visible<=0; 
         wall_1_visible<=0; 
         wall_2_visible<=0; 
         wall_3_visible<=0; 
         wall_4_visible<=1; 
         wall_5_visible<=0;     end
-    else if(world==5)begin 
+    else if(world==6)begin 
         wall_0_visible<=0; 
         wall_1_visible<=0; 
         wall_2_visible<=0; 
@@ -153,7 +161,7 @@ always@(world) begin
         wall_5_visible<=1;         end
     else 
     begin
-        wall_0_visible<=1;  
+        wall_0_visible<=0;  
         wall_1_visible<=0; 
         wall_2_visible<=0; 
         wall_3_visible<=0; 
