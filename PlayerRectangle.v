@@ -69,42 +69,42 @@ input playerDisable,
        reg dead_fsm_tmp;           
 
     
-//=============================================================
-//FINITE STATE MACHINE
-//=============================================================
-         //State Register
-         always @(posedge btnClk, posedge rst) begin
-             if(rst) currentState <= btnWait;
-             else currentState <=  nextState;
-         end
-        //State Logic
-         always @ (*) begin
-                player_dead <= 0; //default to playerDead signal is 0
-               nextState <=  currentState;
-               case(currentState) 
-                   btnWait: begin
-                       dead_fsm_tmp<=player_dead_tmp; 
-                       if(player_dead_tmp ==1) begin             // If button is pressed go to next state
-                           nextState <= getButton;
-                       end
-                       else nextState<=btnWait;
-                   end
-                   getButton: begin
-                      player_dead<=1;      //output signal for only 1 clk cycle
-                       nextState <=  btnWait;
-                   end     
-                   default: begin
-                   nextState<=btnWait;     
+////=============================================================
+////FINITE STATE MACHINE
+////=============================================================
+//         //State Register
+//         always @(posedge btnClk, posedge rst) begin
+//             if(rst) currentState <= btnWait;
+//             else currentState <=  nextState;
+//         end
+//        //State Logic
+//         always @ (*) begin
+//                player_dead <= 0; //default to playerDead signal is 0
+//               nextState <=  currentState;
+//               case(currentState) 
+//                   btnWait: begin
+//                       dead_fsm_tmp<=player_dead_tmp; 
+//                       if(player_dead_tmp ==1) begin             // If button is pressed go to next state
+//                           nextState <= getButton;
+//                       end
+//                       else nextState<=btnWait;
+//                   end
+//                   getButton: begin
+//                      player_dead<=1;      //output signal for only 1 clk cycle
+//                       nextState <=  btnWait;
+//                   end     
+//                   default: begin
+//                   nextState<=btnWait;     
                                
-                   end            
-               endcase
-           end    
+//                   end            
+//               endcase
+//           end    
 
 //update player status
 always@(upEnable,downEnable,leftEnable,rightEnable)
 begin
-    if(upEnable==0&&downEnable==0&&leftEnable==0&&rightEnable==0) player_dead_tmp<=1;
-    else player_dead_tmp<=0;
+    if(upEnable==0&&downEnable==0&&leftEnable==0&&rightEnable==0) player_dead<=1;
+    else player_dead<=0;
 
 end
 
