@@ -99,10 +99,7 @@ end
 //Next State Logic
 always @(*)
 begin
-// Defined the assumed value for all outputs
-// lives<=lives_count;
-// level<=level_count;    //level gets the current level_count
-// world<=world_count;      //world gets the current world_count 
+// Define the assumed value for all outputs
 screen<=blankScreen;   //most of the time the display screen will have no messages to display
 playerDisable<=1;       //most of the states should disable player movements to prevent unwanted state transitions
 levelEnable=0; 
@@ -117,17 +114,12 @@ nextState <= currentState; //set to initial state defined in state register
 case(currentState)
     init: begin
         //outputs
-//        lives<=startLives;
-//        level<=0;
-//        world<=0;
+
         livesReset<=1;
         worldReset<=1;
         levelReset<=1;
         screen<=playScreen;
-        //reset internal registers
-//        level_count<=0;
-//        world_count<=0;
-//        lives_count<=startLives;
+
         //transitions
         if(start_btn==1)         nextState<=play;
         else                        nextState<=init;
@@ -162,7 +154,6 @@ case(currentState)
     worldInc: begin
         //outputs
         worldEnable<=1;
-        levelReset<=1;
         //transitions
         if(world<worldMax)nextState<=worldInc_display;
         else nextState<=play;
@@ -170,6 +161,7 @@ case(currentState)
     worldInc_display: begin
         //outputs
         screen<=worldUpScreen;
+        levelReset<=1;
         //transitions
         if(continue_btn==1)nextState<=play;
         else nextState<=worldInc_display;

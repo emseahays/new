@@ -66,7 +66,7 @@ input playerDisable,
        parameter   btnWait   = 0;
        parameter   getButton = 1;
 
-                   
+       reg dead_fsm_tmp;           
 
     
 //=============================================================
@@ -83,13 +83,14 @@ input playerDisable,
                nextState <=  currentState;
                case(currentState) 
                    btnWait: begin
+                       dead_fsm_tmp<=player_dead_tmp; 
                        if(player_dead_tmp ==1) begin             // If button is pressed go to next state
                            nextState <= getButton;
                        end
                        else nextState<=btnWait;
                    end
                    getButton: begin
-                       player_dead <= 1;             // Output last saved button input until time is up.
+                      player_dead<=1;      //output signal for only 1 clk cycle
                        nextState <=  btnWait;
                    end     
                    default: begin
