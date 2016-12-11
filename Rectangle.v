@@ -68,6 +68,12 @@ always@(posedge btnClk, posedge rst) begin
     begin
         vOffset<=0;
         hOffset<=0;
+
+
+        upEnable<=0;
+        downEnable<=0;
+        leftEnable<=0;
+        rightEnable<=0;
     end
     else begin
     case(btns)

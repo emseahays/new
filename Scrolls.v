@@ -21,6 +21,7 @@
 
 
 module Scrolls(
+input clk,
 input [2:0] level,
 input [11:0] player_hPos,
 input [11:0] player_vPos,
@@ -242,6 +243,7 @@ output reg level_complete
      
        
         DestRect destination_Rectangle(
+        clk,
         rst,
         rectVisible, 
         green,

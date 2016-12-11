@@ -27,7 +27,8 @@ input rst,
 //BUTTONS
 input btnDim, //CPU Reset
 //input startButton,
-
+input continue_btn, //btnU
+input start_btn,
 
 //SWITCHES
 input [1:0] playerStatus,
@@ -55,7 +56,9 @@ output [3:0] vgaBlue,
 
 // AUDIO
 output  pwmPin,
-output  ampPin
+output  ampPin,
+
+output [2:0] lives //[2:0]LED
 
 // Other
 // FSM
@@ -186,9 +189,12 @@ color_counter C3(color_clk_w, rst, color_w);
 wire up_Enable_w;
 wire down_Enable_w;
 wire left_Enable_w;
-wire right_Enable_w;  
+wire right_Enable_w; 
 
-ps2interface G5(clk,PS2_CLK,PS2_DATA,rst,uBtns_w);
+//wires from PS2interface to Game FSM 
+wire continue_btn_w; 
+wire ctrl_btn_w;
+ps2interface G5(clk,PS2_CLK,PS2_DATA,rst,uBtns_w, continue_btn_w,start_btn_w);
 
 
 wire btnClk_w;
@@ -240,8 +246,13 @@ BtnClk G6(clk,rst,btnClk_w);
 wire [11:0] player_hPos_w; 
 wire [11:0] player_vPos_w;
 
+//Wire for Game FSM
+wire player_dead_w;
+
+wire playerDisable_w;  //wire from GAME FSM to player_object
 // PLAYER OBJECT
 PlayerObject playerObj(
+    playerDisable_w,
     up_Enable_w,
     down_Enable_w,
     left_Enable_w,
@@ -258,8 +269,16 @@ PlayerObject playerObj(
     player_hOffset_w,
     player_hPos_w,
     player_vPos_w,
-    player_color_w    
+    player_color_w,
+    player_dead_w    
     );
+  
+//Output wires from game FSM
+     wire [2:0] level_w;
+     wire [2:0] world_w;
+     wire [2:0] screen_w;
+    
+
           
 /*module Scrolls(
 module Scrolls(
@@ -297,7 +316,8 @@ output level_complete
 
 
 Scrolls Levels(
-Level,
+clk,
+level_w,
 player_hPos_w, 
 player_vPos_w,
 player_color_w, 
@@ -347,15 +367,17 @@ output rightEnable[3:0][5:0],
 output reg visible[3:0][5:0];
 */
 
-//wire from FSM to Obstacles
-wire [2:0] world;
-//wire from FSM to Scrolls
-wire [2:0] level;
-//wire from FSM to Screens
-wire [2:0] gameStatus;
+////wire from FSM to Obstacles
+//wire [2:0] world;
+////wire from FSM to Scrolls
+//wire [2:0] level;
+////wire from FSM to Screens
+//wire [2:0] gameStatus;
+
+
 
 Obstacles Worlds(
-World,
+world_w,
 player_hPos_w, 
 player_vPos_w, 
 player_color_w, 
@@ -380,7 +402,7 @@ wall_visible_w
 ); 
 
 Screens Display_Screens(
-World,
+screen_w,
 player_hPos_w, 
 player_vPos_w, 
 player_color_w, 
@@ -404,19 +426,32 @@ screen_enableRight_w,
 screen_visible_w
 ); 
 
-// wire [2:0] level;
-// wire [2:0] gameStatus;
-// wire [1:0] playerStatus;
 
-//    input startButton,
-//    input [1:0] playerStatus, // 0 = playing 1 = levelpass 2 = died
-//    input clk,
-//    input reset,
-//    output reg [2:0] gameStatus,  //0 = start, 1 = playing, 2 = levelInc, 3 = worldInc, 4 = livesInc, 5= loseGame, 6 = winGame
-//    output reg [1:0] world,
-//    output reg [2:0] level,
-//    output reg [3:0] lives
+/*module FSM(
+input clk,
+input rst,          
+input continue_btn,   //btnU or spacebar 
+input player_dead,    //input comes from PlayerObject Module
+input level_complete, //input comes from Scrolls Module
+output reg level,       //goes to Scrolls Modules
+output reg world,       //goes to Obstacles module
+output reg screen, //1=Play, 2=Lose, 3=Win, 4=L+, 5=W+
+output reg lives,   //[2:0]LED
+output reg playerDisable //disable player movement to prevent disrupting game state by
+);*/
     
-//FSM FSM1 (startButton, playerStatus, clk, rst, gameStatus, world, level, lives);
+FSM FSM1 (
+clk,
+rst,
+continue_btn_w,
+start_btn_w, 
+player_dead_w, 
+level_complete_w,
+level_w, 
+world_w, 
+screen_w, 
+lives,
+playerDisable_w
+);
 
 endmodule

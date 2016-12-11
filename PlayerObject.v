@@ -21,6 +21,7 @@
 
 
 module PlayerObject(
+input playerDisable,
     input upEnable,
 input downEnable,
 input leftEnable,
@@ -73,6 +74,7 @@ output [3:0] color_o,
 output reg [2:0] status       //blocked, alive, dead, moving        */
 
 PlayerRectangle rect_player_(
+playerDisable,
  upEnable,
 downEnable,
 leftEnable,

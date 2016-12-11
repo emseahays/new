@@ -21,7 +21,7 @@
 
 
 module PlayerRectangle(
-
+input playerDisable,
     input upEnable,
     input downEnable,
     input leftEnable,
@@ -60,46 +60,41 @@ module PlayerRectangle(
 
     reg player_dead_tmp;
         // State Variables
-       reg [1:0] currentState;
-       reg [1:0] nextState;
+       reg  currentState;
+       reg  nextState;
        
-       parameter   waitState   = 0;
-       parameter   buttonPress = 1;
-       parameter   buttonHold  = 2;
+       parameter   btnWait   = 0;
+       parameter   getButton = 1;
+
                    
-       // 
-       reg [3:0] buttons_temp;
+
     
 //=============================================================
 //FINITE STATE MACHINE
 //=============================================================
          //State Register
          always @(posedge btnClk, posedge rst) begin
-             if(rst) currentState <= waitState;
+             if(rst) currentState <= btnWait;
              else currentState <=  nextState;
          end
         //State Logic
          always @ (*) begin
+                player_dead <= 0; //default to playerDead signal is 0
                nextState <=  currentState;
                case(currentState) 
-                   waitState: begin
-                       if(player_dead_tmp != 1'd0) begin             // If button is pressed go to next state
-                           nextState <= buttonPress;
+                   btnWait: begin
+                       if(player_dead_tmp ==1) begin             // If button is pressed go to next state
+                           nextState <= getButton;
                        end
+                       else nextState<=btnWait;
                    end
-                   buttonPress: begin
-                       player_dead <= player_dead_tmp;             // Output last saved button input until time is up.
-                       nextState <=  buttonHold;
-                   end
-                   buttonHold: begin
-                       player_dead <= 1'd0;               // Return output to 0 after 1 clk cycle 
-                       if(player_dead_tmp==4'd0) begin                 // When there are no button presses, return to wait state
-                           nextState <= waitState;
-                       end
-                       else nextState<=buttonHold;
-                       end
-                   default: begin   
-                   player_dead <= 1'd0;                                 
+                   getButton: begin
+                       player_dead <= 1;             // Output last saved button input until time is up.
+                       nextState <=  btnWait;
+                   end     
+                   default: begin
+                   nextState<=btnWait;     
+                               
                    end            
                endcase
            end    
@@ -119,9 +114,12 @@ end
     always@(posedge btnClk, posedge rst) begin
         if(rst==1) begin
             vOffset<=0;
-            hOffset<=0;        
+            hOffset<=0;
+            hPos<=0;
+            vPos<=0;
+            player_dead_tmp<=0;                   
         end
-        else begin
+        else if(playerDisable==0) begin 
             case(btns)
                 8: begin //btnU 
                     if(upEnable==1) begin
