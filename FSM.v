@@ -59,6 +59,7 @@ reg [2:0] world_count;
 reg [2:0] level_count;  
 
 //parameters for state logic
+parameter levelMax=3;   //max number of levels per world
 parameter worldMax=6;   //max number of worlds per game
 parameter startLives=7; //number of lives a player starts with
 
@@ -173,23 +174,40 @@ case(currentState)
         livesEnable<=1;
         playerDisable<=0; //enable player to move out of scroll while decrementing
         //transitions
-    nextState<=play;
+        nextState<=lifeDecr_wait;
+    end
+    lifeDecr_wait: begin
+        //outputs
+        playerDisable<=0; //enable player to move out of scroll while decrementing
+        //transitions
+        if(player_dead==0) nextState<=play;
+        else nextState<=lifeDecr_wait;
     end
     win_display: begin
         //outputs
         screen<=winScreen;
         //transitions
+        if(continue_btn==1)nextState<=reset;
         else nextState<=win_display;
     end
     lose_display: begin
         //outputs
         screen<=loseScreen;
         //transitions
+        if(continue_btn==1)nextState<=reset;
         else nextState<=lose_display;
+    end  
+    reset: begin
+    //outputs
+    resetSelect<=1;
+    //transitions
+    nextState<=init;
+
     end  
      default: begin
         //outputs
         //transitions
+        nextState <= reset;
      end
 endcase    
 end
