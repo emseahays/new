@@ -20,17 +20,16 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module counter_2bit(
-    input clk,
+ module counter_2bit(
     input rst,
     input en,
     output reg [2:0] count
     );
     
     
-    always@(posedge clk, posedge rst) begin
+    always@(posedge rst, posedge en) begin
         if(rst==1) count<=0;
         else if (en==1) count<=count+1;
-        else count<=count;
+
     end
 endmodule

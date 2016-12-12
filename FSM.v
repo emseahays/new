@@ -82,9 +82,9 @@ reg livesReset;
 
 //DATAPATH   
 //counters
-counter_2bit levelIncrement(clk,levelReset,levelEnable,level);  
-counter_2bit worldIncrement(clk,worldReset,worldEnable,world); 
-decrement_2bit livesDecrement(clk,livesReset,livesEnable,lives); 
+counter_2bit levelIncrement(levelReset,levelEnable,level);  
+counter_2bit worldIncrement(worldReset,worldEnable,world); 
+decrement_2bit livesDecrement(livesReset,livesEnable,lives); 
   
   
   
@@ -124,24 +124,23 @@ case(currentState)
         levelReset<=1;
         screen<=playScreen;
         //transitions
-        if(start_btn==1)         nextState<=play;
+        if(continue_btn==1)         nextState<=play;
         else                        nextState<=init;
     end
     play: begin
         //outputs
         playerDisable<=0; //enable player movements
         //transitions
-        if(player_dead==1)nextState<=lifeDecr;
-        else if(level_complete==1&&level<=levelMax)nextState<=levelInc;
-        else if((level>levelMax)&&(world<=worldMax))nextState<=worldInc;
-        else if((world>worldMax)&&(level>levelMax))nextState<=win_display;
-        else if(lives<=0)nextState<=lose_display;
+        if((player_dead==1)&&(lives>0))nextState<=lifeDecr;
+        else if((level_complete)==1&&(level<=levelMax)&&((player_dead==0)&&(lives>0)))nextState<=levelInc;
+        else if((level>levelMax)&&(world<=worldMax)&&((player_dead==0)&&(lives>0)))nextState<=worldInc;
+        else if((world>worldMax)&&(level>levelMax)&&((player_dead==0)&&(lives>0)))nextState<=win_display;
+        else if((lives==0))nextState<=lose_display;
         else nextState<=play;
-
+   
     end
     levelInc: begin
         //outputs
-//        level<=level_count+1;
             levelEnable<=1;
         //transitions
         if(level<levelMax)nextState<=levelInc_display;
@@ -155,6 +154,11 @@ case(currentState)
         else nextState<=levelInc_display;
     end
     worldInc: begin
+//        //outputs
+//        worldEnable<=1;
+//        //transitions
+//        if(world<worldMax)nextState<=worldInc_display;
+//        else nextState<=play;
         //outputs
         worldEnable<=1;
         //transitions
@@ -162,11 +166,17 @@ case(currentState)
         else nextState<=play;
     end
     worldInc_display: begin
+//        //outputs
+//        screen<=worldUpScreen;
+//        levelReset<=1;
+//        //transitions
+//        if((continue_btn==1))nextState<=play;
+//        else nextState<=worldInc_display;
         //outputs
         screen<=worldUpScreen;
         levelReset<=1;
         //transitions
-        if(continue_btn==1)nextState<=play;
+        if((continue_btn==1))nextState<=play;
         else nextState<=worldInc_display;
     end  
     lifeDecr: begin
@@ -180,8 +190,8 @@ case(currentState)
         //outputs
         playerDisable<=0; //enable player to move out of scroll while decrementing
         //transitions
-        if(player_dead==0) nextState<=play;
-        else nextState<=lifeDecr_wait;
+        if(player_dead==1) nextState<=lifeDecr_wait;
+        else nextState<=play;
     end
     win_display: begin
         //outputs
@@ -202,7 +212,6 @@ case(currentState)
     resetSelect<=1;
     //transitions
     nextState<=init;
-
     end  
      default: begin
         //outputs
