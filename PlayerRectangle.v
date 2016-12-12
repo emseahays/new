@@ -21,6 +21,7 @@
 
 
 module PlayerRectangle(
+input slowClk,
 input playerDisable,
     input upEnable,
     input downEnable,
@@ -105,9 +106,12 @@ always@( upEnable, downEnable, leftEnable, rightEnable)
 begin
     if(upEnable==0&&downEnable==0&&leftEnable==0&&rightEnable==0) player_dead<=1;
     else player_dead<=0;
-
 end
 
+//always@(posedge slowClk)begin
+//if(upEnable==0&&downEnable==0&&leftEnable==0&&rightEnable==0) player_dead<=1;
+//else player_dead<=0;
+//end
 
 
     //update objects location
@@ -118,7 +122,7 @@ end
             hOffset<=0;
             hPos<=0;
             vPos<=0;
-            player_dead_tmp<=0;                   
+            //player_dead<=0;                   
         end
         else if(playerDisable==0) begin 
             case(btns)

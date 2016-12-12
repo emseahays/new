@@ -21,6 +21,7 @@
 
 
 module PlayerObject(
+input slowClk,
 input playerDisable,
 input upEnable,
 input downEnable,
@@ -29,7 +30,7 @@ input rightEnable,
 input rst,
 input btnClk2,
 input [3:0] btns,
-input [2:0] color,
+input [3:0] color,
 output   [11:0] player_vStartPos,
 output  [11:0] player_hStartPos,
 output  [11:0] player_objWidth, 
@@ -74,6 +75,7 @@ output [3:0] color_o,
 output reg [2:0] status       //blocked, alive, dead, moving        */
 
 PlayerRectangle rect_player_(
+slowClk,
 playerDisable,
  upEnable,
 downEnable,

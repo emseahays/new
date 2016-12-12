@@ -21,16 +21,14 @@
 
 
 module decrement_2bit(
-    input clk,
 input rst,
 input en,
 output reg [2:0] count
 );
 
-
-always@(posedge clk, posedge rst) begin
+always@(posedge en, posedge rst) begin
     if(rst==1) count<=3'b111;
     else if (en==1) count<=count-1;
-    else count<=count;
+
 end
 endmodule

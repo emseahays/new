@@ -261,6 +261,7 @@ wire player_dead_w;
 wire playerDisable_w;  //wire from GAME FSM to player_object
 // PLAYER OBJECT
 PlayerObject playerObj(
+color_clk_w,
     playerDisable_w,
     up_Enable_w,
     down_Enable_w,

@@ -31,18 +31,20 @@ module color_counter(
         color<=2; //red
         end
         else if(countinue_btn==1)begin //if continue_btn is pressed, it will advance the color
-            if(color==0) color<=2;
+//            if(color<=1) color<=2;
+//            else if(color==2) color<=3;
+//            else if(color==3) color<=4;
+//            else if(color==4) color<=5;
+//            else if(color>=5) color<=2;
+            if(color>=0&&color<=1) color<=2;
             else if(color>=2&&color<5) color<=color+1;
             else if(color>=5) color<=2;
         end
         else begin
-            if(color==0) color<=2;
+            if(color>=0&&color<=1) color<=2;
             else if(color>=2&&color<5) color<=color+1;
             else if(color>=5) color<=2;
         end
-       
-        
-       
     end
     
 endmodule

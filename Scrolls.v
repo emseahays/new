@@ -82,48 +82,6 @@ output level_complete
     parameter down=     4'b0100;
     parameter up=       4'b1000;
     parameter notMoving=4'd0;
- //SCROLL 0
- 
-    parameter row_num=5;
-    parameter col_num=1;
-       
-    parameter scroll_vOffset=12*row_num; 
-    parameter scroll_hOffset=128*col_num;
-    
-    //rect 1 
-    parameter rect1_vStartPos =scroll_vOffset;
-    parameter rect1_hStartPos=scroll_hOffset;
-    
-    //rect2 
-    parameter rect2_vStartPos=scroll_vOffset;
-    parameter rect2_hStartPos=2*scroll_hOffset;
-       
-    //rect3
-    parameter rect3_vStartPos=scroll_vOffset;
-    parameter rect3_hStartPos=3*scroll_hOffset;     
-    
-    //rect4 
-    parameter rect4_vStartPos=scroll_vOffset;
-    parameter rect4_hStartPos=4*scroll_hOffset;
-    
-    /*input [3:0] color,
-    input passable,
-    input [31:0] plr_hPos,
-    input [31:0] plr_vPos,
-    input rst,
-    input btnClk,
-    input [3:0] btns,
-    input  [31:0] vStartPos,
-    input  [31:0] hStartPos,
-    input  [31:0] objWidth,
-    input  [31:0] objHeight,
-    output  [31:0] vStartPos_o,
-    output  [31:0] hStartPos_o,
-    output  [31:0] objWidth_o,
-    output  [31:0] objHeight_o,
-    output reg [31:0] vOffset,
-    output reg [31:0] hOffset,
-    output [3:0] color_o*/
     
     reg  scroll_0_visible;
     reg  scroll_1_visible;
@@ -203,8 +161,8 @@ always@(level,rst,btnClk) begin
     begin
         scroll_0_visible<=0;  
         scroll_1_visible<=0; 
-        scroll_2_visible<=0; 
-        scroll_3_visible<=0; 
+        scroll_2_visible<=1; 
+        scroll_3_visible<=1; 
         scroll_4_visible<=0; 
         scroll_5_visible<=0;
         //place destination rectangle at top middle 
@@ -246,13 +204,61 @@ output reg level_complete
         dest_rect_color, 
         dest_rect_visible, 
         level_complete
-        );
+        );    
+    
+    
+//=======================================================================================
+//SCROLL 0   
+//=======================================================================================
+    
+    
+ //SCROLL 0
+ 
+    parameter row_num=5;
+    parameter col_num=1;
+       
+    parameter scroll_vOffset=12*row_num; 
+    parameter scroll_hOffset=128*col_num;
+    
+    //rect 1 
+    parameter rect1_vStartPos =scroll_vOffset;
+    parameter rect1_hStartPos=scroll_hOffset;
+    
+    //rect2 
+    parameter rect2_vStartPos=scroll_vOffset;
+    parameter rect2_hStartPos=2*scroll_hOffset;
+       
+    //rect3
+    parameter rect3_vStartPos=scroll_vOffset;
+    parameter rect3_hStartPos=3*scroll_hOffset;     
+    
+    //rect4 
+    parameter rect4_vStartPos=scroll_vOffset;
+    parameter rect4_hStartPos=4*scroll_hOffset;
+    
+    /*input [3:0] color,
+    input passable,
+    input [31:0] plr_hPos,
+    input [31:0] plr_vPos,
+    input rst,
+    input btnClk,
+    input [3:0] btns,
+    input  [31:0] vStartPos,
+    input  [31:0] hStartPos,
+    input  [31:0] objWidth,
+    input  [31:0] objHeight,
+    output  [31:0] vStartPos_o,
+    output  [31:0] hStartPos_o,
+    output  [31:0] objWidth_o,
+    output  [31:0] objHeight_o,
+    output reg [31:0] vOffset,
+    output reg [31:0] hOffset,
+    output [3:0] color_o*/
+    
 
 
 
- //=======================================================================================
- //SCROLL 0   
- //=======================================================================================
+
 /*module Rectangle(
      input  visible, 
      input [3:0] player_color,
@@ -432,16 +438,16 @@ output reg level_complete
               parameter rect4_vStartPos5=scroll_vOffset5;
               parameter rect4_hStartPos5=4*scroll_hOffset5;    
               
-//              Rectangle scroll_5_rect_1(scroll_5_visible,player_color, red      ,passable,player_hPos,player_vPos,rst,btnClk,4'd1,rect1_vStartPos5,rect1_hStartPos5,rectWidth,rectHeight,vStartPos[0][5],hStartPos[0][5],objWidth[0][5],objHeight[0][5],vOffset[0][5],hOffset[0][5], color_o[0][5], upEnable[0][5], downEnable[0][5], leftEnable[0][5], rightEnable[0][5],visible [0][5]);
-//              Rectangle scroll_5_rect_2(scroll_5_visible,player_color, cyan     ,passable,player_hPos,player_vPos,rst,btnClk,4'd1,rect2_vStartPos5,rect2_hStartPos5,rectWidth,rectHeight,vStartPos[1][5],hStartPos[1][5],objWidth[1][5],objHeight[1][5],vOffset[1][5],hOffset[1][5], color_o[1][5], upEnable[1][5], downEnable[1][5], leftEnable[1][5], rightEnable[1][5],visible [1][5]);
-//              Rectangle scroll_5_rect_3(scroll_5_visible,player_color, yellow   ,passable,player_hPos,player_vPos,rst,btnClk,4'd1,rect3_vStartPos5,rect3_hStartPos5,rectWidth,rectHeight,vStartPos[2][5],hStartPos[2][5],objWidth[2][5],objHeight[2][5],vOffset[2][5],hOffset[2][5], color_o[2][5], upEnable[2][5], downEnable[2][5], leftEnable[2][5], rightEnable[2][5],visible [2][5]);
-//              Rectangle scroll_5_rect_4(scroll_5_visible,player_color, magenta  ,passable,player_hPos,player_vPos,rst,btnClk,4'd1,rect4_vStartPos5,rect4_hStartPos5,rectWidth,rectHeight,vStartPos[3][5],hStartPos[3][5],objWidth[3][5],objHeight[3][5],vOffset[3][5],hOffset[3][5], color_o[3][5], upEnable[3][5], downEnable[3][5], leftEnable[3][5], rightEnable[3][5],visible [3][5]);  
+              Rectangle scroll_5_rect_1(scroll_5_visible,player_color, red      ,passable,player_hPos,player_vPos,rst,btnClk,4'd1,rect1_vStartPos5,rect1_hStartPos5,rectWidth,rectHeight,vStartPos[0][5],hStartPos[0][5],objWidth[0][5],objHeight[0][5],vOffset[0][5],hOffset[0][5], color_o[0][5], upEnable[0][5], downEnable[0][5], leftEnable[0][5], rightEnable[0][5],visible [0][5]);
+              Rectangle scroll_5_rect_2(scroll_5_visible,player_color, cyan     ,passable,player_hPos,player_vPos,rst,btnClk,4'd1,rect2_vStartPos5,rect2_hStartPos5,rectWidth,rectHeight,vStartPos[1][5],hStartPos[1][5],objWidth[1][5],objHeight[1][5],vOffset[1][5],hOffset[1][5], color_o[1][5], upEnable[1][5], downEnable[1][5], leftEnable[1][5], rightEnable[1][5],visible [1][5]);
+              Rectangle scroll_5_rect_3(scroll_5_visible,player_color, yellow   ,passable,player_hPos,player_vPos,rst,btnClk,4'd1,rect3_vStartPos5,rect3_hStartPos5,rectWidth,rectHeight,vStartPos[2][5],hStartPos[2][5],objWidth[2][5],objHeight[2][5],vOffset[2][5],hOffset[2][5], color_o[2][5], upEnable[2][5], downEnable[2][5], leftEnable[2][5], rightEnable[2][5],visible [2][5]);
+              Rectangle scroll_5_rect_4(scroll_5_visible,player_color, magenta  ,passable,player_hPos,player_vPos,rst,btnClk,4'd1,rect4_vStartPos5,rect4_hStartPos5,rectWidth,rectHeight,vStartPos[3][5],hStartPos[3][5],objWidth[3][5],objHeight[3][5],vOffset[3][5],hOffset[3][5], color_o[3][5], upEnable[3][5], downEnable[3][5], leftEnable[3][5], rightEnable[3][5],visible [3][5]);  
 
                         //for test
-                      Rectangle scroll_5_rect_1(scroll_5_visible,player_color, 4'd2,1'd1,player_hPos,player_vPos,rst,btnClk,4'd0,rect1_vStartPos5,128,12,12,vStartPos[0][5],hStartPos[0][5],objWidth[0][5],objHeight[0][5],vOffset[0][5],hOffset[0][5], color_o[0][5], upEnable[0][5], downEnable[0][5], leftEnable[0][5], rightEnable[0][5],visible [0][5]);
-                      Rectangle scroll_5_rect_2(scroll_5_visible,player_color, 4'd3,1'd1,player_hPos,player_vPos,rst,btnClk,4'd0,rect2_vStartPos5,128+12,12,12,vStartPos[1][5],hStartPos[1][5],objWidth[1][5],objHeight[1][5],vOffset[1][5],hOffset[1][5], color_o[1][5], upEnable[1][5], downEnable[1][5], leftEnable[1][5], rightEnable[1][5],visible [1][5]);
-                      Rectangle scroll_5_rect_3(scroll_5_visible,player_color, 4'd4,1'd1,player_hPos,player_vPos,rst,btnClk,4'd0,rect3_vStartPos5,128+2*12,12,12,vStartPos[2][5],hStartPos[2][5],objWidth[2][5],objHeight[2][5],vOffset[2][5],hOffset[2][5], color_o[2][5], upEnable[2][5], downEnable[2][5], leftEnable[2][5], rightEnable[2][5],visible [2][5]);
-                      Rectangle scroll_5_rect_4(scroll_5_visible,player_color, 4'd2,1'd1,player_hPos,player_vPos,rst,btnClk,4'd0,rect4_vStartPos5,128+3*12,128,12,vStartPos[3][5],hStartPos[3][5],objWidth[3][5],objHeight[3][5],vOffset[3][5],hOffset[3][5], color_o[3][5], upEnable[3][5], downEnable[3][5], leftEnable[3][5], rightEnable[3][5],visible [3][5]);  
+//                      Rectangle scroll_5_rect_1(scroll_5_visible,player_color, 4'd2,1'd1,player_hPos,player_vPos,rst,btnClk,4'd0,rect1_vStartPos5,128,12,12,vStartPos[0][5],hStartPos[0][5],objWidth[0][5],objHeight[0][5],vOffset[0][5],hOffset[0][5], color_o[0][5], upEnable[0][5], downEnable[0][5], leftEnable[0][5], rightEnable[0][5],visible [0][5]);
+//                      Rectangle scroll_5_rect_2(scroll_5_visible,player_color, 4'd3,1'd1,player_hPos,player_vPos,rst,btnClk,4'd0,rect2_vStartPos5,128+12,12,12,vStartPos[1][5],hStartPos[1][5],objWidth[1][5],objHeight[1][5],vOffset[1][5],hOffset[1][5], color_o[1][5], upEnable[1][5], downEnable[1][5], leftEnable[1][5], rightEnable[1][5],visible [1][5]);
+//                      Rectangle scroll_5_rect_3(scroll_5_visible,player_color, 4'd4,1'd1,player_hPos,player_vPos,rst,btnClk,4'd0,rect3_vStartPos5,128+2*12,12,12,vStartPos[2][5],hStartPos[2][5],objWidth[2][5],objHeight[2][5],vOffset[2][5],hOffset[2][5], color_o[2][5], upEnable[2][5], downEnable[2][5], leftEnable[2][5], rightEnable[2][5],visible [2][5]);
+//                      Rectangle scroll_5_rect_4(scroll_5_visible,player_color, 4'd2,1'd1,player_hPos,player_vPos,rst,btnClk,4'd0,rect4_vStartPos5,128+3*12,128,12,vStartPos[3][5],hStartPos[3][5],objWidth[3][5],objHeight[3][5],vOffset[3][5],hOffset[3][5], color_o[3][5], upEnable[3][5], downEnable[3][5], leftEnable[3][5], rightEnable[3][5],visible [3][5]);  
 
 
 endmodule
