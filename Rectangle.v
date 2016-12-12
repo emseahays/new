@@ -103,6 +103,9 @@ always@(posedge btnClk, posedge rst) begin
         end
         
     endcase   
+    
+//NOT PASSABLE CONTROL DISABLE
+if(passable==0)begin 
   if(visible==1)begin      
     // DOWN DISABLE
     if((player_hPos>=hStartPos+hOffset&&player_hPos+pWidth<=hStartPos+hOffset+objWidth)    // player is between left and right edges of this rectangle
@@ -163,13 +166,13 @@ always@(posedge btnClk, posedge rst) begin
     end
     else rightEnable<=1'b0;
     
+    
+ end
+ else begin   
+    
+    
      // LEFT/RIGHT ENABLE/DISABLE -- "if inside a scroll"
-//     if(((player_vPos == vStartPos + vOffset)&&(player_vPos+pHeight==vStartPos+objHeight)) // top and bottom edges are the same as this rectangle
-//     && (
-//     ((player_hPos < hStartPos + hOffset) && ( player_hPos + objWidth > hStartPos + hOffset)) // left side of rectangle is inside player
-//     || ((player_hPos < hStartPos + hOffset + objWidth) && ( player_hPos + pWidth > hStartPos + hOffset + objWidth)) // right side of this rectangle is inside player
-//     ||((player_hPos>=hStartPos+hOffset)&&(player_hPos+pWidth<=hStartPos+hOffset+objWidth)) // player is between left and right edges of this rectangle
-//     ))           
+         
     if((player_hPos>=hStartPos+hOffset&&player_hPos+pHeight<=hStartPos+hOffset+objWidth)      // player is between left and right edges of this rectangle
 && ((player_vPos == vStartPos + vOffset)&&(player_vPos+pHeight==vStartPos+objHeight))       // top and bottom edges are the same as this rectangle                                    
 )
@@ -189,17 +192,7 @@ always@(posedge btnClk, posedge rst) begin
        end
    end 
 
-//   if( ((player_vPos == vStartPos + vOffset)&&(player_vPos+pHeight==vStartPos+objHeight)) // top and bottom edges are the same as this rectangle
-//   &&(player_hPos>=hStartPos+hOffset)&&(player_hPos+pWidth<=hStartPos+hOffset+objWidth)         //player edges are within the edges of this rectangle
-//   && ((rect_color == player_color)) )        
-//   begin
-//       // Enable Controls
-//       downEnable <= 1'b0;
-//       upEnable <= 1'b0;
-//       leftEnable <= 1'b0;
-//       rightEnable <= 1'b0; 
-//   end 
-  
+end
    
   
 end

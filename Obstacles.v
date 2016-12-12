@@ -169,12 +169,12 @@ always@(world, rst) begin
         wall_5_visible<=1;         end
     else 
     begin
-        wall_0_visible<=1;  
-        wall_1_visible<=1; 
-        wall_2_visible<=1; 
-        wall_3_visible<=1; 
-        wall_4_visible<=1; 
-        wall_5_visible<=1; 
+        wall_0_visible<=0;  
+        wall_1_visible<=0; 
+        wall_2_visible<=0; 
+        wall_3_visible<=0; 
+        wall_4_visible<=0; 
+        wall_5_visible<=0; 
    
         end
     
