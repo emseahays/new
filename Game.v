@@ -74,30 +74,30 @@ Reset_Mux rst_mux(rst,resetSelect_w,rst_w);
 
 wire [3:0] uBtns_w;
 //for scrolls
-wire [11:0] vStartPos_w [3:0][5:0];
-wire [11:0] hStartPos_w [3:0][5:0];
-wire [11:0] objWidth_w [3:0][5:0];
-wire [11:0] objHeight_w [3:0][5:0];
+wire [9:0] vStartPos_w [3:0][5:0];
+wire [9:0] hStartPos_w [3:0][5:0];
+wire [9:0] objWidth_w [3:0][5:0];
+wire [9:0] objHeight_w [3:0][5:0];
 wire [31:0] vOffset_w [3:0][5:0];
 wire [31:0] hOffset_w [3:0][5:0];
 wire [3:0] scroll_color_o_w [3:0][5:0];  
 wire scroll_visible_w  [3:0][5:0]; 
 
 //wire for obstacles (walls)
-wire [11:0] wall_vStartPos_w [23:0][5:0];
-wire [11:0] wall_hStartPos_w [23:0][5:0];
-wire [11:0] wall_objWidth_w [23:0][5:0];
-wire [11:0] wall_objHeight_w [23:0][5:0];
+wire [9:0] wall_vStartPos_w [23:0][5:0];
+wire [9:0] wall_hStartPos_w [23:0][5:0];
+wire [9:0] wall_objWidth_w [23:0][5:0];
+wire [9:0] wall_objHeight_w [23:0][5:0];
 wire [31:0] wall_vOffset_w [23:0][5:0];
 wire [31:0] wall_hOffset_w [23:0][5:0];
 wire wall_visible_w  [23:0][5:0]; 
 wire [3:0] wall_color_o_w [23:0][5:0];  
 
 //wire for obstacles (screens)
-wire [11:0] screen_vStartPos_w [23:0][5:0];
-wire [11:0] screen_hStartPos_w [23:0][5:0];
-wire [11:0] screen_objWidth_w [23:0][5:0];
-wire [11:0] screen_objHeight_w [23:0][5:0];
+wire [9:0] screen_vStartPos_w [23:0][5:0];
+wire [9:0] screen_hStartPos_w [23:0][5:0];
+wire [9:0] screen_objWidth_w [23:0][5:0];
+wire [9:0] screen_objHeight_w [23:0][5:0];
 wire [31:0] screen_vOffset_w [23:0][5:0];
 wire [31:0] screen_hOffset_w [23:0][5:0];
 wire [3:0] screen_color_o_w [23:0][5:0];  
@@ -105,10 +105,10 @@ wire screen_visible_w  [23:0][5:0];
 
 
 //for player obj
-wire [11:0] player_vStartPos_w;
-wire [11:0] player_hStartPos_w;
-wire [11:0] player_objWidth_w;
-wire [11:0] player_objHeight_w;
+wire [9:0] player_vStartPos_w;
+wire [9:0] player_hStartPos_w;
+wire [9:0] player_objWidth_w;
+wire [9:0] player_objHeight_w;
 wire [31:0] player_vOffset_w;
 wire [31:0] player_hOffset_w;
 wire  [3:0] player_color_w;
@@ -122,8 +122,8 @@ wire  [3:0] player_color_w;
 
 //WIRES FOR DESTINATION RECTANGLE
 wire [3:0] dest_rect_color_w;
-wire [11:0] dest_rect_vPos_w;
-wire [11:0] dest_rect_hPos_w;
+wire [9:0] dest_rect_vPos_w;
+wire [9:0] dest_rect_hPos_w;
 wire dest_rect_visible_w;
 wire level_complete_w;
 
@@ -252,8 +252,8 @@ BtnClk2 G11(clk,rst_w,btnClk2_w);
 BtnClk G6(clk,rst_w,btnClk_w);
 
 //Wires to Rectangles & DestRect, to know player location
-wire [11:0] player_hPos_w; 
-wire [11:0] player_vPos_w;
+wire [9:0] player_hPos_w; 
+wire [9:0] player_vPos_w;
 
 //Wire for Game FSM
 wire player_dead_w;
