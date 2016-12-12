@@ -131,17 +131,11 @@ case(currentState)
         //outputs
         playerDisable<=0; //enable player movements
         //transitions
-//        if((player_dead==1)&&(lives>0))nextState<=lifeDecr;
-//        else if((level_complete)==1&&(level<=levelMax))nextState<=levelInc;
-//        else if((level>levelMax)&&(world<=worldMax))nextState<=worldInc;
-//        else if((world>worldMax)&&(level>levelMax))nextState<=win_display;
-//        else if(lives==0)nextState<=lose_display;
-//        else nextState<=play;
         if((player_dead==1)&&(lives>0))nextState<=lifeDecr;
-        else if((level_complete)==1&&(level<=levelMax))nextState<=levelInc;
-        else if((level>levelMax)&&(world<=worldMax))nextState<=worldInc;
-        else if((world>worldMax)&&(level>levelMax))nextState<=win_display;
-        else if(lives==0)nextState<=lose_display;
+        else if((level_complete)==1&&(level<=levelMax)&&((player_dead==0)&&(lives>0)))nextState<=levelInc;
+        else if((level>levelMax)&&(world<=worldMax)&&((player_dead==0)&&(lives>0)))nextState<=worldInc;
+        else if((world>worldMax)&&(level>levelMax)&&((player_dead==0)&&(lives>0)))nextState<=win_display;
+        else if((lives==0))nextState<=lose_display;
         else nextState<=play;
    
     end

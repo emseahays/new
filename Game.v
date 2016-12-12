@@ -455,7 +455,7 @@ clk,
 rst_w,
 continue_btn_w,
 start_btn_w, 
-player_dead_w, 
+player_dead_w,  //player_dead_w
 level_complete_w,
 level_w, 
 world_w, 
