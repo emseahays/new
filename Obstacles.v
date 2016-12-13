@@ -22,16 +22,16 @@
 
 module Obstacles(
 input [2:0] world,
-input [11:0] player_hPos,
-input [11:0] player_vPos,
+input [9:0] player_hPos,
+input [9:0] player_vPos,
 input [3:0] player_color,
 input rst,                              
 input btnClk,                           //speed of movement - depend on clk speed
 input [3:0] btns,                       //direction of movement
-output   [11:0] vStartPos[23:0][5:0],
-output  [11:0] hStartPos[23:0][5:0],
-output  [11:0] objWidth [23:0][5:0],
-output  [11:0] objHeight[23:0][5:0],
+output   [9:0] vStartPos[23:0][5:0],
+output  [9:0] hStartPos[23:0][5:0],
+output  [9:0] objWidth [23:0][5:0],
+output  [9:0] objHeight[23:0][5:0],
 output  [31:0] vOffset[23:0][5:0],
 output  [31:0] hOffset[23:0][5:0],
 output [3:0] color_o[23:0][5:0],
@@ -169,12 +169,12 @@ always@(world, rst) begin
         wall_5_visible<=1;         end
     else 
     begin
-        wall_0_visible<=1;  
-        wall_1_visible<=1; 
-        wall_2_visible<=1; 
-        wall_3_visible<=1; 
-        wall_4_visible<=1; 
-        wall_5_visible<=1; 
+        wall_0_visible<=0;  
+        wall_1_visible<=0; 
+        wall_2_visible<=0; 
+        wall_3_visible<=0; 
+        wall_4_visible<=0; 
+        wall_5_visible<=0; 
    
         end
     
