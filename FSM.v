@@ -82,12 +82,9 @@ reg livesReset;
 
 //DATAPATH   
 //counters
-counter_2bit levelIncrement(levelReset,levelEnable,level);  
-counter_2bit worldIncrement(worldReset,worldEnable,world); 
-decrement_2bit livesDecrement(livesReset,livesEnable,lives); 
-  
-  
-  
+counter_2bit levelIncrement(clk,levelReset,levelEnable,level);  
+counter_2bit worldIncrement(clk,worldReset,worldEnable,world); 
+decrement_2bit livesDecrement(clk,livesReset,livesEnable,lives); 
   
 //State Register
 always @(posedge clk, negedge rst)
