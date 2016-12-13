@@ -111,14 +111,14 @@ always@(posedge btnClk, posedge rst) begin
                     &&  (player_vPos+pHeight==vStartPos+vOffset)                                      //player is on top border of rectangle 
                     && (rect_color!=player_color) )                                             //not color match 
                     begin
-                        downEnable <= 1'b1; //disable downButton
+                        if(passable==0)downEnable <= 1'b1; //disable downButton
                     end 
                     else if(((player_hPos<hStartPos+hOffset&&player_hPos+pWidth>hStartPos+hOffset)        //player is on left edge of rectangle
                     ||(player_hPos<hStartPos+hOffset+objWidth&&player_hPos+pWidth>hStartPos+hOffset+objWidth))      // is on right edge of rectangle
                         &&  (player_vPos+pHeight==vStartPos+vOffset)                                      //player is on top border of rectangle 
                          )                                                  
                     begin
-                        downEnable <= 1'b1; //disable downButton
+                        if(passable==0)downEnable <= 1'b1; //disable downButton
                     end
                     else
                     begin  
@@ -129,14 +129,14 @@ always@(posedge btnClk, posedge rst) begin
                     && (player_vPos==vStartPos+vOffset+objHeight)                                          //player is on bottom border of rectangle       
                     && (rect_color!=player_color) )                                                  //not color match 
                     begin
-                        upEnable <= 1'b1; //disable upButton
+                        if(passable==0)upEnable <= 1'b1; //disable upButton
                     end
                     else if(((player_hPos<hStartPos+hOffset&&player_hPos+pWidth>hStartPos+hOffset)        //player is on left edge of rectangle
                     ||(player_hPos<hStartPos+hOffset+objWidth&&player_hPos+pWidth>hStartPos+hOffset+objWidth))      // is on right edge of rectangle
                         && (player_vPos==vStartPos+vOffset+objHeight)                                         //player is on bottom border of rectangle  
                          )                                                 
                     begin
-                        upEnable <= 1'b1; //disable upButton
+                        if(passable==0)upEnable <= 1'b1; //disable upButton
                     end    
                     else 
                     begin 
@@ -149,7 +149,7 @@ always@(posedge btnClk, posedge rst) begin
                     &&(rect_color!=player_color)                             //disable only if colors dont match
                     ) 
                     begin 
-                        leftEnable<=1'b1;
+                        if(passable==0)leftEnable<=1'b1;
                     end
                     else leftEnable<=1'b0;
                         //right Disable
@@ -159,7 +159,7 @@ always@(posedge btnClk, posedge rst) begin
                     &&(rect_color!=player_color)                             //disable only if colors dont match
                     ) 
                     begin 
-                        rightEnable<=1'b1;
+                        if(passable==0)rightEnable<=1'b1;
                     end
                     else rightEnable<=1'b0;
  //               end
@@ -173,10 +173,10 @@ always@(posedge btnClk, posedge rst) begin
                     begin
                        if((rect_color != player_color)) begin
                        // Disable Controls
-                           downEnable <= 1'b1;
-                           upEnable <= 1'b1;
-                           leftEnable <= 1'b1;
-                           rightEnable <= 1'b1; 
+                           if(passable==0)downEnable <= 1'b1;
+                           if(passable==0)upEnable <= 1'b1;
+                           if(passable==0)leftEnable <= 1'b1;
+                           if(passable==0)rightEnable <= 1'b1; 
                        end
                        else begin
                            downEnable <= 1'b0;
