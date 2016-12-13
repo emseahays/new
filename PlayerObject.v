@@ -21,24 +21,26 @@
 
 
 module PlayerObject(
-    input upEnable,
+input slowClk,
+input playerDisable,
+input upEnable,
 input downEnable,
 input leftEnable,
 input rightEnable,
 input rst,
 input btnClk2,
 input [3:0] btns,
-input [2:0] color,
-output   [31:0] player_vStartPos,
-output  [31:0] player_hStartPos,
-output  [31:0] player_objWidth, 
-output  [31:0] player_objHeight ,
+input [3:0] color,
+output   [9:0] player_vStartPos,
+output  [9:0] player_hStartPos,
+output  [9:0] player_objWidth, 
+output  [9:0] player_objHeight ,
 output  [31:0] player_vOffset ,
 output  [31:0] player_hOffset,
-output  [31:0] hPos,
-output  [31:0] vPos,
-output [3:0] player_color
-//output [2:0] status
+output  [9:0] hPos,
+output  [9:0] vPos,
+output [3:0] player_color,
+output player_dead
 );
 
 
@@ -47,8 +49,8 @@ parameter rectHeight=12;
 parameter rectWidth=12; //player obj is a square
 
 //position
-parameter vStartPos=480-3*rectHeight-6*rectHeight;
-parameter hStartPos=320-rectHeight;
+parameter vStartPos=12+37*12;
+parameter hStartPos=128+12*16;
 
 
 
@@ -73,6 +75,8 @@ output [3:0] color_o,
 output reg [2:0] status       //blocked, alive, dead, moving        */
 
 PlayerRectangle rect_player_(
+slowClk,
+playerDisable,
  upEnable,
 downEnable,
 leftEnable,
@@ -93,7 +97,7 @@ player_vOffset,
 player_hOffset,
 hPos,
 vPos,
-player_color
-//    status
+player_color,
+player_dead
 );
 endmodule   

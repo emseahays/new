@@ -60,7 +60,7 @@ parameter max=100000000/freq;
         count<=0;
     
     //Output Clks accoring to count
-        if(count<=max/2) begin 
+        if(count<=2*max/2) begin 
             clk_out<=1'b1; 
 
         end
@@ -69,7 +69,7 @@ parameter max=100000000/freq;
         end
     
     //reset 
-    if(count>=max) begin 
+    if(count>=2*max) begin 
         count<=0; 
     end   
     

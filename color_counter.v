@@ -23,49 +23,28 @@
 module color_counter(
     input clk,
     input rst,
-    output reg [3:0] color
+    input countinue_btn,
+    output reg [3:0] color //2=red, 3==cyan, 4=yellow, 5=magenta
     );
-    
-    reg [2:0] count = 0;
-    
-    always @ (posedge clk) begin
-        count <= count +1;
-        
+    always @ (posedge clk, posedge rst) begin
         if(rst==1)begin
-            count<=2;
-            
+        color<=2; //red
         end
-        
-       else if(count == 2)begin
-        
-            color <=2;
-            
-        end
-
-        
-        else if (count ==3) begin
-       
-            color <=3; 
-              
-        end
-        
-        else if (count ==4) begin
-       
-            color <=4; 
-              
-        end
-
-        else if (count ==5) begin
-       
-            color <=5; 
-              
-        end
-        
+//        else if(countinue_btn==1)begin //if continue_btn is pressed, it will advance the color
+////            if(color<=1) color<=2;
+////            else if(color==2) color<=3;
+////            else if(color==3) color<=4;
+////            else if(color==4) color<=5;
+////            else if(color>=5) color<=2;
+//            if(color>=0&&color<=1) color<=2;
+//            else if(color>=2&&color<5) color<=color+1;
+//            else if(color>=5) color<=2;
+//        end
         else begin
-            count<=2;
+            if(color>=0&&color<=1) color<=2;
+            else if(color>=2&&color<5) color<=color+1;
+            else if(color>=5) color<=2;
         end
-        
-       
     end
     
 endmodule

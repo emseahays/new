@@ -25,7 +25,9 @@ input clk,
 input PS2_CLK,
 input PS2_DATA,
 input rst,
-output reg [3:0] buttons_out
+output reg [3:0] buttons_out,
+output reg  continue_btn,
+output reg  start_btn_w
 );
  
  reg [7:0] data;
@@ -34,15 +36,19 @@ output reg [3:0] buttons_out
  reg [7:0] key_code;
  
  reg [3:0] btns;
- 
+ //reg  continue_btn_tmp;
      // State Variables
     reg [1:0] currentState;
     reg [1:0] nextState;
     
+    //States
     parameter   waitState   = 0;
     parameter   buttonPress = 1;
     parameter   buttonHold  = 2;
-                
+    
+    //Spacebar
+    parameter spaceBar=4'b0011; 
+    parameter ctrl=4'b1100;            
     // 
     reg [3:0] buttons_temp;
     
@@ -56,7 +62,10 @@ output reg [3:0] buttons_out
      end
     //State Logic
      always @ (*) begin
-           nextState <=  currentState;
+            continue_btn<=1'b0;     //default to continue_btn not pressed 
+            start_btn_w<=1'b0;     //default to ctrl_btn not pressed 
+            buttons_out<=4'b0;
+            nextState <=  currentState;
            case(currentState) 
                waitState: begin
                    if(btns != 4'd0) begin             // If button is pressed go to next state
@@ -64,10 +73,13 @@ output reg [3:0] buttons_out
                    end
                end
                buttonPress: begin
-                   buttons_out <= btns;             // Output last saved button input until time is up.
+                    if(btns==spaceBar) continue_btn<=1;
+                    else if(btns==ctrl) start_btn_w<=1;
+                   else buttons_out <= btns;             // Output last saved button input until time is up.
                    nextState <=  buttonHold;
                end
                buttonHold: begin
+                   continue_btn<=1'b0;                     //turn off continue_btn after 1 clk cycle
                    buttons_out <= 4'd0;               // Return output to 0 after 1 clk cycle 
                    if(btns==4'd0) begin                 // When there are no button presses, return to wait state
                        nextState <= waitState;
@@ -75,7 +87,9 @@ output reg [3:0] buttons_out
                    else nextState<=buttonHold;
                    end
                default: begin   
-               buttons_out <= 4'd0;                                 
+               buttons_out <= 4'd0;  
+               continue_btn<=1'b0;                  //default to continue_btn not pressed
+               start_btn_w<=0;             
                end            
            endcase
        end
@@ -135,6 +149,17 @@ output reg [3:0] buttons_out
      begin 
          btns<=4'h0;
      end
+     8'h29: //space bar
+     begin
+         btns<=4'b0011;
+
+     end
+     8'h14: //ctrl
+     begin
+         btns<=4'b1100;
+
+     end
+     
      default: 
      begin 
          btns<=4'h0;
