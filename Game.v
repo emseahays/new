@@ -31,15 +31,15 @@ input continue_btn, //btnU
 input start_btn,
 
 //SWITCHES
-input [1:0] playerStatus,
+//input [1:0] playerStatus,
 // input [2:0] In, //REMOVE LATER - for diff crosshair colors
 
-input [2:0] World,
-input [2:0] Level,
+//input [2:0] World,
+//input [2:0] Level,
 
 
 // AUDIO
-input en,     //enable audio
+// input en,     //enable audio
 
 // PS2 (Keyboard)
 input PS2_CLK,
@@ -69,6 +69,7 @@ output [2:0] lives //[2:0]LED
 //reset wire from rst mux -- allows game FSM to control rst and for user to control reset
 wire rst_w;
 wire resetSelect_w;
+
 
 Reset_Mux rst_mux(rst,resetSelect_w,rst_w);
 
@@ -177,8 +178,6 @@ vgaBlue
 wire [2:0] sel;
 
 
-
-Audio A1(clk,rst_w,sel,en,pwmPin,ampPin);
 
 
 Decoder_4to3 D1(uBtns_w[3],uBtns_w[2],uBtns_w[1],uBtns_w[0],sel);
@@ -462,7 +461,18 @@ world_w,
 screen_w, 
 lives,
 playerDisable_w,
-resetSelect_w
+resetSelect_w,
+audioSelect_w,
+audioEnable_w
 );
+    
+//    input clk,
+//    input rst,
+//    input enable,
+//    input [2:0] audioSelect,      // from FSM
+//    output seqEnd,          // to FSM   
+//    output pwmPin,          // to GAME 
+//    output ampPin           // to GAME   
+    Audio A1_test(clk, rst, audioEnable_w, audioSelect_w, seqEnd_w, pwmPin, ampPin);
 
 endmodule

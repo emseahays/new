@@ -173,10 +173,10 @@ always@(posedge btnClk, posedge rst) begin
                     begin
                        if((rect_color != player_color)) begin
                        // Disable Controls
-                           if(passable==0)downEnable <= 1'b1;
-                           if(passable==0)upEnable <= 1'b1;
-                           if(passable==0)leftEnable <= 1'b1;
-                           if(passable==0)rightEnable <= 1'b1; 
+                           downEnable <= 1'b1;
+                           upEnable <= 1'b1;
+                           leftEnable <= 1'b1;
+                           rightEnable <= 1'b1; 
                        end
                        else begin
                            downEnable <= 1'b0;
