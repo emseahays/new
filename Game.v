@@ -34,8 +34,15 @@ input start_btn,
 //input [1:0] playerStatus,
 // input [2:0] In, //REMOVE LATER - for diff crosshair colors
 
+
+input [2:0] World,
+input [2:0] Level,
+input cheat,            //allows one to cheat, by skipping levels
+
+
 //input [2:0] World,
 //input [2:0] Level,
+
 
 // AUDIO
 // input en,     //enable audio
@@ -57,7 +64,7 @@ output [3:0] vgaBlue,
 output  pwmPin,
 output  ampPin,
 
-output [2:0] lives //[2:0]LED
+output [4:0] lives //[2:0]LED
 
 // Other
 // FSM
@@ -390,6 +397,8 @@ output reg visible[3:0][5:0];
 
 
 Obstacles Worlds(
+cheat,
+World,
 world_w,
 player_hPos_w, 
 player_vPos_w, 
@@ -440,6 +449,25 @@ screen_visible_w
 ); 
 
 
+
+/*module FSM(
+input clk,
+input rst,          
+input continue_btn,   //btnU or spacebar 
+input player_dead,    //input comes from PlayerObject Module
+input level_complete, //input comes from Scrolls Module
+output reg level,       //goes to Scrolls Modules
+output reg world,       //goes to Obstacles module
+output reg screen, //1=Play, 2=Lose, 3=Win, 4=L+, 5=W+
+output reg lives,   //[2:0]LED
+output reg playerDisable //disable player movement to prevent disrupting game state by
+);*/
+ 
+wire [3:0] audioSelect_w;
+
+
+//FreqsMux (clk, rst, audioSelect_w, pwmPin, ampPin);
+
 //input clk,
 //input rst,          
 //input continue_btn,   //btnU or spacebar 
@@ -456,6 +484,7 @@ screen_visible_w
 //output reg [3:0]audioSelect,
 //output reg audioEnable
     
+
 FSM FSM1 (
 clk,
 rst_w,
@@ -470,8 +499,11 @@ screen_w,
 lives,
 playerDisable_w,
 resetSelect_w,
+
+
 audioSelect_w,
 audioEnable_w
+
 );
     
 
@@ -484,5 +516,6 @@ audioEnable_w
 //    output pwmPin,          // to GAME 
 //    output ampPin           // to GAME   
     Audio A1_test(clk, rst, audioEnable_w, audioSelect_w, seqEnd_w, pwmPin, ampPin);
+
 
 endmodule

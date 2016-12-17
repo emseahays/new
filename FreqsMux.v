@@ -21,6 +21,7 @@
 
 
 module FreqsMux(
+
     input clk,
     input rst,
     input [3:0] noteSelect,
@@ -58,4 +59,8 @@ module FreqsMux(
     
     clock_divider FreqClkDiv1 (clk, rst, noteFrequency, pwmPin);
         
+
 endmodule
+
+    
+
