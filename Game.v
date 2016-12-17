@@ -58,7 +58,7 @@ output [3:0] vgaBlue,
 output  pwmPin,
 output  ampPin,
 
-output [2:0] lives //[2:0]LED
+output [4:0] lives //[2:0]LED
 
 // Other
 // FSM
@@ -387,6 +387,7 @@ output reg visible[3:0][5:0];
 
 
 Obstacles Worlds(
+World,
 world_w,
 player_hPos_w, 
 player_vPos_w, 
@@ -449,7 +450,12 @@ output reg screen, //1=Play, 2=Lose, 3=Win, 4=L+, 5=W+
 output reg lives,   //[2:0]LED
 output reg playerDisable //disable player movement to prevent disrupting game state by
 );*/
-    
+ 
+wire [3:0] audioSelect_w;
+
+
+//FreqsMux (clk, rst, audioSelect_w, pwmPin, ampPin);
+   
 FSM FSM1 (
 clk,
 rst_w,
@@ -462,7 +468,9 @@ world_w,
 screen_w, 
 lives,
 playerDisable_w,
-resetSelect_w
+resetSelect_w,
+audioSelect_w 
 );
+
 
 endmodule

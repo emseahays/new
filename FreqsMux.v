@@ -21,29 +21,43 @@
 
 
 module FreqsMux(
-input [3:0] freqs, 
-input [2:0] sel, 
-output reg pwmPin
-    );
-  
-always@(sel) 
-    begin
-        case(sel)
-        3'b100:begin            //up
-            pwmPin<=freqs[3]; 
-        end
-        3'b101:begin            //right
-            pwmPin<=freqs[2];
-        end
-        3'b110:begin            //down
-            pwmPin<=freqs[1];
-        end
-        3'b111:begin            //left
-            pwmPin<=freqs[0];
-        end
-        default: pwmPin<=0;     //off
-    
-        endcase
-    end
-    
+   input clk,
+ input rst,
+ input [3:0] noteSelect,
+ output pwmPin,
+ output reg ampPin
+ );
+ 
+ // assign ampPin = 1;
+ 
+ reg [8:0] noteFrequency;
+ 
+ parameter A = 440;     //0
+ parameter B = 494;     //1
+ parameter C = 524;     //2
+ parameter D = 587;     //3
+ parameter E = 659;     //4
+ parameter F = 698;     //5
+ parameter G = 784;     //6
+ 
+
+ always@(noteSelect)begin
+     noteFrequency <= A;
+     case(noteSelect)
+         0: begin noteFrequency <= A; ampPin <= 1; end
+         1: begin noteFrequency <= B; ampPin <= 1; end
+         2: begin noteFrequency <= C; ampPin <= 1; end
+         3: begin noteFrequency <= D; ampPin <= 1; end
+         4: begin noteFrequency <= E; ampPin <= 1; end
+         5: begin noteFrequency <= F; ampPin <= 1; end
+         6: begin noteFrequency <= G; ampPin <= 1; end
+         7: ampPin = 0;
+     endcase
+ end
+ 
+ //FreqsMux FreqClkDiv1 (clk, rst, noteFrequency, pwmPin);
+     
 endmodule
+
+    
+
