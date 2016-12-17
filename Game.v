@@ -37,7 +37,6 @@ input start_btn,
 //input [2:0] World,
 //input [2:0] Level,
 
-
 // AUDIO
 // input en,     //enable audio
 
@@ -65,6 +64,11 @@ output [2:0] lives //[2:0]LED
 //output [2:0] gameStatus,
 //output [2:0] level
 );
+
+// audio wires to FSM
+wire audioEnable_w;
+wire [2:0] audioSelect_w;    
+wire seqEnd;
 
 //reset wire from rst mux -- allows game FSM to control rst and for user to control reset
 wire rst_w;
@@ -436,18 +440,21 @@ screen_visible_w
 ); 
 
 
-/*module FSM(
-input clk,
-input rst,          
-input continue_btn,   //btnU or spacebar 
-input player_dead,    //input comes from PlayerObject Module
-input level_complete, //input comes from Scrolls Module
-output reg level,       //goes to Scrolls Modules
-output reg world,       //goes to Obstacles module
-output reg screen, //1=Play, 2=Lose, 3=Win, 4=L+, 5=W+
-output reg lives,   //[2:0]LED
-output reg playerDisable //disable player movement to prevent disrupting game state by
-);*/
+//input clk,
+//input rst,          
+//input continue_btn,   //btnU or spacebar 
+//input start_btn,            //btnD or Ctrl
+//input player_dead,    //input comes from PlayerObject Module
+//input level_complete, //input comes from Scrolls Module
+//input seqEnd,
+//output  [2:0] level,       //goes to Scrolls Modules
+//output  [2:0] world,       //goes to Obstacles module
+//output reg [2:0]screen, //1=Play, 2=Lose, 3=Win, 4=L+, 5=W+
+//output [2:0] lives,   //[2:0]LED
+//output reg playerDisable, //disable player movement to prevent disrupting game state by
+//output reg resetSelect,
+//output reg [3:0]audioSelect,
+//output reg audioEnable
     
 FSM FSM1 (
 clk,
@@ -456,6 +463,7 @@ continue_btn_w,
 start_btn_w, 
 player_dead_w,  //player_dead_w
 level_complete_w,
+seqEnd,
 level_w, 
 world_w, 
 screen_w, 
@@ -465,6 +473,8 @@ resetSelect_w,
 audioSelect_w,
 audioEnable_w
 );
+    
+
     
 //    input clk,
 //    input rst,
