@@ -104,6 +104,11 @@ always@(posedge btnClk, posedge rst) begin
         endcase   
 
 //NOT PASSABLE CONTROL DISABLE
+        //default
+        downEnable <= 1'b0;
+        upEnable <= 1'b0;
+        leftEnable <= 1'b0;
+        rightEnable <= 1'b0; 
         if(visible==1)begin 
 //                if(passable==0)begin      
                 // DOWN DISABLE

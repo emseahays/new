@@ -30,9 +30,10 @@ input level_complete, //input comes from Scrolls Module
 output  [2:0] level,       //goes to Scrolls Modules
 output  [2:0] world,       //goes to Obstacles module
 output reg [2:0]screen, //1=Play, 2=Lose, 3=Win, 4=L+, 5=W+
-output [2:0] lives,   //[2:0]LED
+output [4:0] lives,   //[2:0]LED
 output reg playerDisable, //disable player movement to prevent disrupting game state by
-output reg resetSelect
+output reg resetSelect,
+output reg [3:0] audioSelect
 );
 
 
@@ -54,7 +55,7 @@ reg [4:0] currentState;
 reg [4:0] nextState;
 
 //registers needed for incrementing and decrementing 
-reg [2:0] lives_count; 
+reg [4:0] lives_count; 
 reg [2:0] world_count;
 reg [2:0] level_count;  
 
@@ -79,6 +80,7 @@ reg worldEnable;
 reg worldReset;
 reg livesEnable;
 reg livesReset;
+
 
 //DATAPATH   
 //counters
@@ -110,6 +112,7 @@ worldReset<=0;
 livesEnable<=0; 
 livesReset<=0; 
 resetSelect=0;
+audioSelect<=7;
 
 nextState <= currentState; //set to initial state defined in state register
 
@@ -186,6 +189,7 @@ case(currentState)
     lifeDecr_wait: begin
         //outputs
         playerDisable<=0; //enable player to move out of scroll while decrementing
+        audioSelect<=1;
         //transitions
         if(player_dead==1) nextState<=lifeDecr_wait;
         else nextState<=play;
