@@ -21,24 +21,39 @@
 
 
 module Audio(
-input clk,
-input rst,
-input [2:0] sel,
-input en,
-output  pwmPin,
-output  ampPin
+    input clk,
+    input rst,
+    input enable,
+    input [2:0] audioSelect,      // from FSM
+    output reg audioEnd,          // to FSM   
+    output pwmPin,          // to GAME 
+    output ampPin           // to GAME  
     );
-
- assign ampPin = en;
- //wire clk5000Hz;
- wire [3:0] freqs; //freqs[3] = clk5000Hz
- ClkDiv_100MHz_to_4000Hz M10a (clk, rst, freqs[3]);
- Counter3Bit M10b (freqs[3], rst, en, freqs[2:0]);
- FreqsMux M10c (freqs, sel, pwmPin);
+    
+    always @(posedge enable, posedge seqEnd)begin
+        if(enable) audioEnd <= 0;
+        else if(seqEnd) audioEnd <= 1;
+    end
+    
+    wire [3:0] noteSelect;    // from audioSequence to FreqsMux
+    
  
- 
+    // Frequency Select (stores all used frequencies)
+//    input clk,
+//    input rst,
+//    input [3:0] noteSelect,
+//    output pwmPin,
+//    output ampPin
+    FreqsMux FM1 (clk, rst, noteSelect, pwmPin, ampPin);
+    
+//    input clk,
+//    input reset,
+//    input enable,
+//    input [2:0] audioSelect,
+//    output reg [3:0] noteSelect,
+//    output reg seqEnd
+    audioSequence AS1 (clk, rst, enable, audioSelect, noteSelect, seqEnd);
+        
 
-    
-    
-    
+
 endmodule

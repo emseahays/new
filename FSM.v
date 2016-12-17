@@ -27,13 +27,17 @@ input continue_btn,   //btnU or spacebar
 input start_btn,            //btnD or Ctrl
 input player_dead,    //input comes from PlayerObject Module
 input level_complete, //input comes from Scrolls Module
+input seqEnd,
 output  [2:0] level,       //goes to Scrolls Modules
 output  [2:0] world,       //goes to Obstacles module
 output reg [2:0]screen, //1=Play, 2=Lose, 3=Win, 4=L+, 5=W+
 output [4:0] lives,   //[2:0]LED
 output reg playerDisable, //disable player movement to prevent disrupting game state by
 output reg resetSelect,
-output reg [3:0] audioSelect
+
+output reg [3:0]audioSelect,
+output reg audioEnable
+
 );
 
 
@@ -47,8 +51,10 @@ parameter   worldInc_display = 5;
 parameter   lifeDecr =6;
 parameter   lifeDecr_wait=7;
 parameter   win_display=8;
-parameter   lose_display=9;
-parameter   reset=10;
+parameter   win_display_wait = 9;
+parameter   lose_display = 10;
+parameter   lose_display_wait = 11;
+parameter   reset=12;
 
 //state registers            
 reg [4:0] currentState;
@@ -82,6 +88,9 @@ reg livesEnable;
 reg livesReset;
 
 
+reg seqEndSwitch;
+
+
 //DATAPATH   
 //counters
 counter_2bit levelIncrement(clk,levelReset,levelEnable,level);  
@@ -111,8 +120,13 @@ worldEnable<=0;
 worldReset<=0; 
 livesEnable<=0; 
 livesReset<=0; 
+
 resetSelect=0;
 audioSelect<=7;
+
+resetSelect<=0;
+audioEnable <= 0;
+
 
 nextState <= currentState; //set to initial state defined in state register
 
@@ -120,7 +134,7 @@ case(currentState)
     init: begin
         //outputs
         livesReset<=1;
-        worldReset<=1;
+        worldReset<=1; 
         levelReset<=1;
         screen<=playScreen;
         //transitions
@@ -130,39 +144,42 @@ case(currentState)
     play: begin
         //outputs
         playerDisable<=0; //enable player movements
+        seqEndSwitch <= 0;
         //transitions
         if((player_dead==1)&&(lives>0))nextState<=lifeDecr;
         else if((level_complete)==1&&(level<=levelMax)&&((player_dead==0)&&(lives>0)))nextState<=levelInc;
         else if((level>levelMax)&&(world<=worldMax)&&((player_dead==0)&&(lives>0)))nextState<=worldInc;
         else if((world>worldMax)&&(level>levelMax)&&((player_dead==0)&&(lives>0)))nextState<=win_display;
         else if((lives==0))nextState<=lose_display;
-        else nextState<=play;
-   
+        else nextState<=play;   
     end
     levelInc: begin
         //outputs
             levelEnable<=1;
         //transitions
-        if(level<levelMax)nextState<=levelInc_display;
+        if(level<levelMax)begin
+            audioSelect <= 2;
+            audioEnable <= 1;
+            nextState<=levelInc_display;    
+        end
         else nextState<=play;
     end
     levelInc_display: begin
         //outputs
         screen<=levelUpScreen;
         //transitions
-        if(continue_btn==1)nextState<=play;
+        if(continue_btn==1 && seqEnd == 1)nextState<=play;
         else nextState<=levelInc_display;
     end
     worldInc: begin
-//        //outputs
-//        worldEnable<=1;
-//        //transitions
-//        if(world<worldMax)nextState<=worldInc_display;
-//        else nextState<=play;
         //outputs
         worldEnable<=1;
         //transitions
-        if(world<worldMax)nextState<=worldInc_display;
+        if(world<worldMax)begin
+            audioSelect <= 3;
+            audioEnable <= 1;
+            nextState<=worldInc_display;    
+        end
         else nextState<=play;
     end
     worldInc_display: begin
@@ -176,13 +193,15 @@ case(currentState)
         screen<=worldUpScreen;
         levelReset<=1;
         //transitions
-        if((continue_btn==1))nextState<=play;
+        if((continue_btn==1 && seqEnd == 1))nextState<=play;
         else nextState<=worldInc_display;
     end  
     lifeDecr: begin
         //outputs
         livesEnable<=1;
         playerDisable<=0; //enable player to move out of scroll while decrementing
+        audioSelect <= 4;
+        audioEnable <= 1;
         //transitions
         nextState<=lifeDecr_wait;
     end
@@ -197,28 +216,40 @@ case(currentState)
     win_display: begin
         //outputs
         screen<=winScreen;
+        audioSelect <= 5;
+        audioEnable <= 1;
         //transitions
-        if(continue_btn==1)nextState<=reset;
+        nextState <= win_display_wait;
+    end
+    win_display_wait: begin
+        if(continue_btn==1 && seqEnd)nextState<=reset;
         else nextState<=win_display;
     end
     lose_display: begin
         //outputs
-        screen<=loseScreen;
+        screen <= loseScreen;
+        audioSelect <= 6;
+        audioEnable <= 1;
         //transitions
-        if(continue_btn==1)nextState<=reset;
-        else nextState<=lose_display;
-    end  
+        nextState <= lose_display_wait;
+    end
+    lose_display_wait: begin
+        if(continue_btn==1 && seqEnd)nextState<=reset;
+        else nextState<=lose_display;end
     reset: begin
-    //outputs
-    resetSelect<=1;
-    //transitions
-    nextState<=init;
+        //outputs
+        resetSelect<=1;
+        //transitions
+        nextState<=init;
     end  
-     default: begin
+    default: begin
         //outputs
         //transitions
         nextState <= reset;
-     end
+    end
 endcase    
 end
+
+
+
 endmodule

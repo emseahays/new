@@ -31,16 +31,20 @@ input continue_btn, //btnU
 input start_btn,
 
 //SWITCHES
-input [1:0] playerStatus,
+//input [1:0] playerStatus,
 // input [2:0] In, //REMOVE LATER - for diff crosshair colors
+
 
 input [2:0] World,
 input [2:0] Level,
 input cheat,            //allows one to cheat, by skipping levels
 
+//input [2:0] World,
+//input [2:0] Level,
+
 
 // AUDIO
-input en,     //enable audio
+// input en,     //enable audio
 
 // PS2 (Keyboard)
 input PS2_CLK,
@@ -67,9 +71,15 @@ output [4:0] lives //[2:0]LED
 //output [2:0] level
 );
 
+// audio wires to FSM
+wire audioEnable_w;
+wire [2:0] audioSelect_w;    
+wire seqEnd;
+
 //reset wire from rst mux -- allows game FSM to control rst and for user to control reset
 wire rst_w;
 wire resetSelect_w;
+
 
 Reset_Mux rst_mux(rst,resetSelect_w,rst_w);
 
@@ -178,8 +188,6 @@ vgaBlue
 wire [2:0] sel;
 
 
-
-Audio A1(clk,rst_w,sel,en,pwmPin,ampPin);
 
 
 Decoder_4to3 D1(uBtns_w[3],uBtns_w[2],uBtns_w[1],uBtns_w[0],sel);
@@ -440,6 +448,7 @@ screen_visible_w
 ); 
 
 
+
 /*module FSM(
 input clk,
 input rst,          
@@ -458,6 +467,24 @@ wire [3:0] audioSelect_w;
 
 //FreqsMux (clk, rst, audioSelect_w, pwmPin, ampPin);
    
+
+//input clk,
+//input rst,          
+//input continue_btn,   //btnU or spacebar 
+//input start_btn,            //btnD or Ctrl
+//input player_dead,    //input comes from PlayerObject Module
+//input level_complete, //input comes from Scrolls Module
+//input seqEnd,
+//output  [2:0] level,       //goes to Scrolls Modules
+//output  [2:0] world,       //goes to Obstacles module
+//output reg [2:0]screen, //1=Play, 2=Lose, 3=Win, 4=L+, 5=W+
+//output [2:0] lives,   //[2:0]LED
+//output reg playerDisable, //disable player movement to prevent disrupting game state by
+//output reg resetSelect,
+//output reg [3:0]audioSelect,
+//output reg audioEnable
+    
+
 FSM FSM1 (
 clk,
 rst_w,
@@ -465,14 +492,29 @@ continue_btn_w,
 start_btn_w, 
 player_dead_w,  //player_dead_w
 level_complete_w,
+seqEnd,
 level_w, 
 world_w, 
 screen_w, 
 lives,
 playerDisable_w,
 resetSelect_w,
-audioSelect_w 
+
+audioSelect_w,
+audioEnable_w
+
 );
+    
+
+    
+//    input clk,
+//    input rst,
+//    input enable,
+//    input [2:0] audioSelect,      // from FSM
+//    output seqEnd,          // to FSM   
+//    output pwmPin,          // to GAME 
+//    output ampPin           // to GAME   
+    Audio A1_test(clk, rst, audioEnable_w, audioSelect_w, seqEnd_w, pwmPin, ampPin);
 
 
 endmodule
