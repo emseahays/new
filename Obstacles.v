@@ -21,6 +21,7 @@
 
 
 module Obstacles(
+input cheat,
 input [2:0] World,
 input [2:0] world,
 input [9:0] player_hPos,
@@ -117,7 +118,7 @@ always@(world, rst,World) begin
         wall_4_visible<=0;
         wall_5_visible<=0;  
     end
-    else if((world==0&&World<=0)||World==0)begin
+    else if((world==0)||(World==0&&cheat==1))begin
         wall_0_visible<=0;
         wall_1_visible<=0;
         wall_2_visible<=0;
@@ -125,7 +126,7 @@ always@(world, rst,World) begin
         wall_4_visible<=0;
         wall_5_visible<=0;  
      end
-    else if((world==1&&World<=0)||World==1)begin
+    else if((world==1)||(World==1&&cheat==1))begin
         wall_0_visible<=1;
         wall_1_visible<=0;
         wall_2_visible<=0;
@@ -133,35 +134,35 @@ always@(world, rst,World) begin
         wall_4_visible<=0;
         wall_5_visible<=0;  
      end
-    else if((world==2&&World<=0)||World==2)begin 
+    else if((world==2)||(World==2&&cheat==1))begin 
         wall_0_visible<=0; 
         wall_1_visible<=1; 
         wall_2_visible<=0; 
         wall_3_visible<=0; 
         wall_4_visible<=0; 
         wall_5_visible<=0;     end
-    else if((world==3&&World<=0)||World==3)begin 
+    else if((world==3)||(World==3&&cheat==1))begin 
         wall_0_visible<=0; 
         wall_1_visible<=0; 
         wall_2_visible<=1; 
         wall_3_visible<=0; 
         wall_4_visible<=0; 
         wall_5_visible<=0;     end
-    else if((world==4&&World<=0)||World==4)begin 
+    else if((world==4)||(World==4&&cheat==1))begin 
         wall_0_visible<=0; 
         wall_1_visible<=0; 
         wall_2_visible<=0; 
         wall_3_visible<=1; 
         wall_4_visible<=0; 
         wall_5_visible<=0;     end
-    else if((world==5&&World<=0)||World==5)begin 
+    else if((world==5)||(World==5&&cheat==1))begin 
         wall_0_visible<=0; 
         wall_1_visible<=0; 
         wall_2_visible<=0; 
         wall_3_visible<=0; 
         wall_4_visible<=1; 
         wall_5_visible<=0;     end
-    else if((world==6&&World<=0)||World==6)begin 
+    else if((world==6)||(World==6&&cheat==1))begin 
         wall_0_visible<=0; 
         wall_1_visible<=0; 
         wall_2_visible<=0; 
@@ -215,7 +216,7 @@ always@(world, rst,World) begin
         
   //wall 0 
           Rectangle wall_0_rect_0 (wall_0_visible,player_color, white,noPass,player_hPos,player_vPos,rst,btnClk,notMoving,vDefault_pos+2*size,hDefault_pos+11*size,wSize*20,vSize*2,vStartPos[0 ][0],hStartPos[0 ][0],objWidth[0 ][0],objHeight[0 ][0],vOffset[0 ][0],hOffset[0 ][0], color_o[0 ][0], upEnable[0 ][0], downEnable[0 ][0], leftEnable[0 ][0], rightEnable[0 ][0],visible [0 ][0]);
-          Rectangle wall_0_rect_1 (wall_0_visible,player_color, white,noPass,player_hPos,player_vPos,rst,btnClk,notMoving,vDefault_pos+7*size,hDefault_pos+0*size,wSize*20,vSize*2,vStartPos[1 ][0],hStartPos[1 ][0],objWidth[1 ][0],objHeight[1 ][0],vOffset[1 ][0],hOffset[1 ][0], color_o[1 ][0], upEnable[1 ][0], downEnable[1 ][0], leftEnable[1 ][0], rightEnable[1 ][0],visible [1 ][0]);
+          Rectangle wall_0_rect_1 (wall_0_visible,player_color, white,noPass,player_hPos,player_vPos,rst,btnClk,notMoving,vDefault_pos+7*size,hDefault_pos+0*size,wSize*22,vSize*2,vStartPos[1 ][0],hStartPos[1 ][0],objWidth[1 ][0],objHeight[1 ][0],vOffset[1 ][0],hOffset[1 ][0], color_o[1 ][0], upEnable[1 ][0], downEnable[1 ][0], leftEnable[1 ][0], rightEnable[1 ][0],visible [1 ][0]);
           Rectangle wall_0_rect_2 (wall_0_visible,player_color, white,noPass,player_hPos,player_vPos,rst,btnClk,notMoving,vDefault_pos+14*size,hDefault_pos+0*size,wSize*11,vSize*2,vStartPos[2 ][0],hStartPos[2 ][0],objWidth[2 ][0],objHeight[2 ][0],vOffset[2 ][0],hOffset[2 ][0], color_o[2 ][0], upEnable[2 ][0], downEnable[2 ][0], leftEnable[2 ][0], rightEnable[2 ][0],visible [2 ][0]);
           Rectangle wall_0_rect_3 (wall_0_visible,player_color, white,noPass,player_hPos,player_vPos,rst,btnClk,notMoving,vDefault_pos+14*size,hDefault_pos+22*size,wSize*10,vSize*2,vStartPos[3 ][0],hStartPos[3 ][0],objWidth[3 ][0],objHeight[3 ][0],vOffset[3 ][0],hOffset[3 ][0], color_o[3 ][0], upEnable[3 ][0], downEnable[3 ][0], leftEnable[3 ][0], rightEnable[3 ][0],visible [3 ][0]);
           Rectangle wall_0_rect_4 (wall_0_visible,player_color, white,noPass,player_hPos,player_vPos,rst,btnClk,notMoving,vDefault_pos+19*size,hDefault_pos+2*size,wSize*22,vSize*2,vStartPos[4 ][0],hStartPos[4 ][0],objWidth[4 ][0],objHeight[4 ][0],vOffset[4 ][0],hOffset[4 ][0], color_o[4 ][0], upEnable[4 ][0], downEnable[4 ][0], leftEnable[4 ][0], rightEnable[4 ][0],visible [4 ][0]);
@@ -245,7 +246,7 @@ always@(world, rst,World) begin
           //==============================================================================================================================================================================
           //PLAY - 14 rectangles
           Rectangle wall_1_rect_0 (wall_1_visible,player_color, white,noPass,player_hPos,player_vPos,rst,btnClk,notMoving,vDefault_pos+2*size,hDefault_pos+0*size,wSize*15,vSize*2  ,vStartPos[0 ][1],hStartPos[0 ][1],objWidth[0 ][1],objHeight[0 ][1],vOffset[0 ][1],hOffset[0 ][1], color_o[0 ][1], upEnable[0 ][1], downEnable[0 ][1], leftEnable[0 ][1], rightEnable[0 ][1],visible [0 ][1]);
-          Rectangle wall_1_rect_1 (wall_1_visible,player_color, white,noPass,player_hPos,player_vPos,rst,btnClk,notMoving,vDefault_pos+7*size,hDefault_pos+7*size,wSize*11,vSize*2  ,vStartPos[1 ][1],hStartPos[1 ][1],objWidth[1 ][1],objHeight[1 ][1],vOffset[1 ][1],hOffset[1 ][1], color_o[1 ][1], upEnable[1 ][1], downEnable[1 ][1], leftEnable[1 ][1], rightEnable[1 ][1],visible [1 ][1]);
+          Rectangle wall_1_rect_1 (wall_1_visible,player_color, white,noPass,player_hPos,player_vPos,rst,btnClk,notMoving,vDefault_pos+7*size,hDefault_pos+0*size,wSize*11,vSize*2,vStartPos[1 ][1],hStartPos[1 ][1],objWidth[1 ][1],objHeight[1 ][1],vOffset[1 ][1],hOffset[1 ][1], color_o[1 ][1], upEnable[1 ][1], downEnable[1 ][1], leftEnable[1 ][1], rightEnable[1 ][1],visible [1 ][1]);
           Rectangle wall_1_rect_2 (wall_1_visible,player_color, white,noPass,player_hPos,player_vPos,rst,btnClk,notMoving,vDefault_pos+4*size,hDefault_pos+13*size,wSize*2,vSize*5  ,vStartPos[2 ][1],hStartPos[2 ][1],objWidth[2 ][1],objHeight[2 ][1],vOffset[2 ][1],hOffset[2 ][1], color_o[2 ][1], upEnable[2 ][1], downEnable[2 ][1], leftEnable[2 ][1], rightEnable[2 ][1],visible [2 ][1]);
           Rectangle wall_1_rect_3 (wall_1_visible,player_color, white,noPass,player_hPos,player_vPos,rst,btnClk,notMoving,vDefault_pos+7*size,hDefault_pos+15*size,wSize*9,vSize*2  ,vStartPos[3 ][1],hStartPos[3 ][1],objWidth[3 ][1],objHeight[3 ][1],vOffset[3 ][1],hOffset[3 ][1], color_o[3 ][1], upEnable[3 ][1], downEnable[3 ][1], leftEnable[3 ][1], rightEnable[3 ][1],visible [3 ][1]);
           Rectangle wall_1_rect_4 (wall_1_visible,player_color, white,noPass,player_hPos,player_vPos,rst,btnClk,notMoving,vDefault_pos+7*size,hDefault_pos+26*size,wSize*6,vSize*2  ,vStartPos[4 ][1],hStartPos[4 ][1],objWidth[4 ][1],objHeight[4 ][1],vOffset[4 ][1],hOffset[4 ][1], color_o[4 ][1], upEnable[4 ][1], downEnable[4 ][1], leftEnable[4 ][1], rightEnable[4 ][1],visible [4 ][1]);
@@ -341,7 +342,7 @@ always@(world, rst,World) begin
         Rectangle wall_4_rect_7 (wall_4_visible,player_color, white,noPass,player_hPos,player_vPos,rst,btnClk,notMoving,vDefault_pos+13*size,hDefault_pos+26*size,wSize*5,vSize*11,vStartPos[7 ][4],hStartPos[7 ][4],objWidth[7 ][4],objHeight[7 ][4],vOffset[7 ][4],hOffset[7 ][4], color_o[7 ][4], upEnable[7 ][4], downEnable[7 ][4], leftEnable[7 ][4], rightEnable[7 ][4],visible [7 ][4]);  
         Rectangle wall_4_rect_8 (wall_4_visible,player_color, white,noPass,player_hPos,player_vPos,rst,btnClk,notMoving,vDefault_pos+22*size,hDefault_pos+21*size,wSize*4,vSize*2,vStartPos[8 ][4],hStartPos[8 ][4],objWidth[8 ][4],objHeight[8 ][4],vOffset[8 ][4],hOffset[8 ][4], color_o[8 ][4], upEnable[8 ][4], downEnable[8 ][4], leftEnable[8 ][4], rightEnable[8 ][4],visible [8 ][4]);
         Rectangle wall_4_rect_9 (wall_4_visible,player_color, white,noPass,player_hPos,player_vPos,rst,btnClk,notMoving,vDefault_pos+25*size,hDefault_pos+18*size,wSize*8,vSize*5,vStartPos[9 ][4],hStartPos[9 ][4],objWidth[9 ][4],objHeight[9 ][4],vOffset[9 ][4],hOffset[9 ][4], color_o[9 ][4], upEnable[9 ][4], downEnable[9 ][4], leftEnable[9 ][4], rightEnable[9 ][4],visible [9 ][4]);
-        Rectangle wall_4_rect_10(wall_4_visible,player_color, white,noPass,player_hPos,player_vPos,rst,btnClk,notMoving,vDefault_pos+25*size,hDefault_pos+27*size,wSize*1,vSize*4,vStartPos[10][4],hStartPos[10][4],objWidth[10][4],objHeight[10][4],vOffset[10][4],hOffset[10][4], color_o[10][4], upEnable[10][4], downEnable[10][4], leftEnable[10][4], rightEnable[10][4],visible [10][4]);
+        Rectangle wall_4_rect_10(wall_4_visible,player_color, white,noPass,player_hPos,player_vPos,rst,btnClk,notMoving,vDefault_pos+25*size,hDefault_pos+27*size,wSize*1,vSize*5,vStartPos[10][4],hStartPos[10][4],objWidth[10][4],objHeight[10][4],vOffset[10][4],hOffset[10][4], color_o[10][4], upEnable[10][4], downEnable[10][4], leftEnable[10][4], rightEnable[10][4],visible [10][4]);
         Rectangle wall_4_rect_11(wall_4_visible,player_color, white,noPass,player_hPos,player_vPos,rst,btnClk,notMoving,vDefault_pos+25*size,hDefault_pos+29*size,wSize*2,vSize*6,vStartPos[11][4],hStartPos[11][4],objWidth[11][4],objHeight[11][4],vOffset[11][4],hOffset[11][4], color_o[11][4], upEnable[11][4], downEnable[11][4], leftEnable[11][4], rightEnable[11][4],visible [11][4]);  
         Rectangle wall_4_rect_12(wall_4_visible,player_color, white,noPass,player_hPos,player_vPos,rst,btnClk,notMoving,vDefault_pos+32*size,hDefault_pos+29*size,wSize*2,vSize*5,vStartPos[12][4],hStartPos[12][4],objWidth[12][4],objHeight[12][4],vOffset[12][4],hOffset[12][4], color_o[12][4], upEnable[12][4], downEnable[12][4], leftEnable[12][4], rightEnable[12][4],visible [12][4]);
         Rectangle wall_4_rect_13(wall_4_visible,player_color, white,noPass,player_hPos,player_vPos,rst,btnClk,notMoving,vDefault_pos+31*size,hDefault_pos+12*size,wSize*16,vSize*6,vStartPos[13][4],hStartPos[13][4],objWidth[13][4],objHeight[13][4],vOffset[13][4],hOffset[13][4], color_o[13][4], upEnable[13][4], downEnable[13][4], leftEnable[13][4], rightEnable[13][4],visible [13][4]);
@@ -360,8 +361,8 @@ always@(world, rst,World) begin
 //==============================================================================================================================================================================
 
         //world 5
-        Rectangle wall_5_rect_0 (wall_5_visible,player_color, white,noPass,player_hPos,player_vPos,rst,btnClk,notMoving,vDefault_pos+0*size,hDefault_pos+1*size,wSize*30,vSize*2,vStartPos[0 ][5],hStartPos[0 ][5],objWidth[0 ][5],objHeight[0 ][5],vOffset[0 ][5],hOffset[0 ][5], color_o[0 ][5], upEnable[0 ][5], downEnable[0 ][5], leftEnable[0 ][5], rightEnable[0 ][5],visible [0 ][5]);
-        Rectangle wall_5_rect_1 (wall_5_visible,player_color, white,noPass,player_hPos,player_vPos,rst,btnClk,notMoving,vDefault_pos+14*size,hDefault_pos+9*size,wSize*2,vSize*31,vStartPos[1 ][5],hStartPos[1 ][5],objWidth[1 ][5],objHeight[1 ][5],vOffset[1 ][5],hOffset[1 ][5], color_o[1 ][5], upEnable[1 ][5], downEnable[1 ][5], leftEnable[1 ][5], rightEnable[1 ][5],visible [1 ][5]);
+        Rectangle wall_5_rect_0 (wall_5_visible,player_color, white,noPass,player_hPos,player_vPos,rst,btnClk,notMoving,vDefault_pos+1*size,hDefault_pos+0*size,wSize*30,vSize*2,vStartPos[0 ][5],hStartPos[0 ][5],objWidth[0 ][5],objHeight[0 ][5],vOffset[0 ][5],hOffset[0 ][5], color_o[0 ][5], upEnable[0 ][5], downEnable[0 ][5], leftEnable[0 ][5], rightEnable[0 ][5],visible [0 ][5]);
+        Rectangle wall_5_rect_1 (wall_5_visible,player_color, white,noPass,player_hPos,player_vPos,rst,btnClk,notMoving,vDefault_pos+4*size,hDefault_pos+1*size,wSize*2,vSize*31,vStartPos[1 ][5],hStartPos[1 ][5],objWidth[1 ][5],objHeight[1 ][5],vOffset[1 ][5],hOffset[1 ][5], color_o[1 ][5], upEnable[1 ][5], downEnable[1 ][5], leftEnable[1 ][5], rightEnable[1 ][5],visible [1 ][5]);
         Rectangle wall_5_rect_2 (wall_5_visible,player_color, white,noPass,player_hPos,player_vPos,rst,btnClk,notMoving,vDefault_pos+3*size,hDefault_pos+4*size,wSize*2,vSize*31,vStartPos[2 ][5],hStartPos[2 ][5],objWidth[2 ][5],objHeight[2 ][5],vOffset[2 ][5],hOffset[2 ][5], color_o[2 ][5], upEnable[2 ][5], downEnable[2 ][5], leftEnable[2 ][5], rightEnable[2 ][5],visible [2 ][5]);
         Rectangle wall_5_rect_3 (wall_5_visible,player_color, white,noPass,player_hPos,player_vPos,rst,btnClk,notMoving,vDefault_pos+4*size,hDefault_pos+7*size,wSize*2,vSize*31,vStartPos[3 ][5],hStartPos[3 ][5],objWidth[3 ][5],objHeight[3 ][5],vOffset[3 ][5],hOffset[3 ][5], color_o[3 ][5], upEnable[3 ][5], downEnable[3 ][5], leftEnable[3 ][5], rightEnable[3 ][5],visible [3 ][5]);
         Rectangle wall_5_rect_4 (wall_5_visible,player_color, white,noPass,player_hPos,player_vPos,rst,btnClk,notMoving,vDefault_pos+3*size,hDefault_pos+10*size,wSize*2,vSize*31,vStartPos[4 ][5],hStartPos[4 ][5],objWidth[4 ][5],objHeight[4 ][5],vOffset[4 ][5],hOffset[4 ][5], color_o[4 ][5], upEnable[4 ][5], downEnable[4 ][5], leftEnable[4 ][5], rightEnable[4 ][5],visible [4 ][5]);
@@ -386,7 +387,7 @@ always@(world, rst,World) begin
   
         Rectangle border_left    (1'b1,player_color, white,noPass,player_hPos,player_vPos,rst,btnClk,notMoving  ,0                    ,128-12         ,12         ,12+38*12   ,vStartPos[20][5],hStartPos[20][5],objWidth[20][5],objHeight[20][5],vOffset[20][5],hOffset[20][5], color_o[20][5], upEnable[20][5], downEnable[20][5], leftEnable[20][5], rightEnable[20][5],visible [20][5]);
         Rectangle border_right   (1'b1,player_color, white,noPass,player_hPos,player_vPos,rst,btnClk,notMoving  ,0                    ,128+12*32      ,12         ,12+38*12   ,vStartPos[21][5],hStartPos[21][5],objWidth[21][5],objHeight[21][5],vOffset[21][5],hOffset[21][5], color_o[21][5], upEnable[21][5], downEnable[21][5], leftEnable[21][5], rightEnable[21][5],visible [21][5]);
-        Rectangle border_top     (1'b1,player_color, white,noPass,player_hPos,player_vPos,rst,btnClk,notMoving  ,0                    ,128            ,12+12*31   ,12         ,vStartPos[22][5],hStartPos[22][5],objWidth[22][5],objHeight[22][5],vOffset[22][5],hOffset[22][5], color_o[22][5], upEnable[22][5], downEnable[22][5], leftEnable[22][5], rightEnable[22][5],visible [22][5]);
-        Rectangle border_bottom  (1'b1,player_color, white,noPass,player_hPos,player_vPos,rst,btnClk,notMoving  ,12+38*size           ,128            ,12+12*31   ,12         ,vStartPos[23][5],hStartPos[23][5],objWidth[23][5],objHeight[23][5],vOffset[23][5],hOffset[23][5], color_o[23][5], upEnable[23][5], downEnable[23][5], leftEnable[23][5], rightEnable[23][5],visible [23][5]);      
+        Rectangle border_top     (~cheat,player_color, white,noPass,player_hPos,player_vPos,rst,btnClk,notMoving  ,0                    ,128            ,12+12*31   ,12         ,vStartPos[22][5],hStartPos[22][5],objWidth[22][5],objHeight[22][5],vOffset[22][5],hOffset[22][5], color_o[22][5], upEnable[22][5], downEnable[22][5], leftEnable[22][5], rightEnable[22][5],visible [22][5]);
+        Rectangle border_bottom  (~cheat,player_color, white,noPass,player_hPos,player_vPos,rst,btnClk,notMoving  ,12+38*size           ,128            ,12+12*31   ,12         ,vStartPos[23][5],hStartPos[23][5],objWidth[23][5],objHeight[23][5],vOffset[23][5],hOffset[23][5], color_o[23][5], upEnable[23][5], downEnable[23][5], leftEnable[23][5], rightEnable[23][5],visible [23][5]);      
                                
 endmodule

@@ -36,6 +36,7 @@ input [1:0] playerStatus,
 
 input [2:0] World,
 input [2:0] Level,
+input cheat,            //allows one to cheat, by skipping levels
 
 
 // AUDIO
@@ -387,6 +388,7 @@ output reg visible[3:0][5:0];
 
 
 Obstacles Worlds(
+cheat,
 World,
 world_w,
 player_hPos_w, 
