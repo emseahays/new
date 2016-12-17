@@ -118,7 +118,7 @@ always@(world, rst,World) begin
         wall_4_visible<=0;
         wall_5_visible<=0;  
     end
-    else if((world==0)||(World==0&&cheat==1))begin
+    else if((world==0&&cheat==0)||(World==0&&cheat==1))begin
         wall_0_visible<=0;
         wall_1_visible<=0;
         wall_2_visible<=0;
@@ -126,7 +126,7 @@ always@(world, rst,World) begin
         wall_4_visible<=0;
         wall_5_visible<=0;  
      end
-    else if((world==1)||(World==1&&cheat==1))begin
+    else if((world==1&&cheat==0)||(World==1&&cheat==1))begin
         wall_0_visible<=1;
         wall_1_visible<=0;
         wall_2_visible<=0;
@@ -134,35 +134,35 @@ always@(world, rst,World) begin
         wall_4_visible<=0;
         wall_5_visible<=0;  
      end
-    else if((world==2)||(World==2&&cheat==1))begin 
+    else if((world==2&&cheat==0)||(World==2&&cheat==1))begin 
         wall_0_visible<=0; 
         wall_1_visible<=1; 
         wall_2_visible<=0; 
         wall_3_visible<=0; 
         wall_4_visible<=0; 
         wall_5_visible<=0;     end
-    else if((world==3)||(World==3&&cheat==1))begin 
+    else if((world==3&&cheat==0)||(World==3&&cheat==1))begin 
         wall_0_visible<=0; 
         wall_1_visible<=0; 
         wall_2_visible<=1; 
         wall_3_visible<=0; 
         wall_4_visible<=0; 
         wall_5_visible<=0;     end
-    else if((world==4)||(World==4&&cheat==1))begin 
+    else if((world==4&&cheat==0)||(World==4&&cheat==1))begin 
         wall_0_visible<=0; 
         wall_1_visible<=0; 
         wall_2_visible<=0; 
         wall_3_visible<=1; 
         wall_4_visible<=0; 
         wall_5_visible<=0;     end
-    else if((world==5)||(World==5&&cheat==1))begin 
+    else if((world==5&&cheat==0)||(World==5&&cheat==1))begin 
         wall_0_visible<=0; 
         wall_1_visible<=0; 
         wall_2_visible<=0; 
         wall_3_visible<=0; 
         wall_4_visible<=1; 
         wall_5_visible<=0;     end
-    else if((world==6)||(World==6&&cheat==1))begin 
+    else if((world==6&&cheat==0)||(World==6&&cheat==1))begin 
         wall_0_visible<=0; 
         wall_1_visible<=0; 
         wall_2_visible<=0; 
