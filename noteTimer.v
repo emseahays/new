@@ -28,7 +28,7 @@ module noteTimer(
     );
     
     integer count;
-    integer maxCount = 50000000;
+    integer maxCount = 25000000;
     // integer maxCount = 50;
     
     always @ (posedge clk, posedge reset) begin

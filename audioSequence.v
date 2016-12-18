@@ -42,11 +42,11 @@ module audioSequence(
     reg[31:0] song;
     
     reg [31:0] play             = 4'b1000;                          //0,1
-    reg [31:0] levelInc         = 12'b100000100001;         // 2
-    reg [31:0] worldInc         = 20'b10000101001000110011;         // 3
-    reg [31:0] lifeDecr         = 8'b10000011;                 // 4
+    reg [31:0] levelInc         = 12'b100001010100;         // 2
+    reg [31:0] worldInc         = 16'b1000011001010100;         // 3
+    reg [31:0] lifeDecr         = 8'b10000000;                 // 4
     reg [31:0] win_display      = 28'b1000011001010110010101000010; // 5
-    reg [31:0] lose_display     = 24'b100000100011011001010110;     // 6
+    reg [31:0] lose_display     = 24'b100000000000000000010010;     // 6
     
     reg [3:0] note;
     reg [5:0] index;
