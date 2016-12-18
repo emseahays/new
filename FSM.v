@@ -34,8 +34,7 @@ output reg [2:0]screen, //1=Play, 2=Lose, 3=Win, 4=L+, 5=W+
 output [4:0] lives,   //[2:0]LED
 output reg playerDisable, //disable player movement to prevent disrupting game state by
 output reg resetSelect,
-
-output reg [3:0]audioSelect,
+output reg [2:0]audioSelect,
 output reg audioEnable
 
 );
@@ -144,7 +143,6 @@ case(currentState)
     play: begin
         //outputs
         playerDisable<=0; //enable player movements
-        seqEndSwitch <= 0;
         //transitions
         if((player_dead==1)&&(lives>0))nextState<=lifeDecr;
         else if((level_complete)==1&&(level<=levelMax)&&((player_dead==0)&&(lives>0)))nextState<=levelInc;

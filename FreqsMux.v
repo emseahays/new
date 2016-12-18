@@ -21,10 +21,6 @@
 
 
 module FreqsMux(
-
-
-     
-
     input clk,
     input rst,
     input [3:0] noteSelect,

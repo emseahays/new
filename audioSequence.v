@@ -96,6 +96,9 @@ module audioSequence(
                 if(enable) begin                    
                     if(audioSelect == 2) song <= levelInc;
                     else if (audioSelect == 3) song <= worldInc;
+                    else if (audioSelect == 4) song <= lifeDecr;
+                    else if (audioSelect == 5) song <= win_display;
+                    else if (audioSelect == 6) song <= lose_display;
                     else song <= play;
                     nextState <= loadNoteState;
                 end

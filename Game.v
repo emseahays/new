@@ -30,21 +30,9 @@ input btnDim, //CPU Reset
 input continue_btn, //btnU
 input start_btn,
 
-//SWITCHES
-//input [1:0] playerStatus,
-// input [2:0] In, //REMOVE LATER - for diff crosshair colors
-
-
 input [2:0] World,
 input [2:0] Level,
 input cheat,            //allows one to cheat, by skipping levels
-
-//input [2:0] World,
-//input [2:0] Level,
-
-
-// AUDIO
-// input en,     //enable audio
 
 // PS2 (Keyboard)
 input PS2_CLK,
@@ -462,7 +450,7 @@ output reg lives,   //[2:0]LED
 output reg playerDisable //disable player movement to prevent disrupting game state by
 );*/
  
-wire [3:0] audioSelect_w;
+// wire [3:0] audioSelect_w;
 
 
 //FreqsMux (clk, rst, audioSelect_w, pwmPin, ampPin);
@@ -492,17 +480,15 @@ continue_btn_w,
 start_btn_w, 
 player_dead_w,  //player_dead_w
 level_complete_w,
-seqEnd,
+seqEnd_w,
 level_w, 
 world_w, 
 screen_w, 
 lives,
 playerDisable_w,
 resetSelect_w,
-
 audioSelect_w,
 audioEnable_w
-
 );
     
 
@@ -514,7 +500,7 @@ audioEnable_w
 //    output seqEnd,          // to FSM   
 //    output pwmPin,          // to GAME 
 //    output ampPin           // to GAME   
-    Audio A1_test(clk, rst, audioEnable_w, audioSelect_w, seqEnd_w, pwmPin, ampPin);
+    Audio A1(clk, rst, audioEnable_w, audioSelect_w, seqEnd_w, pwmPin, ampPin);
 
 
 endmodule
