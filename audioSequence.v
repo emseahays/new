@@ -44,7 +44,7 @@ module audioSequence(
     reg [31:0] play             = 4'b1000;                          //0,1
     reg [31:0] levelInc         = 12'b100000100001;         // 2
     reg [31:0] worldInc         = 20'b10000101001000110011;         // 3
-    reg [31:0] lifeDecr         = 12'b100000110101;                 // 4
+    reg [31:0] lifeDecr         = 8'b10000011;                 // 4
     reg [31:0] win_display      = 28'b1000011001010110010101000010; // 5
     reg [31:0] lose_display     = 24'b100000100011011001010110;     // 6
     
