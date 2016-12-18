@@ -220,8 +220,9 @@ case(currentState)
         nextState <= win_display_wait;
     end
     win_display_wait: begin
+        screen<=winScreen;
         if(continue_btn==1 && seqEnd)nextState<=reset;
-        else nextState<=win_display;
+        else nextState<=win_display_wait;
     end
     lose_display: begin
         //outputs
@@ -232,8 +233,10 @@ case(currentState)
         nextState <= lose_display_wait;
     end
     lose_display_wait: begin
+        screen <= loseScreen;
         if(continue_btn==1 && seqEnd)nextState<=reset;
-        else nextState<=lose_display;end
+        else nextState<=lose_display_wait;
+    end
     reset: begin
         //outputs
         resetSelect<=1;
